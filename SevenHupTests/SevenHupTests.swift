@@ -1,15 +1,15 @@
 //
-//  _HupTests.swift
-//  7HupTests
+//  SevenHupTests.swift
+//  SevenHupTests
 //
-//  Created by Roben Kleene on 4/11/17.
+//  Created by Roben Kleene on 12/10/17.
 //  Copyright © 2017 Roben Kleene. All rights reserved.
 //
 
 import XCTest
-@testable import _Hup
+@testable import SevenHup
 
-class _HupTests: XCTestCase {
+class SevenHupTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
