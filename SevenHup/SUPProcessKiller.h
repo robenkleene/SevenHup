@@ -1,5 +1,5 @@
 //
-//  NSError+WCLProcessKiller.h
+//  NSError+SUPProcessKiller.h
 //  Web Console
 //
 //  Created by Roben Kleene on 1/5/16.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface WCLProcessKiller: NSObject
+@interface SUPProcessKiller: NSObject
 + (BOOL)killProcessWithIdentifier:(pid_t)processIdentifier;
 @end
 NS_ASSUME_NONNULL_END
