@@ -18,7 +18,7 @@
 		4514BC981FDDB14700A1EC32 /* ProcessKiller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC921FDDB14700A1EC32 /* ProcessKiller.swift */; };
 		4514BC991FDDB14700A1EC32 /* ProcessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC931FDDB14700A1EC32 /* ProcessFilter.swift */; };
 		4514BC9A1FDDB14700A1EC32 /* ProcessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC941FDDB14700A1EC32 /* ProcessManager.swift */; };
-		4514BC9B1FDDB14700A1EC32 /* WCLProcessKiller.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514BC951FDDB14700A1EC32 /* WCLProcessKiller.h */; };
+		4514BC9B1FDDB14700A1EC32 /* WCLProcessKiller.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514BC951FDDB14700A1EC32 /* WCLProcessKiller.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
