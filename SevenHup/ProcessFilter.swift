@@ -72,8 +72,8 @@ class ProcessFilter {
         // = Means don't display header for this column
         
         _ = WCLTaskRunner.runTaskUntilFinished(withCommandPath: commandPath,
-                                                                  withArguments: arguments as [NSString],
-                                                                  inDirectoryPath: nil)
+                                               withArguments: arguments as [NSString],
+                                               inDirectoryPath: nil)
         { (standardOutput, standardError, error) -> Void in
 
             if let error = error {
