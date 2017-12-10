@@ -28,10 +28,6 @@ class ProcessManager {
     private let processManagerStore: ProcessManagerStore
     private var identifierKeyToProcessInfoValue = [NSString: AnyObject]()
     
-    convenience init() {
-        self.init(processManagerStore: UserDefaultsManager.standardUserDefaults())
-    }
-    
     init(processManagerStore: ProcessManagerStore) {
         if let processInfoDictionary = processManagerStore.dictionary(forKey: runningProcessesKey) {
             identifierKeyToProcessInfoValue = processInfoDictionary as [NSString : AnyObject]
