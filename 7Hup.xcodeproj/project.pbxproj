@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4514BC571FDDAEE600A1EC32 /* ProcessManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC541FDDAEE600A1EC32 /* ProcessManagerTests.swift */; };
+		4514BC581FDDAEE600A1EC32 /* ProcessIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC551FDDAEE600A1EC32 /* ProcessIntegrationTests.swift */; };
+		4514BC591FDDAEE600A1EC32 /* ProcessFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC561FDDAEE600A1EC32 /* ProcessFilterTests.swift */; };
+		4514BC601FDDAEF100A1EC32 /* WCLProcessKiller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC5A1FDDAEF000A1EC32 /* WCLProcessKiller.m */; };
+		4514BC611FDDAEF100A1EC32 /* ProcessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC5B1FDDAEF000A1EC32 /* ProcessManager.swift */; };
+		4514BC621FDDAEF100A1EC32 /* WCLProcessKiller.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514BC5C1FDDAEF000A1EC32 /* WCLProcessKiller.h */; };
+		4514BC631FDDAEF100A1EC32 /* ProcessInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC5D1FDDAEF000A1EC32 /* ProcessInfo.swift */; };
+		4514BC641FDDAEF100A1EC32 /* ProcessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC5E1FDDAEF000A1EC32 /* ProcessFilter.swift */; };
+		4514BC651FDDAEF100A1EC32 /* ProcessKiller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC5F1FDDAEF100A1EC32 /* ProcessKiller.swift */; };
 		45753E331E9DBC0100823315 /* 7Hup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45753E291E9DBC0100823315 /* 7Hup.framework */; };
 		45753E381E9DBC0100823315 /* _HupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45753E371E9DBC0100823315 /* _HupTests.swift */; };
 		45753E3A1E9DBC0100823315 /* 7Hup.h in Headers */ = {isa = PBXBuildFile; fileRef = 45753E2C1E9DBC0100823315 /* 7Hup.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +32,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4514BC541FDDAEE600A1EC32 /* ProcessManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessManagerTests.swift; sourceTree = "<group>"; };
+		4514BC551FDDAEE600A1EC32 /* ProcessIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessIntegrationTests.swift; sourceTree = "<group>"; };
+		4514BC561FDDAEE600A1EC32 /* ProcessFilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessFilterTests.swift; sourceTree = "<group>"; };
+		4514BC5A1FDDAEF000A1EC32 /* WCLProcessKiller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCLProcessKiller.m; sourceTree = "<group>"; };
+		4514BC5B1FDDAEF000A1EC32 /* ProcessManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessManager.swift; sourceTree = "<group>"; };
+		4514BC5C1FDDAEF000A1EC32 /* WCLProcessKiller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCLProcessKiller.h; sourceTree = "<group>"; };
+		4514BC5D1FDDAEF000A1EC32 /* ProcessInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessInfo.swift; sourceTree = "<group>"; };
+		4514BC5E1FDDAEF000A1EC32 /* ProcessFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessFilter.swift; sourceTree = "<group>"; };
+		4514BC5F1FDDAEF100A1EC32 /* ProcessKiller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessKiller.swift; sourceTree = "<group>"; };
 		45753E291E9DBC0100823315 /* 7Hup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = 7Hup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45753E2C1E9DBC0100823315 /* 7Hup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = 7Hup.h; sourceTree = "<group>"; };
 		45753E2D1E9DBC0100823315 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +89,12 @@
 		45753E2B1E9DBC0100823315 /* 7Hup */ = {
 			isa = PBXGroup;
 			children = (
+				4514BC5E1FDDAEF000A1EC32 /* ProcessFilter.swift */,
+				4514BC5D1FDDAEF000A1EC32 /* ProcessInfo.swift */,
+				4514BC5F1FDDAEF100A1EC32 /* ProcessKiller.swift */,
+				4514BC5B1FDDAEF000A1EC32 /* ProcessManager.swift */,
+				4514BC5C1FDDAEF000A1EC32 /* WCLProcessKiller.h */,
+				4514BC5A1FDDAEF000A1EC32 /* WCLProcessKiller.m */,
 				45753E2C1E9DBC0100823315 /* 7Hup.h */,
 				45753E2D1E9DBC0100823315 /* Info.plist */,
 			);
@@ -80,6 +104,9 @@
 		45753E361E9DBC0100823315 /* 7HupTests */ = {
 			isa = PBXGroup;
 			children = (
+				4514BC561FDDAEE600A1EC32 /* ProcessFilterTests.swift */,
+				4514BC551FDDAEE600A1EC32 /* ProcessIntegrationTests.swift */,
+				4514BC541FDDAEE600A1EC32 /* ProcessManagerTests.swift */,
 				45753E371E9DBC0100823315 /* _HupTests.swift */,
 				45753E391E9DBC0100823315 /* Info.plist */,
 			);
@@ -93,6 +120,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4514BC621FDDAEF100A1EC32 /* WCLProcessKiller.h in Headers */,
 				45753E3A1E9DBC0100823315 /* 7Hup.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,6 +176,7 @@
 				TargetAttributes = {
 					45753E281E9DBC0100823315 = {
 						CreatedOnToolsVersion = 8.3.1;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					45753E311E9DBC0100823315 = {
@@ -196,6 +225,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4514BC601FDDAEF100A1EC32 /* WCLProcessKiller.m in Sources */,
+				4514BC631FDDAEF100A1EC32 /* ProcessInfo.swift in Sources */,
+				4514BC651FDDAEF100A1EC32 /* ProcessKiller.swift in Sources */,
+				4514BC611FDDAEF100A1EC32 /* ProcessManager.swift in Sources */,
+				4514BC641FDDAEF100A1EC32 /* ProcessFilter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +237,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4514BC581FDDAEE600A1EC32 /* ProcessIntegrationTests.swift in Sources */,
 				45753E381E9DBC0100823315 /* _HupTests.swift in Sources */,
+				4514BC571FDDAEE600A1EC32 /* ProcessManagerTests.swift in Sources */,
+				4514BC591FDDAEE600A1EC32 /* ProcessFilterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +356,7 @@
 		45753E3E1E9DBC0100823315 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -332,6 +370,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.1percenter.-Hup";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -339,6 +378,7 @@
 		45753E3F1E9DBC0100823315 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -359,6 +399,7 @@
 		45753E411E9DBC0100823315 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = 7HupTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -371,6 +412,7 @@
 		45753E421E9DBC0100823315 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = 7HupTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -399,6 +441,7 @@
 				45753E3F1E9DBC0100823315 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		45753E401E9DBC0100823315 /* Build configuration list for PBXNativeTarget "7HupTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +450,7 @@
 				45753E421E9DBC0100823315 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
