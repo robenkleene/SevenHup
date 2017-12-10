@@ -16,7 +16,6 @@ struct ProcessInfo: Equatable {
         // An all whitespace `commandPath` is not allowed
         let trimmedCommandPathCharacterCount = commandPath
             .trimmingCharacters(in: CharacterSet.whitespaces)
-            .characters
             .count
         if !(trimmedCommandPathCharacterCount > 0) {
             return nil

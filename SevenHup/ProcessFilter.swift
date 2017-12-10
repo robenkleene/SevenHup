@@ -56,7 +56,8 @@ class ProcessFilter {
         completionHandler: @escaping ((_ identifierToProcessInfo: [Int32: ProcessInfo]?, _ error: NSError?) -> Void))
     {
         if identifiers.isEmpty {
-            let error = NSError.makeError(description: "No identifiers specified")
+            let userInfo = [NSLocalizedDescriptionKey: "No identifiers specified"]
+            let error = NSError(domain: Bundle.main.bundleIdentifier!, code: 100, userInfo: userInfo)
             completionHandler(nil, error)
             return
         }
@@ -119,19 +120,18 @@ class ProcessFilter {
     }
     
     private class func makeProcessInfo(line: String) -> ProcessInfo? {
-        if line.characters.count < 35 {
+        if line.count < 35 {
             return nil
         }
         
-        let identifierStartIndex = line.characters.index(line.startIndex, offsetBy: 5)
-        let rawIdentifier = line.substring(to: identifierStartIndex).trimmingCharacters(in: CharacterSet.whitespaces)
+        let rawIdentifier = line.prefix(5).trimmingCharacters(in: CharacterSet.whitespaces)
         
-        let dateStartIndex = line.characters.index(line.startIndex, offsetBy: 6)
-        let dateEndIndex = line.characters.index(line.startIndex, offsetBy: 30)
-        let rawStartDate = line.substring(with: dateStartIndex..<dateEndIndex)
+        let dateStartIndex = line.index(line.startIndex, offsetBy: 6)
+        let dateEndIndex = line.index(line.startIndex, offsetBy: 30)
+        let rawStartDate = String(line[dateStartIndex..<dateEndIndex])
         
-        let commandIndex = line.characters.index(line.startIndex, offsetBy: 35)
-        let command = line.substring(from: commandIndex)
+        let commandIndex = line.index(line.startIndex, offsetBy: 35)
+        let command = String(line[commandIndex...])
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss yyyy"
