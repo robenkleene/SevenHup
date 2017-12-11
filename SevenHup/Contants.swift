@@ -9,3 +9,4 @@
 import Foundation
 
 let runningProcessesKey = "WCLRunningProcesses"
+let errorDomain = Bundle(for: ProcessManager.self).bundleIdentifier!

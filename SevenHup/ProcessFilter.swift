@@ -59,7 +59,7 @@ class ProcessFilter {
     {
         if identifiers.isEmpty {
             let userInfo = [NSLocalizedDescriptionKey: "No identifiers specified"]
-            let error = NSError(domain: Bundle.main.bundleIdentifier!, code: 100, userInfo: userInfo)
+            let error = NSError(domain: errorDomain, code: 100, userInfo: userInfo)
             completionHandler(nil, error)
             return
         }
