@@ -126,7 +126,9 @@ class ProcessFilterNoProcessTests: XCTestCase {
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss yyyy"
         let startTime = dateFormatter.date(from: "Wed Dec 16 02:09:32 2015")!
         let commandPath = "/usr/libexec/wdhelper"
-        return ProcessInfo(identifier: identifier, startTime: startTime, commandPath: commandPath)!
+        return ProcessInfo(identifier: identifier,
+                           startTime: startTime,
+                           commandPath: commandPath)!
     }()
 
     func testEmptyIdentifiers() {
