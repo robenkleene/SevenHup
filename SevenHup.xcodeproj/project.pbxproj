@@ -23,6 +23,7 @@
 		452A33E41FDE15D4002F28A6 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 452A33E31FDE15D4002F28A6 /* Data */; };
 		452A33E51FDE188A002F28A6 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		452A33E71FDE198F002F28A6 /* XCTestCase+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */; };
+		452A33E91FDE1B87002F28A6 /* SodaStream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45B68F1E1FDE0A72000C3EA5 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		45EA5C9F1FDDB79100303D1F /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA5C9E1FDDB79100303D1F /* Contants.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,19 @@
 			remoteInfo = SevenHup;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		452A33E81FDE1B7B002F28A6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				452A33E91FDE1B87002F28A6 /* SodaStream.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4514BC701FDDB04500A1EC32 /* SevenHup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SevenHup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +193,7 @@
 				4514BC751FDDB04500A1EC32 /* Sources */,
 				4514BC761FDDB04500A1EC32 /* Frameworks */,
 				4514BC771FDDB04500A1EC32 /* Resources */,
+				452A33E81FDE1B7B002F28A6 /* CopyFiles */,
 			);
 			buildRules = (
 			);
