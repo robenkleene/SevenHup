@@ -38,16 +38,16 @@ class ProcessFilterTests: XCTestCase {
         
         let taskIdentifiers = tasks.map { $0.processIdentifier }.sorted { $0 < $1 }
         let processFilterExpectation = expectation(description: "Filter processes")
-        ProcessFilter.runningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessInfo, error) -> Void in
-            guard let identifierToProcessInfo = identifierToProcessInfo else {
+        ProcessFilter.runningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessData, error) -> Void in
+            guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)
                 return
             }
             XCTAssertNil(error)
 
-            XCTAssertEqual(identifierToProcessInfo.count, 3)
+            XCTAssertEqual(identifierToProcessData.count, 3)
  
-            let processIdentifiers = identifierToProcessInfo.values.map({ $0.identifier }).sorted { $0 < $1 }
+            let processIdentifiers = identifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
             XCTAssertEqual(processIdentifiers, taskIdentifiers)
             processFilterExpectation.fulfill()
         }
@@ -86,20 +86,20 @@ class ProcessFilterTests: XCTestCase {
         waitForExpectations(timeout: testTimeout, handler: nil)
         
         let processFilterExpectation = expectation(description: "Filter processes")
-        ProcessFilter.runningProcesses(withIdentifiers: [task.processIdentifier]) { (identifierToProcessInfo, error) -> Void in
+        ProcessFilter.runningProcesses(withIdentifiers: [task.processIdentifier]) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
-            XCTAssertNotNil(identifierToProcessInfo)
-            guard let identifierToProcessInfo = identifierToProcessInfo else {
+            XCTAssertNotNil(identifierToProcessData)
+            guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)
                 return
             }
             
-            XCTAssertEqual(identifierToProcessInfo.count, 1)
-            guard let processInfo = identifierToProcessInfo[task.processIdentifier] else {
+            XCTAssertEqual(identifierToProcessData.count, 1)
+            guard let processData = identifierToProcessData[task.processIdentifier] else {
                 XCTAssertTrue(false)
                 return
             }
-            XCTAssertEqual(processInfo.identifier, task.processIdentifier)
+            XCTAssertEqual(processData.identifier, task.processIdentifier)
             processFilterExpectation.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
@@ -120,32 +120,32 @@ class ProcessFilterTests: XCTestCase {
 
 class ProcessFilterNoProcessTests: XCTestCase {
 
-    lazy var testProcessInfo: ProcessInfo = {
+    lazy var testProcessData: ProcessData = {
         let identifier = Int32(74)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss yyyy"
         let startTime = dateFormatter.date(from: "Wed Dec 16 02:09:32 2015")!
         let commandPath = "/usr/libexec/wdhelper"
-        return ProcessInfo(identifier: identifier,
+        return ProcessData(identifier: identifier,
                            startTime: startTime,
                            commandPath: commandPath)!
     }()
 
     func testEmptyIdentifiers() {
         let expectation = self.expectation(description: "Process filter finished")
-        ProcessFilter.runningProcesses(withIdentifiers: [Int32]()) { (identifierToProcessInfo, error) -> Void in
+        ProcessFilter.runningProcesses(withIdentifiers: [Int32]()) { (identifierToProcessData, error) -> Void in
             XCTAssertNotNil(error)
-            XCTAssertNil(identifierToProcessInfo)
+            XCTAssertNil(identifierToProcessData)
             expectation.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
     }
 
     func testEmptyInput() {
-        var processInfos = ProcessFilter.makeProcessInfos(output: "")
-        XCTAssertEqual(processInfos.count, 0)
-        processInfos = ProcessFilter.makeProcessInfos(output: " ")
-        XCTAssertEqual(processInfos.count, 0)
+        var processDatas = ProcessFilter.makeProcessDatas(output: "")
+        XCTAssertEqual(processDatas.count, 0)
+        processDatas = ProcessFilter.makeProcessDatas(output: " ")
+        XCTAssertEqual(processDatas.count, 0)
     }
     
     func testExampleInput() {
@@ -155,16 +155,16 @@ class ProcessFilterNoProcessTests: XCTestCase {
         
         let output = makeString(contentsOf: fileURL)!
         
-        let identifierToProcessInfo = ProcessFilter.makeProcessInfos(output: output)
-        XCTAssertEqual(identifierToProcessInfo.count, 3)
-        guard let processInfo = identifierToProcessInfo[testProcessInfo.identifier] else {
+        let identifierToProcessData = ProcessFilter.makeProcessDatas(output: output)
+        XCTAssertEqual(identifierToProcessData.count, 3)
+        guard let processData = identifierToProcessData[testProcessData.identifier] else {
             XCTAssertTrue(false)
             return
         }
 
-        XCTAssertEqual(processInfo.identifier, testProcessInfo.identifier)
-        XCTAssertEqual(processInfo.startTime, testProcessInfo.startTime)
-        XCTAssertEqual(processInfo.commandPath, testProcessInfo.commandPath)
+        XCTAssertEqual(processData.identifier, testProcessData.identifier)
+        XCTAssertEqual(processData.startTime, testProcessData.startTime)
+        XCTAssertEqual(processData.commandPath, testProcessData.commandPath)
     }
 
     func testBadExampleInput() {
@@ -174,16 +174,16 @@ class ProcessFilterNoProcessTests: XCTestCase {
         
         let output = makeString(contentsOf: fileURL)!
         
-        let identifierToProcessInfo = ProcessFilter.makeProcessInfos(output: output)
-        XCTAssertEqual(identifierToProcessInfo.count, 1)
-        guard let processInfo = identifierToProcessInfo[testProcessInfo.identifier] else {
+        let identifierToProcessData = ProcessFilter.makeProcessDatas(output: output)
+        XCTAssertEqual(identifierToProcessData.count, 1)
+        guard let processData = identifierToProcessData[testProcessData.identifier] else {
             XCTAssertTrue(false)
             return
         }
 
-        XCTAssertEqual(processInfo.identifier, testProcessInfo.identifier)
-        XCTAssertEqual(processInfo.startTime, testProcessInfo.startTime)
-        XCTAssertEqual(processInfo.commandPath, testProcessInfo.commandPath)
+        XCTAssertEqual(processData.identifier, testProcessData.identifier)
+        XCTAssertEqual(processData.startTime, testProcessData.startTime)
+        XCTAssertEqual(processData.commandPath, testProcessData.commandPath)
     }
     
 

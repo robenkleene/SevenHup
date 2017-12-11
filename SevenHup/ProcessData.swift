@@ -1,5 +1,5 @@
 //
-//  ProcessInfo.swift
+//  ProcessData.swift
 //  Web Console
 //
 //  Created by Roben Kleene on 12/6/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ProcessInfo: Equatable {
+struct ProcessData: Equatable {
 
     let identifier: Int32
     let startTime: Date
@@ -32,7 +32,7 @@ struct ProcessInfo: Equatable {
     }
 }
 
-func ==(lhs: ProcessInfo, rhs: ProcessInfo) -> Bool {
+func ==(lhs: ProcessData, rhs: ProcessData) -> Bool {
     return lhs.identifier == rhs.identifier &&
         lhs.commandPath == rhs.commandPath &&
         lhs.startTime == rhs.startTime

@@ -10,12 +10,12 @@ import Foundation
 
 class ProcessKiller {
 
-    class func kill(_ processInfos: [ProcessInfo],
+    class func kill(_ processDatas: [ProcessData],
         completion: ((Bool) -> Void)?)
     {
         var result = true
-        for processInfo in processInfos {
-            let didKill = killProcessInfo(processInfo)
+        for processData in processDatas {
+            let didKill = killProcessData(processData)
             if !didKill {
                 result = false
                 break
@@ -34,7 +34,7 @@ class ProcessKiller {
     
     // MARK: Private
     
-    private class func killProcessInfo(_ processInfo: ProcessInfo) -> Bool {
-        return SUPProcessKiller.killProcess(withIdentifier: processInfo.identifier)
+    private class func killProcessData(_ processData: ProcessData) -> Bool {
+        return SUPProcessKiller.killProcess(withIdentifier: processData.identifier)
     }
 }

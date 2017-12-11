@@ -32,11 +32,11 @@ class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
     {
         if
             let commandPath = task.launchPath,
-            let processInfo = ProcessInfo(identifier: task.processIdentifier,
+            let processData = ProcessData(identifier: task.processIdentifier,
                                           startTime: Date(),
                                           commandPath: commandPath)
         {
-            processManager.add(processInfo)
+            processManager.add(processData)
         }
     }
     
@@ -89,30 +89,30 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         // Confirm the `ProcessManager` has the processes
         
         let taskIdentifiers = tasks.map({ $0.processIdentifier })
-        let processInfos = processManager.processInfos()
-        XCTAssertEqual(processInfos.count, processesToMake)
+        let processDatas = processManager.processDatas()
+        XCTAssertEqual(processDatas.count, processesToMake)
         
         for task in tasks {
-            guard let processInfoByIdentifier = processManager.processInfo(forIdentifier: task.processIdentifier) else {
+            guard let processDataByIdentifier = processManager.processData(forIdentifier: task.processIdentifier) else {
                 XCTAssertTrue(false)
                 break
             }
-            XCTAssertEqual(processInfoByIdentifier.identifier, task.processIdentifier)
+            XCTAssertEqual(processDataByIdentifier.identifier, task.processIdentifier)
         }
         
         // Confirm the `ProcessFilter` has the processes
         
         let processFilterExpectation = expectation(description: "Filter processes")
-        ProcessFilter.runningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessInfo, error) -> Void in
-            guard let identifierToProcessInfo = identifierToProcessInfo else {
+        ProcessFilter.runningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessData, error) -> Void in
+            guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)
                 return
             }
             XCTAssertNil(error)
             
-            XCTAssertEqual(identifierToProcessInfo.count, processesToMake)
+            XCTAssertEqual(identifierToProcessData.count, processesToMake)
             
-            let processIdentifiers = identifierToProcessInfo.values.map({ $0.identifier }).sorted { $0 < $1 }
+            let processIdentifiers = identifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
             XCTAssertEqual(processIdentifiers, taskIdentifiers)
             processFilterExpectation.fulfill()
         }
@@ -121,33 +121,33 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         // Terminate the process
         
         let killProcessExpectation = expectation(description: "Kill process")
-        ProcessKiller.kill(processInfos) { success in
+        ProcessKiller.kill(processDatas) { success in
             killProcessExpectation.fulfill()
         }
         
         // Wait for the process to terminate
         
-        // TODO: Migrate to `killProcessInfo` when a better implementation
-        // of `killProcessInfo` exists. Right now, the completion handler of
-        // `killProcessInfo` can fire before the process has been terminated!
+        // TODO: Migrate to `killProcessData` when a better implementation
+        // of `killProcessData` exists. Right now, the completion handler of
+        // `killProcessData` can fire before the process has been terminated!
         wait(forTerminationOf: tasks)
         
         // Confirm the processes have been removed from the `ProcessManager`
         
-        let processInfosTwo = processManager.processInfos()
-        XCTAssertEqual(processInfosTwo.count, 0)
+        let processDatasTwo = processManager.processDatas()
+        XCTAssertEqual(processDatasTwo.count, 0)
         
         // Confirm that the `ProcessFilter` no longer has the process
         
         let filterExpectationFour = expectation(description: "Process filter")
-        ProcessFilter.runningProcessMap(matching: processInfos) { (identifierToProcessInfo, error) -> Void in
+        ProcessFilter.runningProcessMap(matching: processDatas) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
-            guard let identifierToProcessInfo = identifierToProcessInfo else {
+            guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)
                 return
             }
             
-            XCTAssertEqual(identifierToProcessInfo.count, 0)
+            XCTAssertEqual(identifierToProcessData.count, 0)
             filterExpectationFour.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
@@ -172,26 +172,26 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         
         // Test that the `ProcessManager` has the process
 
-        let processInfos = processManager.processInfos()
-        XCTAssertEqual(processInfos.count, 1)
-        let processInfo = processInfos[0]
-        let processInfoByIdentifier = processManager.processInfo(forIdentifier: task.processIdentifier)
-        XCTAssertEqual(processInfo, processInfoByIdentifier)
-        XCTAssertEqual(processInfo.identifier, task.processIdentifier)
+        let processDatas = processManager.processDatas()
+        XCTAssertEqual(processDatas.count, 1)
+        let processData = processDatas[0]
+        let processDataByIdentifier = processManager.processData(forIdentifier: task.processIdentifier)
+        XCTAssertEqual(processData, processDataByIdentifier)
+        XCTAssertEqual(processData.identifier, task.processIdentifier)
 
         // Test that the `ProcessFilter` has the process
 
         let filterExpectation = expectation(description: "Process filter")
-        ProcessFilter.runningProcessMap(matching: [processInfo]) { (identifierToProcessInfo, error) -> Void in
+        ProcessFilter.runningProcessMap(matching: [processData]) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
-            guard let identifierToProcessInfo = identifierToProcessInfo,
-                let runningProcessInfo = identifierToProcessInfo[processInfo.identifier] else
+            guard let identifierToProcessData = identifierToProcessData,
+                let runningProcessData = identifierToProcessData[processData.identifier] else
             {
                 XCTAssertTrue(false)
                 return
             }
             
-            XCTAssertEqual(runningProcessInfo.identifier, processInfo.identifier)
+            XCTAssertEqual(runningProcessData.identifier, processData.identifier)
             filterExpectation.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
@@ -201,22 +201,22 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         let filterExpectationTwo = expectation(description: "Process filter")
 
         let oneSecondInThePast = Date(timeIntervalSinceNow: -1.0)
-        guard let inThePastProcessInfo = ProcessInfo(identifier: processInfo.identifier,
+        guard let inThePastProcessData = ProcessData(identifier: processData.identifier,
                                                      startTime: oneSecondInThePast,
-                                                     commandPath: processInfo.commandPath) else
+                                                     commandPath: processData.commandPath) else
         {
             XCTAssertTrue(false)
             return
         }
 
-        ProcessFilter.runningProcessMap(matching: [inThePastProcessInfo]) { (identifierToProcessInfo, error) -> Void in
+        ProcessFilter.runningProcessMap(matching: [inThePastProcessData]) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
-            guard let identifierToProcessInfo = identifierToProcessInfo else {
+            guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)
                 return
             }
             
-            XCTAssertEqual(identifierToProcessInfo.count, 0)
+            XCTAssertEqual(identifierToProcessData.count, 0)
             filterExpectationTwo.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
@@ -226,27 +226,27 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         let filterExpectationThree = expectation(description: "Process filter")
         
         let oneSecondInTheFuture = Date(timeIntervalSinceNow: 1.0)
-        guard let inTheFutureProcessInfo = ProcessInfo(identifier: processInfo.identifier,
+        guard let inTheFutureProcessData = ProcessData(identifier: processData.identifier,
                                                        startTime: oneSecondInTheFuture,
-                                                       commandPath: processInfo.commandPath) else
+                                                       commandPath: processData.commandPath) else
         {
             XCTAssertTrue(false)
             return
         }
         
-        var runningProcessInfo: ProcessInfo!
-        ProcessFilter.runningProcessMap(matching: [inTheFutureProcessInfo]) { (identifierToProcessInfo, error) -> Void in
+        var runningProcessData: ProcessData!
+        ProcessFilter.runningProcessMap(matching: [inTheFutureProcessData]) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
             guard
-                let identifierToProcessInfo = identifierToProcessInfo,
-                let localRunningProcessInfo = identifierToProcessInfo[processInfo.identifier] else
+                let identifierToProcessData = identifierToProcessData,
+                let localRunningProcessData = identifierToProcessData[processData.identifier] else
             {
                 XCTAssertTrue(false)
                 return
             }
             
-            XCTAssertEqual(localRunningProcessInfo.identifier, processInfo.identifier)
-            runningProcessInfo = localRunningProcessInfo
+            XCTAssertEqual(localRunningProcessData.identifier, processData.identifier)
+            runningProcessData = localRunningProcessData
             filterExpectationThree.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
@@ -254,35 +254,35 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         // Terminate the process 
         
         let killProcessExpectation = expectation(description: "Kill process")
-        ProcessKiller.kill([runningProcessInfo]) { success in
+        ProcessKiller.kill([runningProcessData]) { success in
             XCTAssertTrue(success)
             killProcessExpectation.fulfill()
         }
         
         // Wait for the process to terminate
 
-        // TODO: Migrate to `killProcessInfo` when a better implementation
-        // of `killProcessInfo` exists. Really the completion handler of 
-        // `killProcessInfo` not fire until the process has been terminated.
+        // TODO: Migrate to `killProcessData` when a better implementation
+        // of `killProcessData` exists. Really the completion handler of 
+        // `killProcessData` not fire until the process has been terminated.
         wait(forTerminationOf: [task])
         
         // Confirm the process has been removed from the `ProcessManager`
 
-        let processInfosTwo = processManager.processInfos()
-        XCTAssertEqual(processInfosTwo.count, 0)
-        XCTAssertNil(processManager.processInfo(forIdentifier: task.processIdentifier))
+        let processDatasTwo = processManager.processDatas()
+        XCTAssertEqual(processDatasTwo.count, 0)
+        XCTAssertNil(processManager.processData(forIdentifier: task.processIdentifier))
 
         // Confirm that the `ProcessFilter` no longer has the process
         
         let filterExpectationFour = expectation(description: "Process filter")
-        ProcessFilter.runningProcessMap(matching: [processInfo]) { (identifierToProcessInfo, error) -> Void in
+        ProcessFilter.runningProcessMap(matching: [processData]) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
-            guard let identifierToProcessInfo = identifierToProcessInfo else {
+            guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)
                 return
             }
             
-            XCTAssertEqual(identifierToProcessInfo.count, 0)
+            XCTAssertEqual(identifierToProcessData.count, 0)
             filterExpectationFour.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)

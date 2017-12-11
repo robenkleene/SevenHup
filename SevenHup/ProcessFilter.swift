@@ -11,40 +11,40 @@ import Foundation
 import SodaStream
 
 extension ProcessFilter {
-    class func runningProcessMap(matching processInfos: [ProcessInfo],
-        completionHandler: @escaping ((_ identifierToProcessInfo: [Int32: ProcessInfo]?, _ error: NSError?) -> Void))
+    class func runningProcessMap(matching processDatas: [ProcessData],
+        completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?, _ error: NSError?) -> Void))
     {
-        let identifiers = processInfos.map { $0.identifier }
-        runningProcesses(withIdentifiers: identifiers) { (identifierToProcessInfo, error) -> Void in
+        let identifiers = processDatas.map { $0.identifier }
+        runningProcesses(withIdentifiers: identifiers) { (identifierToProcessData, error) -> Void in
             if let error = error {
                 completionHandler(nil, error)
                 return
             }
 
-            guard var identifierToProcessInfo = identifierToProcessInfo else {
-                completionHandler([Int32: ProcessInfo](), nil)
+            guard var identifierToProcessData = identifierToProcessData else {
+                completionHandler([Int32: ProcessData](), nil)
                 return
             }
             
-            for processInfo in processInfos {
-                if let runningProcessInfo = identifierToProcessInfo[processInfo.identifier] {
-                    if !doesRunningProcessInfo(runningProcessInfo, matchProcessInfo: processInfo) {
-                        identifierToProcessInfo.removeValue(forKey: processInfo.identifier)
+            for processData in processDatas {
+                if let runningProcessData = identifierToProcessData[processData.identifier] {
+                    if !doesRunningProcessData(runningProcessData, matchProcessData: processData) {
+                        identifierToProcessData.removeValue(forKey: processData.identifier)
                     }
                 }
             }
 
-            completionHandler(identifierToProcessInfo, nil)
+            completionHandler(identifierToProcessData, nil)
         }
     }
 
-    class func doesRunningProcessInfo(_ runningProcessInfo: ProcessInfo,
-        matchProcessInfo processInfo: ProcessInfo) -> Bool
+    class func doesRunningProcessData(_ runningProcessData: ProcessData,
+        matchProcessData processData: ProcessData) -> Bool
     {
-        assert(runningProcessInfo.identifier == processInfo.identifier)
+        assert(runningProcessData.identifier == processData.identifier)
         
-        // Make sure the running process started on or before the other `ProcessInfo`'s `startTime`
-        if runningProcessInfo.startTime.compare(processInfo.startTime as Date) == ComparisonResult.orderedDescending {
+        // Make sure the running process started on or before the other `ProcessData`'s `startTime`
+        if runningProcessData.startTime.compare(processData.startTime as Date) == ComparisonResult.orderedDescending {
             return false
         }
         
@@ -55,7 +55,7 @@ extension ProcessFilter {
 class ProcessFilter {
     
     class func runningProcesses(withIdentifiers identifiers: [Int32],
-        completionHandler: @escaping ((_ identifierToProcessInfo: [Int32: ProcessInfo]?, _ error: NSError?) -> Void))
+        completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?, _ error: NSError?) -> Void))
     {
         if identifiers.isEmpty {
             let userInfo = [NSLocalizedDescriptionKey: "No identifiers specified"]
@@ -88,7 +88,7 @@ class ProcessFilter {
                     {
                         // If the process identifier is not found, `ps` exits with an exit status of 1
                         // So reinterpret that case as no processes found
-                        completionHandler([Int32: ProcessInfo](), nil)
+                        completionHandler([Int32: ProcessData](), nil)
                         return
                     }
                 }
@@ -98,31 +98,31 @@ class ProcessFilter {
             }
 
             guard let standardOutput = standardOutput else {
-                completionHandler([Int32: ProcessInfo](), nil)
+                completionHandler([Int32: ProcessData](), nil)
                 return
             }
             
-            let processInfos = makeProcessInfos(output: standardOutput)
-            completionHandler(processInfos, nil)
+            let processDatas = makeProcessDatas(output: standardOutput)
+            completionHandler(processDatas, nil)
         }
     }
 
     // MARK: Private
 
-    class func makeProcessInfos(output: String) -> [Int32: ProcessInfo] {
+    class func makeProcessDatas(output: String) -> [Int32: ProcessData] {
 
-        var identifierToProcessInfo = [Int32: ProcessInfo]()
+        var identifierToProcessData = [Int32: ProcessData]()
         let lines = output.components(separatedBy: "\n")
         for line in lines {
-            if let processInfo = makeProcessInfo(line: line) {
-                identifierToProcessInfo[processInfo.identifier] = processInfo
+            if let processData = makeProcessData(line: line) {
+                identifierToProcessData[processData.identifier] = processData
             }
         }
         
-        return identifierToProcessInfo
+        return identifierToProcessData
     }
     
-    private class func makeProcessInfo(line: String) -> ProcessInfo? {
+    private class func makeProcessData(line: String) -> ProcessData? {
         if line.count < 35 {
             return nil
         }
@@ -143,7 +143,7 @@ class ProcessFilter {
             return nil
         }
         
-        return ProcessInfo(identifier: identifier, startTime: date, commandPath: command)
+        return ProcessData(identifier: identifier, startTime: date, commandPath: command)
     }
     
 }

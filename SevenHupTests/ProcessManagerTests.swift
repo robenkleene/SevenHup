@@ -49,52 +49,52 @@ class ProcessManagerTestCase: XCTestCase {
 class ProcessManagerTests: ProcessManagerTestCase {
 
     func testProcessManager() {
-        let processInfo = ProcessInfo(identifier: 1,
+        let processData = ProcessData(identifier: 1,
                                       startTime: Date(),
                                       commandPath: "test")!
 
-        let testProcessManagerHasProcessInfo: (_ processManager: ProcessManager) -> Bool = { processManager in
-            let returnedProcessInfo = processManager.processInfo(forIdentifier: processInfo.identifier)!
-            XCTAssertNotNil(returnedProcessInfo)
-            XCTAssertEqual(returnedProcessInfo, processInfo)
+        let testProcessManagerHasProcessData: (_ processManager: ProcessManager) -> Bool = { processManager in
+            let returnedProcessData = processManager.processData(forIdentifier: processData.identifier)!
+            XCTAssertNotNil(returnedProcessData)
+            XCTAssertEqual(returnedProcessData, processData)
             
-            let returnedProcessInfos = processManager.processInfos()
-            XCTAssertEqual(returnedProcessInfos.count, 1)
-            XCTAssertEqual(returnedProcessInfos[0], processInfo)
+            let returnedProcessDatas = processManager.processDatas()
+            XCTAssertEqual(returnedProcessDatas.count, 1)
+            XCTAssertEqual(returnedProcessDatas[0], processData)
 
-            XCTAssertNil(processManager.processInfo(forIdentifier: 999))
+            XCTAssertNil(processManager.processData(forIdentifier: 999))
             return true
         }
         
-        processManager.add(processInfo)
-        let processManagerHasProcessInfoResult = testProcessManagerHasProcessInfo(processManager)
-        XCTAssertTrue(processManagerHasProcessInfoResult)
+        processManager.add(processData)
+        let processManagerHasProcessDataResult = testProcessManagerHasProcessData(processManager)
+        XCTAssertTrue(processManagerHasProcessDataResult)
         
         // Initialize a second `ProcessManager` with the existing `ProcessManagerStore`
         // this will test that the new `ProcessManager` is initialized with the
-        // `ProcessInfo`s already stored in the `ProcessManagerStore`.
+        // `ProcessData`s already stored in the `ProcessManagerStore`.
         let processManagerTwo = ProcessManager(processManagerStore: processManagerStore)
-        let processManagerHasProcessInfoResultTwo = testProcessManagerHasProcessInfo(processManagerTwo)
-        XCTAssertTrue(processManagerHasProcessInfoResultTwo)
+        let processManagerHasProcessDataResultTwo = testProcessManagerHasProcessData(processManagerTwo)
+        XCTAssertTrue(processManagerHasProcessDataResultTwo)
         
         // Remove the processes and make sure nil is returned
-        _ = processManager.removeProcess(forIdentifier: processInfo.identifier)
+        _ = processManager.removeProcess(forIdentifier: processData.identifier)
 
-        let testProcessManagerHasNoProcessInfo: (_ processManager: ProcessManager) -> Bool = { processManager in
-            XCTAssertNil(processManager.processInfo(forIdentifier: processInfo.identifier))
+        let testProcessManagerHasNoProcessData: (_ processManager: ProcessManager) -> Bool = { processManager in
+            XCTAssertNil(processManager.processData(forIdentifier: processData.identifier))
             
-            let returnedProcessInfos = processManager.processInfos()
-            XCTAssertEqual(returnedProcessInfos.count, 0)
+            let returnedProcessDatas = processManager.processDatas()
+            XCTAssertEqual(returnedProcessDatas.count, 0)
 
-            XCTAssertNil(processManager.processInfo(forIdentifier: 999))
+            XCTAssertNil(processManager.processData(forIdentifier: 999))
             return true
         }
         
-        let processManagerHasNoProcessInfoResult = testProcessManagerHasNoProcessInfo(processManager)
-        XCTAssertTrue(processManagerHasNoProcessInfoResult)
+        let processManagerHasNoProcessDataResult = testProcessManagerHasNoProcessData(processManager)
+        XCTAssertTrue(processManagerHasNoProcessDataResult)
         let processManagerThree = ProcessManager(processManagerStore: processManagerStore)
-        let processManagerHasNoProcessInfoResultTwo = testProcessManagerHasNoProcessInfo(processManagerThree)
-        XCTAssertTrue(processManagerHasNoProcessInfoResultTwo)    
+        let processManagerHasNoProcessDataResultTwo = testProcessManagerHasNoProcessData(processManagerThree)
+        XCTAssertTrue(processManagerHasNoProcessDataResultTwo)    
     }
 
 }

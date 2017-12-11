@@ -16,7 +16,7 @@ protocol ProcessManagerStore {
 }
 class ProcessManager {
     
-    enum ProcessInfoKey: String {
+    enum ProcessDataKey: String {
         case identifier = "identifier"
         case commandPath = "commandPath"
         case startTime = "startTime"
@@ -26,111 +26,111 @@ class ProcessManager {
     }
     
     private let processManagerStore: ProcessManagerStore
-    private var identifierKeyToProcessInfoValue = [NSString: AnyObject]()
+    private var identifierKeyToProcessDataValue = [NSString: AnyObject]()
     
     init(processManagerStore: ProcessManagerStore) {
-        if let processInfoDictionary = processManagerStore.dictionary(forKey: runningProcessesKey) {
-            identifierKeyToProcessInfoValue = processInfoDictionary as [NSString : AnyObject]
+        if let processDataDictionary = processManagerStore.dictionary(forKey: runningProcessesKey) {
+            identifierKeyToProcessDataValue = processDataDictionary as [NSString : AnyObject]
         }
         self.processManagerStore = processManagerStore
     }
     
-    func add(_ processInfo: ProcessInfo) {
-        let keyValue = type(of: self).keyAndValue(from: processInfo)
+    func add(_ processData: ProcessData) {
+        let keyValue = type(of: self).keyAndValue(from: processData)
         objc_sync_enter(self)
-        identifierKeyToProcessInfoValue[keyValue.key] = keyValue.value
+        identifierKeyToProcessDataValue[keyValue.key] = keyValue.value
         objc_sync_exit(self)
         save()
     }
     
-    func removeProcess(forIdentifier identifier: Int32) -> ProcessInfo? {
-        let processInfo = self.processInfo(forIdentifier: identifier, remove: true)
-        return processInfo
+    func removeProcess(forIdentifier identifier: Int32) -> ProcessData? {
+        let processData = self.processData(forIdentifier: identifier, remove: true)
+        return processData
     }
     
-    func processInfo(forIdentifier identifier: Int32) -> ProcessInfo? {
-        return processInfo(forIdentifier: identifier, remove: false)
+    func processData(forIdentifier identifier: Int32) -> ProcessData? {
+        return processData(forIdentifier: identifier, remove: false)
     }
     
-    func processInfos() -> [ProcessInfo] {
+    func processDatas() -> [ProcessData] {
         objc_sync_enter(self)
-        let values = identifierKeyToProcessInfoValue.values
+        let values = identifierKeyToProcessDataValue.values
         objc_sync_exit(self)
         
-        var processInfos = [ProcessInfo]()
+        var processDatas = [ProcessData]()
         
         for value in values {
             if let
                 value = value as? NSDictionary,
-                let processInfo = type(of: self).processInfo(for: value)
+                let processData = type(of: self).processData(for: value)
             {
-                processInfos.append(processInfo)
+                processDatas.append(processData)
             }
         }
         
-        return processInfos
+        return processDatas
     }
     
     // MARK: Private
     
     private func save() {
-        processManagerStore.set(identifierKeyToProcessInfoValue as AnyObject?, forKey: runningProcessesKey)
+        processManagerStore.set(identifierKeyToProcessDataValue as AnyObject?, forKey: runningProcessesKey)
     }
     
-    private func processInfo(forIdentifier identifier: Int32, remove: Bool) -> ProcessInfo? {
-        guard let processInfoValue = processInfoValue(forIdentifier: identifier, remove: remove) else {
+    private func processData(forIdentifier identifier: Int32, remove: Bool) -> ProcessData? {
+        guard let processDataValue = processDataValue(forIdentifier: identifier, remove: remove) else {
             return nil
         }
         
-        return type(of: self).processInfo(for: processInfoValue)
+        return type(of: self).processData(for: processDataValue)
     }
     
     // MARK: Helper
     
-    private func processInfoValue(forIdentifier identifier: Int32, remove: Bool) -> NSDictionary? {
+    private func processDataValue(forIdentifier identifier: Int32, remove: Bool) -> NSDictionary? {
         let key = type(of: self).key(from: identifier)
         if remove {
             objc_sync_enter(self)
-            let processInfoValue = identifierKeyToProcessInfoValue.removeValue(forKey: key) as? NSDictionary
+            let processDataValue = identifierKeyToProcessDataValue.removeValue(forKey: key) as? NSDictionary
             objc_sync_exit(self)
             save()
-            return processInfoValue
+            return processDataValue
         } else {
             objc_sync_enter(self)
-            let value = identifierKeyToProcessInfoValue[key] as? NSDictionary
+            let value = identifierKeyToProcessDataValue[key] as? NSDictionary
             objc_sync_exit(self)
             return value
         }
     }
     
-    private class func keyAndValue(from processInfo: ProcessInfo) -> (key: NSString, value: NSDictionary) {
-        let key = self.key(from: processInfo.identifier)
-        let value = self.value(for: processInfo)
+    private class func keyAndValue(from processData: ProcessData) -> (key: NSString, value: NSDictionary) {
+        let key = self.key(from: processData.identifier)
+        let value = self.value(for: processData)
         return (key: key, value: value)
     }
     
-    private class func processInfo(for dictionary: NSDictionary) -> ProcessInfo? {
+    private class func processData(for dictionary: NSDictionary) -> ProcessData? {
         guard
-            let key = dictionary[ProcessInfoKey.identifier.key()] as? NSString,
-            let commandPath = dictionary[ProcessInfoKey.commandPath.key()] as? String,
-            let startTime = dictionary[ProcessInfoKey.startTime.key()] as? Date
+            let key = dictionary[ProcessDataKey.identifier.key()] as? NSString,
+            let commandPath = dictionary[ProcessDataKey.commandPath.key()] as? String,
+            let startTime = dictionary[ProcessDataKey.startTime.key()] as? Date
         else {
             return nil
         }
         
         let identifier = self.identifier(from: key)
         
-        return ProcessInfo(identifier: identifier,
+        return ProcessData(identifier: identifier,
             startTime: startTime,
             commandPath: commandPath)
     }
     
-    private class func value(for processInfo: ProcessInfo) -> NSDictionary {
+    private class func value(for processData: ProcessData) -> NSDictionary {
         let dictionary = NSMutableDictionary()
-        let key = self.key(from: processInfo.identifier)
-        dictionary[ProcessInfoKey.identifier.key()] = key
-        dictionary[ProcessInfoKey.commandPath.key()] = processInfo.commandPath
-        dictionary[ProcessInfoKey.startTime.key()] = processInfo.startTime
+        let key = self.key(from: processData.identifier)
+        dictionary[ProcessDataKey.identifier.key()] = key
+        dictionary[ProcessDataKey.commandPath.key()] = processData.commandPath
+        dictionary[ProcessDataKey.startTime.key()] = processData.startTime
         return dictionary
     }
     
