@@ -8,6 +8,8 @@
 
 import Foundation
 
+import SodaStream
+
 extension ProcessFilter {
     class func runningProcessMap(matching processInfos: [ProcessInfo],
         completionHandler: @escaping ((_ identifierToProcessInfo: [Int32: ProcessInfo]?, _ error: NSError?) -> Void))
@@ -72,7 +74,7 @@ class ProcessFilter {
         // args: Command & Arguments
         // = Means don't display header for this column
         
-        _ = WCLTaskRunner.runTaskUntilFinished(withCommandPath: commandPath,
+        _ = SDATaskRunner.runTaskUntilFinished(withCommandPath: commandPath,
                                                withArguments: arguments as [NSString],
                                                inDirectoryPath: nil)
         { (standardOutput, standardError, error) -> Void in

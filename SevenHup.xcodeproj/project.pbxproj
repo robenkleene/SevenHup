@@ -19,6 +19,7 @@
 		4514BC991FDDB14700A1EC32 /* ProcessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC931FDDB14700A1EC32 /* ProcessFilter.swift */; };
 		4514BC9A1FDDB14700A1EC32 /* ProcessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC941FDDB14700A1EC32 /* ProcessManager.swift */; };
 		4514BC9B1FDDB14700A1EC32 /* SUPProcessKiller.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514BC951FDDB14700A1EC32 /* SUPProcessKiller.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45B68F1E1FDE0A72000C3EA5 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		45EA5C9F1FDDB79100303D1F /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA5C9E1FDDB79100303D1F /* Contants.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		4514BC931FDDB14700A1EC32 /* ProcessFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessFilter.swift; sourceTree = "<group>"; };
 		4514BC941FDDB14700A1EC32 /* ProcessManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessManager.swift; sourceTree = "<group>"; };
 		4514BC951FDDB14700A1EC32 /* SUPProcessKiller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPProcessKiller.h; sourceTree = "<group>"; };
+		45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SodaStream.framework; path = Carthage/Build/Mac/SodaStream.framework; sourceTree = "<group>"; };
 		45EA5C9E1FDDB79100303D1F /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45B68F1E1FDE0A72000C3EA5 /* SodaStream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +79,7 @@
 				4514BC721FDDB04500A1EC32 /* SevenHup */,
 				4514BC7D1FDDB04500A1EC32 /* SevenHupTests */,
 				4514BC711FDDB04500A1EC32 /* Products */,
+				45B68F1C1FDE0A72000C3EA5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +118,14 @@
 				4514BC801FDDB04500A1EC32 /* Info.plist */,
 			);
 			path = SevenHupTests;
+			sourceTree = "<group>";
+		};
+		45B68F1C1FDE0A72000C3EA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,6 +394,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SevenHup/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -405,6 +421,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SevenHup/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
