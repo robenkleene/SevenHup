@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import Web_Console
+@testable import SevenHup
 
 class ProcessManagerTestCase: XCTestCase {
     class MockProcessManagerStore: ProcessManagerStore {
@@ -49,9 +49,9 @@ class ProcessManagerTestCase: XCTestCase {
 class ProcessManagerTests: ProcessManagerTestCase {
 
     func testProcessManager() {
-        let processInfo = Web_Console.ProcessInfo(identifier: 1,
-            startTime: Date(),
-            commandPath: "test")!
+        let processInfo = ProcessInfo(identifier: 1,
+                                      startTime: Date(),
+                                      commandPath: "test")!
 
         let testProcessManagerHasProcessInfo: (_ processManager: ProcessManager) -> Bool = { processManager in
             let returnedProcessInfo = processManager.processInfo(forIdentifier: processInfo.identifier)!

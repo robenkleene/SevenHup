@@ -8,7 +8,8 @@
 
 import XCTest
 
-@testable import Web_Console
+@testable import SevenHup
+import SodaStream
 
 // MARK: ProcessFilterTests
 
@@ -23,13 +24,13 @@ class ProcessFilterTests: XCTestCase {
                 inDirectory: testDataSubdirectory)!
             
             let runExpectation = expectation(description: "Task ran")
-            let task = WCLTaskRunner.runTask(withCommandPath: commandPath,
-                withArguments: nil,
-                inDirectoryPath: nil,
-                delegate: nil)
-                { (success) -> Void in
-                    XCTAssertTrue(success)
-                    runExpectation.fulfill()
+            let task = SDATaskRunner.runTask(withCommandPath: commandPath,
+                                             withArguments: nil,
+                                             inDirectoryPath: nil,
+                                             delegate: nil)
+            { (success) -> Void in
+                XCTAssertTrue(success)
+                runExpectation.fulfill()
             }
             tasks.append(task)
         }
@@ -73,10 +74,10 @@ class ProcessFilterTests: XCTestCase {
             inDirectory: testDataSubdirectory)!
         
         let runExpectation = expectation(description: "Task ran")
-        let task = WCLTaskRunner.runTask(withCommandPath: commandPath,
-            withArguments: nil,
-            inDirectoryPath: nil,
-            delegate: nil)
+        let task = SDATaskRunner.runTask(withCommandPath: commandPath,
+                                         withArguments: nil,
+                                         inDirectoryPath: nil,
+                                         delegate: nil)
         { (success) -> Void in
             XCTAssertTrue(success)
             runExpectation.fulfill()
@@ -119,13 +120,13 @@ class ProcessFilterTests: XCTestCase {
 
 class ProcessFilterNoProcessTests: XCTestCase {
 
-    lazy var testProcessInfo: Web_Console.ProcessInfo = {
+    lazy var testProcessInfo: ProcessInfo = {
         let identifier = Int32(74)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss yyyy"
         let startTime = dateFormatter.date(from: "Wed Dec 16 02:09:32 2015")!
         let commandPath = "/usr/libexec/wdhelper"
-        return Web_Console.ProcessInfo(identifier: identifier, startTime: startTime, commandPath: commandPath)!
+        return ProcessInfo(identifier: identifier, startTime: startTime, commandPath: commandPath)!
     }()
 
     func testEmptyIdentifiers() {

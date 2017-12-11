@@ -8,9 +8,10 @@
 
 import XCTest
 
-@testable import Web_Console
+@testable import SevenHup
+import SodaStream
 
-class ProcessManagerRouter: NSObject, WCLTaskRunnerDelegate {
+class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
 
     let processManager: ProcessManager
     
@@ -25,15 +26,15 @@ class ProcessManagerRouter: NSObject, WCLTaskRunnerDelegate {
     }
     
     func task(_ task: Process,
-        didRunCommandPath commandPath: String,
-        arguments: [String]?,
-        directoryPath: String?)
+              didRunCommandPath commandPath: String,
+              arguments: [String]?,
+              directoryPath: String?)
     {
-        if let
-            commandPath = task.launchPath,
-            let processInfo = Web_Console.ProcessInfo(identifier: task.processIdentifier,
-                startTime: Date(),
-                commandPath: commandPath)
+        if
+            let commandPath = task.launchPath,
+            let processInfo = ProcessInfo(identifier: task.processIdentifier,
+                                          startTime: Date(),
+                                          commandPath: commandPath)
         {
             processManager.add(processInfo)
         }
@@ -72,13 +73,13 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         for _ in 1...3 {
             
             let runExpectation = expectation(description: "Task ran")
-            let task = WCLTaskRunner.runTask(withCommandPath: commandPath,
-                withArguments: nil,
-                inDirectoryPath: nil,
-                delegate: processManagerRouter)
-                { (success) -> Void in
-                    XCTAssertTrue(success)
-                    runExpectation.fulfill()
+            let task = SDATaskRunner.runTask(withCommandPath: commandPath,
+                                             withArguments: nil,
+                                             inDirectoryPath: nil,
+                                             delegate: processManagerRouter)
+            { (success) -> Void in
+                XCTAssertTrue(success)
+                runExpectation.fulfill()
             }
             tasks.append(task)
         }
@@ -159,14 +160,13 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
             inDirectory: testDataSubdirectory)!
         
         let runExpectation = expectation(description: "Task ran")
-        let task = WCLTaskRunner.runTask(withCommandPath: commandPath,
-            withArguments: nil,
-            inDirectoryPath: nil,
-            delegate: processManagerRouter)
-            { (success) -> Void in
-                
-                XCTAssertTrue(success)
-                runExpectation.fulfill()
+        let task = SDATaskRunner.runTask(withCommandPath: commandPath,
+                                         withArguments: nil,
+                                         inDirectoryPath: nil,
+                                         delegate: processManagerRouter)
+        { (success) -> Void in
+            XCTAssertTrue(success)
+            runExpectation.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
         
@@ -201,9 +201,9 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         let filterExpectationTwo = expectation(description: "Process filter")
 
         let oneSecondInThePast = Date(timeIntervalSinceNow: -1.0)
-        guard let inThePastProcessInfo = Web_Console.ProcessInfo(identifier: processInfo.identifier,
-            startTime: oneSecondInThePast,
-            commandPath: processInfo.commandPath) else
+        guard let inThePastProcessInfo = ProcessInfo(identifier: processInfo.identifier,
+                                                     startTime: oneSecondInThePast,
+                                                     commandPath: processInfo.commandPath) else
         {
             XCTAssertTrue(false)
             return
@@ -226,18 +226,19 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         let filterExpectationThree = expectation(description: "Process filter")
         
         let oneSecondInTheFuture = Date(timeIntervalSinceNow: 1.0)
-        guard let inTheFutureProcessInfo = Web_Console.ProcessInfo(identifier: processInfo.identifier,
-            startTime: oneSecondInTheFuture,
-            commandPath: processInfo.commandPath) else
+        guard let inTheFutureProcessInfo = ProcessInfo(identifier: processInfo.identifier,
+                                                       startTime: oneSecondInTheFuture,
+                                                       commandPath: processInfo.commandPath) else
         {
             XCTAssertTrue(false)
             return
         }
         
-        var runningProcessInfo: Web_Console.ProcessInfo!
+        var runningProcessInfo: ProcessInfo!
         ProcessFilter.runningProcessMap(matching: [inTheFutureProcessInfo]) { (identifierToProcessInfo, error) -> Void in
             XCTAssertNil(error)
-            guard let identifierToProcessInfo = identifierToProcessInfo,
+            guard
+                let identifierToProcessInfo = identifierToProcessInfo,
                 let localRunningProcessInfo = identifierToProcessInfo[processInfo.identifier] else
             {
                 XCTAssertTrue(false)

@@ -9,15 +9,20 @@
 import Foundation
 
 struct ProcessInfo: Equatable {
+
     let identifier: Int32
     let startTime: Date
     let commandPath: String
-    init?(identifier: Int32, startTime: Date, commandPath: String) {
+
+    init?(identifier: Int32,
+          startTime: Date,
+          commandPath: String)
+    {
         // An all whitespace `commandPath` is not allowed
         let trimmedCommandPathCharacterCount = commandPath
             .trimmingCharacters(in: CharacterSet.whitespaces)
             .count
-        if !(trimmedCommandPathCharacterCount > 0) {
+        guard trimmedCommandPathCharacterCount > 0 else {
             return nil
         }
         
