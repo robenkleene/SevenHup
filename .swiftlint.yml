@@ -1,0 +1,7 @@
+disabled_rules:
+  - function_parameter_count
+  - xctfail_message
+  - identifier_name
+  - file_length
+excluded:
+  - Carthage
