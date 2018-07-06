@@ -220,7 +220,8 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         }
 
         var runningProcessData: ProcessData!
-        ProcessFilter.runningProcessMap(matching: [inTheFutureProcessData]) { (identifierToProcessData, error) -> Void in
+        ProcessFilter.runningProcessMap(matching: [inTheFutureProcessData]) {
+            (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
             guard
                 let identifierToProcessData = identifierToProcessData,
