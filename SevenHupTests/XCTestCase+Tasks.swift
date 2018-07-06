@@ -12,7 +12,7 @@ extension XCTestCase {
     func wait(forTerminationOf tasks: [Process]) {
         var expectation: XCTestExpectation?
         let observers = NSMutableArray()
-        
+
         for task in tasks {
             if !task.isRunning {
                 continue
@@ -22,31 +22,29 @@ extension XCTestCase {
                 expectation = self.expectation(description: "Tasks terminated")
             }
 
-            let clearObserver: (NSObjectProtocol) -> () = { observer in
+            let clearObserver: (NSObjectProtocol) -> Void = { observer in
                 NotificationCenter.default.removeObserver(observer)
                 observers.remove(observer)
-                if let expectation = expectation , observers.count == 0 {
+                if let expectation = expectation, observers.count == 0 {
                     expectation.fulfill()
                 }
             }
-        
+
             var observer: NSObjectProtocol?
             observer = NotificationCenter.default.addObserver(forName: Process.didTerminateNotification,
-                object: task,
-                queue: nil)
-                { notification in
-                    if let observer = observer {
-                        clearObserver(observer)
-                    }
+                                                              object: task,
+                                                              queue: nil) { _ in
+                if let observer = observer {
+                    clearObserver(observer)
+                }
             }
-            
+
             if let observer = observer {
                 observers.add(observer)
                 if !task.isRunning {
                     clearObserver(observer)
                 }
             }
-
         }
 
         waitForExpectations(timeout: testTimeout) { _ in
@@ -56,6 +54,5 @@ extension XCTestCase {
                 NotificationCenter.default.removeObserver(observer)
             }
         }
-
     }
 }

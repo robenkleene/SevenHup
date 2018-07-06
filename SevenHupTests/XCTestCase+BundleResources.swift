@@ -11,15 +11,15 @@ import XCTest
 
 extension XCTestCase {
     func path(forResource name: String?, ofType ext: String?, inDirectory bundlePath: String) -> String? {
-        return Bundle(for: type(of: self)).path(forResource: name, ofType:ext, inDirectory:bundlePath)
+        return Bundle(for: type(of: self)).path(forResource: name, ofType: ext, inDirectory: bundlePath)
     }
 
     func url(forResource name: String, withExtension ext: String?) -> URL? {
-        return Bundle(for: type(of: self)).url(forResource: name, withExtension:ext)
+        return Bundle(for: type(of: self)).url(forResource: name, withExtension: ext)
     }
-    
+
     func url(forResource name: String, withExtension ext: String?, subdirectory subpath: String?) -> URL? {
-        return Bundle(for: type(of: self)).url(forResource: name, withExtension:ext, subdirectory:subpath)
+        return Bundle(for: type(of: self)).url(forResource: name, withExtension: ext, subdirectory: subpath)
     }
 
     func makeString(contentsOf fileURL: URL) -> String? {
@@ -33,5 +33,4 @@ extension XCTestCase {
         }
         return nil
     }
-
 }
