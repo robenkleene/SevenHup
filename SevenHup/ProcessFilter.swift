@@ -11,7 +11,8 @@ import SodaStream
 
 extension ProcessFilter {
     class func runningProcessMap(matching processDatas: [ProcessData],
-                                 completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?, _ error: NSError?) -> Void)) {
+                                 completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+                                                                _ error: NSError?) -> Void)) {
         let identifiers = processDatas.map { $0.identifier }
         runningProcesses(withIdentifiers: identifiers) { (identifierToProcessData, error) -> Void in
             if let error = error {
