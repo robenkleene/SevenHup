@@ -2,7 +2,7 @@ SCHEME = SevenHup
 
 .PHONY: build test lint autocorrect swiftformat swiftlint_autocorrect bootstrap
 
-ci: lint bootstrap test
+ci: lint bootstrap build
 ac: autocorrect
 autocorrect: swiftformat swiftlint_autocorrect
 
