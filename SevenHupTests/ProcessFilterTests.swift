@@ -79,7 +79,8 @@ class ProcessFilterTests: XCTestCase {
         waitForExpectations(timeout: testTimeout, handler: nil)
 
         let processFilterExpectation = expectation(description: "Filter processes")
-        ProcessFilter.runningProcesses(withIdentifiers: [task.processIdentifier]) { (identifierToProcessData, error) -> Void in
+        ProcessFilter.runningProcesses(withIdentifiers: [task.processIdentifier]) {
+            (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
             XCTAssertNotNil(identifierToProcessData)
             guard let identifierToProcessData = identifierToProcessData else {
