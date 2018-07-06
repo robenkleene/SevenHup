@@ -52,7 +52,8 @@ extension ProcessFilter {
 
 class ProcessFilter {
     class func runningProcesses(withIdentifiers identifiers: [Int32],
-                                completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?, _ error: NSError?) -> Void)) {
+                                completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+                                                               _ error: NSError?) -> Void)) {
         if identifiers.isEmpty {
             let userInfo = [NSLocalizedDescriptionKey: "No identifiers specified"]
             let error = NSError(domain: errorDomain, code: 100, userInfo: userInfo)
