@@ -9,10 +9,8 @@
 import Foundation
 
 class ProcessKiller {
-
     class func kill(_ processDatas: [ProcessData],
-        completion: ((Bool) -> Void)?)
-    {
+                    completion: ((Bool) -> Void)?) {
         var result = true
         for processData in processDatas {
             let didKill = killProcessData(processData)
@@ -27,13 +25,12 @@ class ProcessKiller {
         // https://developer.apple.com/library/mac/technotes/tn2050/_index.html
         // This wrapper function assures callers to the function are designed
         // around the correct implementation.
-        
+
         completion?(result)
     }
 
-    
     // MARK: Private
-    
+
     private class func killProcessData(_ processData: ProcessData) -> Bool {
         return SUPProcessKiller.killProcess(withIdentifier: processData.identifier)
     }
