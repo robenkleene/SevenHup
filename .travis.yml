@@ -1,3 +1,15 @@
 language: swift
 osx_image: xcode10
 script: make ci
+xcode_project: SevenHup
+xcode_scheme: SevenHup
+env:
+  global:
+  - FRAMEWORK_NAME=SevenHup
+before_install:
+- brew update
+- brew outdated carthage || brew upgrade carthage
+before_script:
+- make lint
+- carthage bootstrap
+

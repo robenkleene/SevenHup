@@ -9,3 +9,4 @@ disabled_rules:
   - xctfail_message
 excluded:
   - Carthage
+
