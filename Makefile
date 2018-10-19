@@ -16,7 +16,9 @@ swiftlint_autocorrect:
 	swiftlint autocorrect
 
 build:
-	xcodebuild build
+	xcodebuild build \
+		-alltargets \
+		-configuration Debug
 
 bootstrap:
 	carthage bootstrap
