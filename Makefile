@@ -1,19 +1,22 @@
 SCHEME = SevenHup
 
-.PHONY: build test lint autocorrect swiftformat swiftlint_autocorrect bootstrap
+.PHONY: build test lint autocorrect swiftformat swiftlint_autocorrect bootstrap clangformat
 
 ci: build
 ac: autocorrect
-autocorrect: swiftformat swiftlint_autocorrect
+autocorrect: swiftformat swiftlint_autocorrect clangformat
 
 lint:
 	swiftlint --strict
 
 swiftformat:
-	swiftformat --commas inline --exclude Carthage .
+	git ls-files '*.swift' -z | xargs -0 swiftformat --commas inline
 
 swiftlint_autocorrect:
 	swiftlint autocorrect
+
+clangformat:
+	git ls-files '*.h' '*.m' -z | xargs -0 clang-format -style=file -i
 
 build:
 	xcodebuild build \
