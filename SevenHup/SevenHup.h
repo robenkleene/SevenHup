@@ -14,6 +14,6 @@ FOUNDATION_EXPORT double SevenHupVersionNumber;
 //! Project version string for SevenHup.
 FOUNDATION_EXPORT const unsigned char SevenHupVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <SevenHup/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import
+// <SevenHup/PublicHeader.h>
 #import "SUPProcessKiller.h"
-
