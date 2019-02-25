@@ -27,6 +27,7 @@ extension ProcessFilter {
 
             for processData in processDatas {
                 if let runningProcessData = identifierToProcessData[processData.identifier] {
+                    assert(runningProcessData.identifier == processData.identifier)
                     if !doesRunningProcessData(runningProcessData, matchProcessData: processData) {
                         identifierToProcessData.removeValue(forKey: processData.identifier)
                     }
@@ -39,8 +40,6 @@ extension ProcessFilter {
 
     class func doesRunningProcessData(_ runningProcessData: ProcessData,
                                       matchProcessData processData: ProcessData) -> Bool {
-        assert(runningProcessData.identifier == processData.identifier)
-
         // Make sure the running process started on or before the other `ProcessData`'s `startTime`
         if runningProcessData.startTime.compare(processData.startTime as Date) == ComparisonResult.orderedDescending {
             return false
