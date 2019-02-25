@@ -74,6 +74,16 @@ public class ProcessManager {
         return processDatas
     }
 
+    public func runningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+        _ error: NSError?) -> Void)) {
+        runningProcessDatas(kill: false, completionHandler: completionHandler)
+    }
+
+    public func killRunningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+        _ error: NSError?) -> Void)) {
+        runningProcessDatas(kill: true, completionHandler: completionHandler)
+    }
+
     // MARK: Private
     
     private func runningProcessDatas(kill: Bool, completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
