@@ -7,6 +7,7 @@
 //
 
 @testable import SevenHup
+import SodaStream
 import XCTest
 
 class ProcessManagerTestCase: XCTestCase {
@@ -92,5 +93,39 @@ class ProcessManagerTests: ProcessManagerTestCase {
         let processManagerThree = ProcessManager(processManagerStore: processManagerStore)
         let processManagerHasNoProcessDataResultTwo = testProcessManagerHasNoProcessData(processManagerThree)
         XCTAssertTrue(processManagerHasNoProcessDataResultTwo)
+    }
+
+//    func testRunningProcessDats() {
+//        let tasks = makeRunningTasks()
+//    }
+//
+//    func testKillRunningProcessDats() {
+//        let tasks = makeRunningTasks()
+//    }
+
+    // MARK: Helper
+    func makeRunningTasks() -> [Process] {
+        var tasks = [Process]()
+        for _ in 0 ... 2 {
+            let commandPath = path(forResource: testDataShellScriptCatName,
+                                   ofType: testDataShellScriptExtension,
+                                   inDirectory: testDataSubdirectory)!
+            
+            let runExpectation = expectation(description: "Task ran")
+            let task = SDATaskRunner.runTask(withCommandPath: commandPath,
+                                             withArguments: nil,
+                                             inDirectoryPath: nil,
+                                             delegate: nil) { (success) -> Void in
+                                                XCTAssertTrue(success)
+                                                runExpectation.fulfill()
+            }
+            tasks.append(task)
+            let processData = ProcessData(identifier: task.processIdentifier,
+                                          startTime: Date(),
+                                          commandPath: commandPath)!
+            processManager.add(processData)
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+        return tasks
     }
 }
