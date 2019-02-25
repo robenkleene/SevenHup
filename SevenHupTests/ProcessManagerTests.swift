@@ -106,6 +106,33 @@ class ProcessManagerTests: ProcessManagerTestCase {
         for task in tasks {
             XCTAssertTrue(task.isRunning)
         }
+
+        let runningProcessesExpectation = expectation(description: "Running processes")
+        processManager.runningProcessDatas { (identifierToProcessData, error) in
+            XCTAssertNil(error)
+            for task in tasks {
+                XCTAssertTrue(task.isRunning)
+                let processDatas = self.processManager.processDatas()
+                XCTAssertTrue(processDatas.count > 0)
+                let processDataIdentifiers = processDatas.map({ $0.identifier })
+                let taskIdentifiers = tasks.map({ $0.processIdentifier })
+                XCTAssertEqual(Set(processDataIdentifiers), Set(taskIdentifiers))
+            }
+            runningProcessesExpectation.fulfill()
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+
+        let killProcessesExpectation = expectation(description: "Running processes")
+        processManager.killAndRemoveRunningProcessDatas { (identifierToProcessData, error) in
+            XCTAssertNil(error)
+            for task in tasks {
+                XCTAssertFalse(task.isRunning)
+                let processDatas = self.processManager.processDatas()
+                XCTAssertTrue(processDatas.count == 0)
+            }
+            killProcessesExpectation.fulfill()
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
     }
     
     // MARK: Helper
