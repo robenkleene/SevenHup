@@ -71,6 +71,25 @@ public class ProcessManager {
     }
 
     // MARK: Private
+    
+    private func runningProcessDatas(kill: Bool, completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+        _ error: NSError?) -> Void)) {
+        ProcessFilter.runningProcessMap(matching: processDatas()) { (optionalIdentifierToProcessData, error) in
+            guard
+                kill,
+                error == nil,
+                let identifierToProcessData = optionalIdentifierToProcessData
+                else {
+                completionHandler(optionalIdentifierToProcessData, error)
+                return
+            }
+            ProcessKiller.kill(Array(identifierToProcessData.values)) { success in
+                assert(success)
+                // TODO: Create an error on failure
+                completionHandler(optionalIdentifierToProcessData, error)
+            }
+        }
+    }
 
     private func save() {
         processManagerStore.set(identifierKeyToProcessDataValue as AnyObject?, forKey: runningProcessesKey)
