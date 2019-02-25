@@ -80,14 +80,15 @@ public class ProcessManager {
     }
 
     public func killAndRemoveRunningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
-                                                                       _ error: NSError?) -> Void)) {
+                                                                                _ error: NSError?) -> Void)) {
         runningProcessDatas(kill: true, completionHandler: completionHandler)
     }
 
     // MARK: Private
 
-    private func runningProcessDatas(kill: Bool, completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
-                                                                                _ error: NSError?) -> Void)) {
+    private func runningProcessDatas(kill: Bool,
+                                     completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+                                                                    _ error: NSError?) -> Void)) {
         ProcessFilter.runningProcessMap(matching: processDatas()) { optionalIdentifierToProcessData, error in
             guard
                 kill,
@@ -116,7 +117,7 @@ public class ProcessManager {
             _ = removeProcess(forIdentifier: processData.identifier)
         }
     }
-    
+
     private func save() {
         processManagerStore.set(identifierKeyToProcessDataValue as AnyObject?, forKey: runningProcessesKey)
     }
