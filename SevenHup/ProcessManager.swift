@@ -10,12 +10,12 @@ import Foundation
 
 extension UserDefaults: ProcessManagerStore {}
 
-protocol ProcessManagerStore {
+public protocol ProcessManagerStore {
     func set(_ value: Any?, forKey defaultName: String)
     func dictionary(forKey defaultName: String) -> [String: Any]?
 }
 
-class ProcessManager {
+public class ProcessManager {
     enum ProcessDataKey: String {
         case identifier
         case commandPath
@@ -28,14 +28,14 @@ class ProcessManager {
     private let processManagerStore: ProcessManagerStore
     private var identifierKeyToProcessDataValue = [NSString: AnyObject]()
 
-    init(processManagerStore: ProcessManagerStore) {
+    public init(processManagerStore: ProcessManagerStore) {
         if let processDataDictionary = processManagerStore.dictionary(forKey: runningProcessesKey) {
             identifierKeyToProcessDataValue = processDataDictionary as [NSString: AnyObject]
         }
         self.processManagerStore = processManagerStore
     }
 
-    func add(_ processData: ProcessData) {
+    public func add(_ processData: ProcessData) {
         let keyValue = type(of: self).keyAndValue(from: processData)
         objc_sync_enter(self)
         identifierKeyToProcessDataValue[keyValue.key] = keyValue.value
@@ -43,16 +43,16 @@ class ProcessManager {
         save()
     }
 
-    func removeProcess(forIdentifier identifier: Int32) -> ProcessData? {
+    public func removeProcess(forIdentifier identifier: Int32) -> ProcessData? {
         let processData = self.processData(forIdentifier: identifier, remove: true)
         return processData
     }
 
-    func processData(forIdentifier identifier: Int32) -> ProcessData? {
+    public func processData(forIdentifier identifier: Int32) -> ProcessData? {
         return processData(forIdentifier: identifier, remove: false)
     }
 
-    func processDatas() -> [ProcessData] {
+    public func processDatas() -> [ProcessData] {
         objc_sync_enter(self)
         let values = identifierKeyToProcessDataValue.values
         objc_sync_exit(self)
