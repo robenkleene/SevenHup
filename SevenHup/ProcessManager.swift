@@ -79,7 +79,7 @@ public class ProcessManager {
         runningProcessDatas(kill: false, completionHandler: completionHandler)
     }
 
-    public func killRunningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+    public func killAndRemoveRunningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
                                                                        _ error: NSError?) -> Void)) {
         runningProcessDatas(kill: true, completionHandler: completionHandler)
     }
@@ -99,17 +99,23 @@ public class ProcessManager {
             }
             let processDatas = Array(identifierToProcessData.values)
             ProcessKiller.kill(processDatas) { success in
-                assert(success)
                 guard success else {
                     let error = ProcessManagerError.failedToKillError(processDatas: processDatas)
                     completionHandler(optionalIdentifierToProcessData, error as NSError)
                     return
                 }
+                self.remove(processDatas: processDatas)
                 completionHandler(optionalIdentifierToProcessData, error)
             }
         }
     }
 
+    private func remove(processDatas: [ProcessData]) {
+        for processData in processDatas {
+            _ = removeProcess(forIdentifier: processData.identifier)
+        }
+    }
+    
     private func save() {
         processManagerStore.set(identifierKeyToProcessDataValue as AnyObject?, forKey: runningProcessesKey)
     }
