@@ -13,9 +13,9 @@ public struct ProcessData: Equatable {
     let startTime: Date
     let commandPath: String
 
-    init?(identifier: Int32,
-          startTime: Date,
-          commandPath: String) {
+    public init?(identifier: Int32,
+                 startTime: Date,
+                 commandPath: String) {
         // An all whitespace `commandPath` is not allowed
         let trimmedCommandPathCharacterCount = commandPath
             .trimmingCharacters(in: CharacterSet.whitespaces)
