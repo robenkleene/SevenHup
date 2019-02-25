@@ -95,14 +95,19 @@ class ProcessManagerTests: ProcessManagerTestCase {
         XCTAssertTrue(processManagerHasNoProcessDataResultTwo)
     }
 
-//    func testRunningProcessDats() {
-//        let tasks = makeRunningTasks()
-//    }
-//
-//    func testKillRunningProcessDats() {
-//        let tasks = makeRunningTasks()
-//    }
+    func testRunningProcessDats() {
+        let tasks = makeRunningTasks()
+        let processDatas = processManager.processDatas()
+        XCTAssertTrue(processDatas.count > 0)
+        let processDataIdentifiers = processDatas.map({ $0.identifier })
+        let taskIdentifiers = tasks.map({ $0.processIdentifier })
+        XCTAssertEqual(Set(processDataIdentifiers), Set(taskIdentifiers))
 
+        for task in tasks {
+            XCTAssertTrue(task.isRunning)
+        }
+    }
+    
     // MARK: Helper
     func makeRunningTasks() -> [Process] {
         var tasks = [Process]()
@@ -112,18 +117,24 @@ class ProcessManagerTests: ProcessManagerTestCase {
                                    inDirectory: testDataSubdirectory)!
             
             let runExpectation = expectation(description: "Task ran")
-            let task = SDATaskRunner.runTask(withCommandPath: commandPath,
+            var task: Process?
+            task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                              withArguments: nil,
                                              inDirectoryPath: nil,
                                              delegate: nil) { (success) -> Void in
                                                 XCTAssertTrue(success)
+                                                XCTAssertNotNil(task)
+                                                guard let task = task else {
+                                                    XCTAssertTrue(false)
+                                                    return
+                                                }
+                                                tasks.append(task)
+                                                let processData = ProcessData(identifier: task.processIdentifier,
+                                                                              startTime: Date(),
+                                                                              commandPath: commandPath)!
+                                                self.processManager.add(processData)
                                                 runExpectation.fulfill()
             }
-            tasks.append(task)
-            let processData = ProcessData(identifier: task.processIdentifier,
-                                          startTime: Date(),
-                                          commandPath: commandPath)!
-            processManager.add(processData)
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
         return tasks
