@@ -15,6 +15,10 @@ public protocol ProcessManagerStore {
     func dictionary(forKey defaultName: String) -> [String: Any]?
 }
 
+enum ProcessManagerError: Error {
+    case failedToKillError(processDatas: [ProcessData])
+}
+
 public class ProcessManager {
     enum ProcessDataKey: String {
         case identifier
@@ -83,9 +87,14 @@ public class ProcessManager {
                 completionHandler(optionalIdentifierToProcessData, error)
                 return
             }
-            ProcessKiller.kill(Array(identifierToProcessData.values)) { success in
+            let processDatas = Array(identifierToProcessData.values)
+            ProcessKiller.kill(processDatas) { success in
                 assert(success)
-                // TODO: Create an error on failure
+                guard success else {
+                    let error = ProcessManagerError.failedToKillError(processDatas: processDatas)
+                    completionHandler(optionalIdentifierToProcessData, error as NSError)
+                    return
+                }
                 completionHandler(optionalIdentifierToProcessData, error)
             }
         }
