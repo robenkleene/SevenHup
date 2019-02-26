@@ -24,7 +24,7 @@
 		452A33E51FDE188A002F28A6 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		452A33E71FDE198F002F28A6 /* XCTestCase+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */; };
 		452A33E91FDE1B87002F28A6 /* SodaStream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		45A1D1962225577E005A7157 /* SUPProcessMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A1D1942225577E005A7157 /* SUPProcessMonitor.h */; };
+		45A1D1962225577E005A7157 /* SUPProcessMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A1D1942225577E005A7157 /* SUPProcessMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45A1D1972225577E005A7157 /* SUPProcessMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A1D1952225577E005A7157 /* SUPProcessMonitor.m */; };
 		45B68F1E1FDE0A72000C3EA5 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		45EA5C9F1FDDB79100303D1F /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA5C9E1FDDB79100303D1F /* Contants.swift */; };
