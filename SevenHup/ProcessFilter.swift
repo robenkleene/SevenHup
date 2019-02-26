@@ -9,6 +9,8 @@
 import Foundation
 import SodaStream
 
+let noIdentifiersErrorCode = 100
+
 extension ProcessFilter {
     class func runningProcessMap(matching processDatas: [ProcessData],
                                  completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
@@ -55,7 +57,7 @@ class ProcessFilter {
                                                                _ error: NSError?) -> Void)) {
         if identifiers.isEmpty {
             let userInfo = [NSLocalizedDescriptionKey: "No identifiers specified"]
-            let error = NSError(domain: errorDomain, code: 100, userInfo: userInfo)
+            let error = NSError(domain: errorDomain, code: noIdentifiersErrorCode, userInfo: userInfo)
             completionHandler(nil, error)
             return
         }

@@ -122,7 +122,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
 
-        let killProcessesExpectation = expectation(description: "Running processes")
+        let killProcessesExpectation = expectation(description: "Kill processes")
         processManager.killAndRemoveRunningProcessDatas { _, error in
             XCTAssertNil(error)
             for task in tasks {
@@ -131,6 +131,19 @@ class ProcessManagerTests: ProcessManagerTestCase {
                 XCTAssertTrue(processDatas.count == 0)
             }
             killProcessesExpectation.fulfill()
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+
+        // This should be an error
+        let killProcessesExpectationTwo = expectation(description: "Running processes two")
+        processManager.killAndRemoveRunningProcessDatas { _, error in
+            XCTAssertNotNil(error)
+            guard let error = error else {
+                XCTAssertTrue(false)
+                return
+            }
+            XCTAssertEqual(error.code, noIdentifiersErrorCode)
+            killProcessesExpectationTwo.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
     }
