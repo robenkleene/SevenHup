@@ -47,6 +47,7 @@ class ProcessManagerTestCase: XCTestCase {
 
 class ProcessManagerTests: ProcessManagerTestCase {
     func testProcessManager() {
+        XCTAssertEqual(processManager.count, 0)
         let processData = ProcessData(identifier: 1,
                                       startTime: Date(),
                                       commandPath: "test")!
@@ -65,6 +66,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
         }
 
         processManager.add(processData)
+        XCTAssertEqual(processManager.count, 1)
         let processManagerHasProcessDataResult = testProcessManagerHasProcessData(processManager)
         XCTAssertTrue(processManagerHasProcessDataResult)
 
@@ -77,6 +79,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
 
         // Remove the processes and make sure nil is returned
         _ = processManager.removeProcess(forIdentifier: processData.identifier)
+        XCTAssertEqual(processManager.count, 0)
 
         let testProcessManagerHasNoProcessData: (_ processManager: ProcessManager) -> Bool = { processManager in
             XCTAssertNil(processManager.processData(forIdentifier: processData.identifier))

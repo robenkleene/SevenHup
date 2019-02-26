@@ -31,7 +31,10 @@ public class ProcessManager {
 
     private let processManagerStore: ProcessManagerStore
     private var identifierKeyToProcessDataValue = [NSString: AnyObject]()
-
+    public var count: Int {
+        return self.identifierKeyToProcessDataValue.count
+    }
+    
     public init(processManagerStore: ProcessManagerStore) {
         if let processDataDictionary = processManagerStore.dictionary(forKey: runningProcessesKey) {
             identifierKeyToProcessDataValue = processDataDictionary as [NSString: AnyObject]
