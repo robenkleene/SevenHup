@@ -108,7 +108,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
         }
 
         let runningProcessesExpectation = expectation(description: "Running processes")
-        processManager.runningProcessDatas { (identifierToProcessData, error) in
+        processManager.runningProcessDatas { _, error in
             XCTAssertNil(error)
             for task in tasks {
                 XCTAssertTrue(task.isRunning)
@@ -123,7 +123,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
         waitForExpectations(timeout: testTimeout, handler: nil)
 
         let killProcessesExpectation = expectation(description: "Running processes")
-        processManager.killAndRemoveRunningProcessDatas { (identifierToProcessData, error) in
+        processManager.killAndRemoveRunningProcessDatas { _, error in
             XCTAssertNil(error)
             for task in tasks {
                 XCTAssertFalse(task.isRunning)
@@ -134,33 +134,34 @@ class ProcessManagerTests: ProcessManagerTestCase {
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
     }
-    
+
     // MARK: Helper
+
     func makeRunningTasks() -> [Process] {
         var tasks = [Process]()
         for _ in 0 ... 2 {
             let commandPath = path(forResource: testDataShellScriptCatName,
                                    ofType: testDataShellScriptExtension,
                                    inDirectory: testDataSubdirectory)!
-            
+
             let runExpectation = expectation(description: "Task ran")
             var task: Process?
             task = SDATaskRunner.runTask(withCommandPath: commandPath,
-                                             withArguments: nil,
-                                             inDirectoryPath: nil,
-                                             delegate: nil) { (success) -> Void in
-                                                XCTAssertTrue(success)
-                                                XCTAssertNotNil(task)
-                                                guard let task = task else {
-                                                    XCTAssertTrue(false)
-                                                    return
-                                                }
-                                                tasks.append(task)
-                                                let processData = ProcessData(identifier: task.processIdentifier,
-                                                                              startTime: Date(),
-                                                                              commandPath: commandPath)!
-                                                self.processManager.add(processData)
-                                                runExpectation.fulfill()
+                                         withArguments: nil,
+                                         inDirectoryPath: nil,
+                                         delegate: nil) { (success) -> Void in
+                XCTAssertTrue(success)
+                XCTAssertNotNil(task)
+                guard let task = task else {
+                    XCTAssertTrue(false)
+                    return
+                }
+                tasks.append(task)
+                let processData = ProcessData(identifier: task.processIdentifier,
+                                              startTime: Date(),
+                                              commandPath: commandPath)!
+                self.processManager.add(processData)
+                runExpectation.fulfill()
             }
         }
         waitForExpectations(timeout: testTimeout, handler: nil)

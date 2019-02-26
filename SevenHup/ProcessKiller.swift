@@ -25,7 +25,6 @@ class ProcessKiller {
         // https://developer.apple.com/library/mac/technotes/tn2050/_index.html
         // This wrapper function assures callers to the function are designed
         // around the correct implementation.
-
         completion?(result)
     }
 
