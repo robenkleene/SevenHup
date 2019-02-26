@@ -24,6 +24,8 @@
 		452A33E51FDE188A002F28A6 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		452A33E71FDE198F002F28A6 /* XCTestCase+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */; };
 		452A33E91FDE1B87002F28A6 /* SodaStream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45A1D1962225577E005A7157 /* SUPProcessMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A1D1942225577E005A7157 /* SUPProcessMonitor.h */; };
+		45A1D1972225577E005A7157 /* SUPProcessMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A1D1952225577E005A7157 /* SUPProcessMonitor.m */; };
 		45B68F1E1FDE0A72000C3EA5 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		45EA5C9F1FDDB79100303D1F /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA5C9E1FDDB79100303D1F /* Contants.swift */; };
 /* End PBXBuildFile section */
@@ -70,6 +72,8 @@
 		452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+BundleResources.swift"; sourceTree = "<group>"; };
 		452A33E31FDE15D4002F28A6 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Tasks.swift"; sourceTree = "<group>"; };
+		45A1D1942225577E005A7157 /* SUPProcessMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPProcessMonitor.h; sourceTree = "<group>"; };
+		45A1D1952225577E005A7157 /* SUPProcessMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUPProcessMonitor.m; sourceTree = "<group>"; };
 		45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SodaStream.framework; path = Carthage/Build/Mac/SodaStream.framework; sourceTree = "<group>"; };
 		45EA5C9E1FDDB79100303D1F /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +121,8 @@
 		4514BC721FDDB04500A1EC32 /* SevenHup */ = {
 			isa = PBXGroup;
 			children = (
+				45A1D1942225577E005A7157 /* SUPProcessMonitor.h */,
+				45A1D1952225577E005A7157 /* SUPProcessMonitor.m */,
 				4514BC931FDDB14700A1EC32 /* ProcessFilter.swift */,
 				4514BC911FDDB14700A1EC32 /* ProcessData.swift */,
 				4514BC921FDDB14700A1EC32 /* ProcessKiller.swift */,
@@ -162,6 +168,7 @@
 			files = (
 				4514BC9B1FDDB14700A1EC32 /* SUPProcessKiller.h in Headers */,
 				4514BC811FDDB04500A1EC32 /* SevenHup.h in Headers */,
+				45A1D1962225577E005A7157 /* SUPProcessMonitor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +279,7 @@
 				4514BC981FDDB14700A1EC32 /* ProcessKiller.swift in Sources */,
 				4514BC971FDDB14700A1EC32 /* ProcessData.swift in Sources */,
 				4514BC9A1FDDB14700A1EC32 /* ProcessManager.swift in Sources */,
+				45A1D1972225577E005A7157 /* SUPProcessMonitor.m in Sources */,
 				4514BC991FDDB14700A1EC32 /* ProcessFilter.swift in Sources */,
 				45EA5C9F1FDDB79100303D1F /* Contants.swift in Sources */,
 			);
