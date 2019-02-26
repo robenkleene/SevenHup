@@ -50,6 +50,13 @@ public class ProcessManager {
         save()
     }
 
+    public func removeAll() {
+        objc_sync_enter(self)
+        identifierKeyToProcessDataValue.removeAll()
+        objc_sync_exit(self)
+        save()
+    }
+
     public func removeProcess(forIdentifier identifier: Int32) -> ProcessData? {
         let processData = self.processData(forIdentifier: identifier, remove: true)
         return processData

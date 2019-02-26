@@ -46,6 +46,22 @@ class ProcessManagerTestCase: XCTestCase {
 }
 
 class ProcessManagerTests: ProcessManagerTestCase {
+    func testRemoveAll() {
+        for i: Int32 in 1...10 {
+            let processData = ProcessData(identifier: i,
+                                          startTime: Date(),
+                                          commandPath: "test")!
+            processManager.add(processData)
+        }
+        XCTAssertEqual(processManager.count, 10)
+        let processManagerTwo = ProcessManager(processManagerStore: processManagerStore)
+        XCTAssertEqual(processManagerTwo.count, 10)
+        processManager.removeAll()
+        XCTAssertEqual(processManager.count, 0)
+        let processManagerThree = ProcessManager(processManagerStore: processManagerStore)
+        XCTAssertEqual(processManagerThree.count, 0)
+    }
+
     func testProcessManager() {
         XCTAssertEqual(processManager.count, 0)
         let processData = ProcessData(identifier: 1,
