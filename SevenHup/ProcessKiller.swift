@@ -6,6 +6,8 @@
 //  Copyright © 2016 Roben Kleene. All rights reserved.
 //
 
+let timeoutTimeInterval = TimeInterval(5)
+
 import Foundation
 
 class ProcessKiller {
@@ -13,10 +15,14 @@ class ProcessKiller {
                     completion: ((Bool) -> Void)?) {
         var result = true
         var processMonitorsSet = Set<SUPProcessMonitor>()
+        var didTimeout = false
         for processData in processDatas {
             let processMonitor = SUPProcessMonitor(identifier: processData.identifier)
             processMonitorsSet.insert(processMonitor)
             processMonitor.watch { success in
+                guard didTimeout else {
+                    return
+                }
                 if !success {
                     result = false
                 }
@@ -29,6 +35,12 @@ class ProcessKiller {
             if !didKill {
                 result = false
             }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + timeoutTimeInterval) {
+            didTimeout = true
+            result = false
+            processMonitorsSet.removeAll()
+            completion?(result)
         }
     }
 
