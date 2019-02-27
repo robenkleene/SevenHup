@@ -89,8 +89,10 @@ public class ProcessManager {
         runningProcessDatas(kill: false, completionHandler: completionHandler)
     }
 
-    public func killAndRemoveRunningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
-                                                                                _ error: NSError?) -> Void)) {
+    public func killAndRemoveRunningProcessDatas(completionHandler: @escaping ((
+        _ identifierToProcessData: [Int32: ProcessData]?,
+        _ error: NSError?
+    ) -> Void)) {
         runningProcessDatas(kill: true, completionHandler: completionHandler)
     }
 
