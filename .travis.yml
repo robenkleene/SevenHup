@@ -3,16 +3,25 @@ osx_image: xcode10
 script: make ci
 branches:
   only:
-    - master
-    - /^\d+\.\d+\.\d+$/
+  - master
+  - "/^\\d+\\.\\d+\\.\\d+$/"
 before_install:
-  - brew update
-  - brew outdated carthage || brew upgrade carthage
+- brew update
+- brew outdated carthage || brew upgrade carthage
 before_script:
-  - make lint
-  - carthage bootstrap
+- make lint
+- carthage bootstrap
 notifications:
-  irc: "chat.freenode.net#thepotionlab-notifications"
+  irc: chat.freenode.net#thepotionlab-notifications
 env:
   global:
     secure: fTZ4WHBGHQbm3nABaCJUDEF6ACueb3Mj6KyItC1FdD1blWapXyhgrwpgVh80ZKOjqmgaDWy/lLW0lwb/qoWV0HSQeWZ9zTevjBtQEa0byi4ADsg9byji4wzs6cOGB5i/tOMwSnFRB1NqX+7M+q0GsN2UuEDC54ZLJzwi4W8nyV/qSY6co9KJGZUDRmqzMV03unSem2iC3OCyisTZBUmMun9tWu10/6NaVEkFG5waxjtDY7SunJAsrBtHg4jOY2YlZITfHXO4pHUveMrBEwdRUizfYY17+qdgKQ5cYxV6LQp4153S+yss/b8qLOZH/KHRCFyzCIw35NOhqyPEj1GRJQ91mxGI8BiHQ7KBWnaaljMFKhy7cUER+W4lzA5S/dGVi5FtQ56BNA7vc47ubSGevhAnzAuR7+EibHJOdjJh6L7v0TUPH/1OaUaPwD2rdNNIljr6RskiEofpgzwMfqS9fcq6LqKOk/dLctN9UHbtb7/ADDlxN5+nC+n/zQy+GtImGPu1kaSJK4TO62ygT2L+FgvCl4m/SsiXtslr27CV1owQKzL+92omGBnHmQLj8rRkgV5b5Gya5tbDwwQa2M2ZofyVegHjhlSdk1/DnesFTzdfDTNWL5/Jgg7OaydBO95kiI9gci2WV20qEKiXJ0SFU+WgYXsQL0oas/bG4xFmcOk=
+deploy:
+  provider: releases
+  api_key:
+    secure: dSiYtYVFVajo41kpqSAuHVZL8DMFZkStMvcTbiqfxQkuZowO/S0xKIimtCNdsaQh6LdYYZ0xoe2JhXjYmc/JefkgcGSe3bA86A+GfrYo/wtIxpcEZEBmQiKaOQ/Pb/jVeLV014Mws8ois3KlrLp4c8LVawwvWvoinO0zD1ZUIR2nxJi4haGyCPbZSvrdaU2BZR9gwNTBBU6ph0DI9Lsdu4Dhyy3ro3JRtUPyfEmpCrSZwjTldqloKziBNujf+MAlsGvcG9iidp6pptPS11opFjI70meJtWFMgiApL5XORdYW+VOWlRVMGL2afJUQ7XYg3E4cBAOQkKjK5PZhTY3BLyuSQZEPBbUatOxn+PW3OGDODt4I9NBJKaK4Q4jO9vuj+emQpLKAGb0NmWZXh+pEyXKZBthY02bWv/UQlV4SXZT5ZmXReFDmxe4mfGEX0FcmvxmYg1YgvvM8gJyeLtIxVhj/EgrknBl69XfVxTiieYhzimOZ4bf0QnWh3pS5XL3dzXQX6pYtgTfttSA3JPxmpFyXyy7gsbL8hKmGKHPMis3mzYpvX7SnfochANxc14eeqFI5wlPZkapcFA+sb14dVLC5lmG8pYQdsKUqokGGj++8HIibx5rPo/A1hXDKL8wxhrnzkpEEFRtNMLp59kNJchO5bI8fZ5GizjM+IfPXQCA=
+  file: SevenHup.framework.zip
+  skip_cleanup: true
+  on:
+    repo: robenkleene/SevenHup
+    tags: true
