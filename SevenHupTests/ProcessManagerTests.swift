@@ -47,7 +47,7 @@ class ProcessManagerTestCase: XCTestCase {
 
 class ProcessManagerTests: ProcessManagerTestCase {
     func testRemoveAll() {
-        for i: Int32 in 1...10 {
+        for i: Int32 in 1 ... 10 {
             let processData = ProcessData(identifier: i,
                                           startTime: Date(),
                                           commandPath: "test")!
