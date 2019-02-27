@@ -1,4 +1,5 @@
 -b
 -c
 -d
+-s travis
 -i "chat.freenode.net#thepotionlab-notifications"
