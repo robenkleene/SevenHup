@@ -24,7 +24,7 @@ class ProcessKiller {
             let processMonitor = SUPProcessMonitor(identifier: processData.identifier)
             processMonitorsSet.insert(processMonitor)
             processMonitor.watch { success in
-                guard didTimeout else {
+                guard !didTimeout else {
                     return
                 }
                 if !success {
