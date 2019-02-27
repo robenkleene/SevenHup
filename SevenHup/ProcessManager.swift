@@ -103,7 +103,8 @@ public class ProcessManager {
             guard
                 kill,
                 error == nil,
-                let identifierToProcessData = optionalIdentifierToProcessData
+                let identifierToProcessData = optionalIdentifierToProcessData,
+                !identifierToProcessData.isEmpty
             else {
                 completionHandler(optionalIdentifierToProcessData, error)
                 return

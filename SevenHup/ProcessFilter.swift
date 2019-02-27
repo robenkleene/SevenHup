@@ -27,6 +27,11 @@ extension ProcessFilter {
                 return
             }
 
+            guard !identifierToProcessData.isEmpty else {
+                completionHandler(identifierToProcessData, nil)
+                return
+            }
+
             for processData in processDatas {
                 if let runningProcessData = identifierToProcessData[processData.identifier] {
                     assert(runningProcessData.identifier == processData.identifier)

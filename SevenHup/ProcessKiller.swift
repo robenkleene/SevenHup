@@ -16,6 +16,10 @@ class ProcessKiller {
         var result = true
         var processMonitorsSet = Set<SUPProcessMonitor>()
         var didTimeout = false
+        guard !processDatas.isEmpty else {
+            completion?(result)
+            return
+        }
         for processData in processDatas {
             let processMonitor = SUPProcessMonitor(identifier: processData.identifier)
             processMonitorsSet.insert(processMonitor)
