@@ -6,27 +6,46 @@
 //  Copyright © 2016 Roben Kleene. All rights reserved.
 //
 
+let timeoutTimeInterval = TimeInterval(15)
+
 import Foundation
 
 class ProcessKiller {
     class func kill(_ processDatas: [ProcessData],
                     completion: ((Bool) -> Void)?) {
         var result = true
+        var processMonitorsSet = Set<SUPProcessMonitor>()
+        var didTimeout = false
+        guard !processDatas.isEmpty else {
+            completion?(result)
+            return
+        }
         for processData in processDatas {
+            let processMonitor = SUPProcessMonitor(identifier: processData.identifier)
+            processMonitorsSet.insert(processMonitor)
+            processMonitor.watch { success in
+                guard !didTimeout else {
+                    return
+                }
+                if !success {
+                    result = false
+                }
+                processMonitorsSet.remove(processMonitor)
+                if processMonitorsSet.count == 0 {
+                    completion?(result)
+                }
+            }
             let didKill = killProcessData(processData)
             if !didKill {
                 result = false
-                break
             }
         }
-
-        // TODO: This should really use a more sophisticated mechanism for
-        // tracking the termination state of the target process. E.g.:
-        // https://developer.apple.com/library/mac/technotes/tn2050/_index.html
-        // This wrapper function assures callers to the function are designed
-        // around the correct implementation.
-
-        completion?(result)
+        DispatchQueue.main.asyncAfter(deadline: .now() + timeoutTimeInterval) {
+            didTimeout = true
+            result = false
+            processMonitorsSet.removeAll()
+            completion?(result)
+        }
     }
 
     // MARK: Private

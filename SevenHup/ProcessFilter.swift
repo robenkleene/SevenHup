@@ -9,6 +9,8 @@
 import Foundation
 import SodaStream
 
+let noIdentifiersErrorCode = 100
+
 extension ProcessFilter {
     class func runningProcessMap(matching processDatas: [ProcessData],
                                  completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
@@ -25,8 +27,14 @@ extension ProcessFilter {
                 return
             }
 
+            guard !identifierToProcessData.isEmpty else {
+                completionHandler(identifierToProcessData, nil)
+                return
+            }
+
             for processData in processDatas {
                 if let runningProcessData = identifierToProcessData[processData.identifier] {
+                    assert(runningProcessData.identifier == processData.identifier)
                     if !doesRunningProcessData(runningProcessData, matchProcessData: processData) {
                         identifierToProcessData.removeValue(forKey: processData.identifier)
                     }
@@ -39,8 +47,6 @@ extension ProcessFilter {
 
     class func doesRunningProcessData(_ runningProcessData: ProcessData,
                                       matchProcessData processData: ProcessData) -> Bool {
-        assert(runningProcessData.identifier == processData.identifier)
-
         // Make sure the running process started on or before the other `ProcessData`'s `startTime`
         if runningProcessData.startTime.compare(processData.startTime as Date) == ComparisonResult.orderedDescending {
             return false
@@ -56,7 +62,7 @@ class ProcessFilter {
                                                                _ error: NSError?) -> Void)) {
         if identifiers.isEmpty {
             let userInfo = [NSLocalizedDescriptionKey: "No identifiers specified"]
-            let error = NSError(domain: errorDomain, code: 100, userInfo: userInfo)
+            let error = NSError(domain: errorDomain, code: noIdentifiersErrorCode, userInfo: userInfo)
             completionHandler(nil, error)
             return
         }

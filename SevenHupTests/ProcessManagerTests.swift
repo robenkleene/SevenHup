@@ -7,6 +7,7 @@
 //
 
 @testable import SevenHup
+import SodaStream
 import XCTest
 
 class ProcessManagerTestCase: XCTestCase {
@@ -45,7 +46,24 @@ class ProcessManagerTestCase: XCTestCase {
 }
 
 class ProcessManagerTests: ProcessManagerTestCase {
+    func testRemoveAll() {
+        for i: Int32 in 1 ... 10 {
+            let processData = ProcessData(identifier: i,
+                                          startTime: Date(),
+                                          commandPath: "test")!
+            processManager.add(processData)
+        }
+        XCTAssertEqual(processManager.count, 10)
+        let processManagerTwo = ProcessManager(processManagerStore: processManagerStore)
+        XCTAssertEqual(processManagerTwo.count, 10)
+        processManager.removeAll()
+        XCTAssertEqual(processManager.count, 0)
+        let processManagerThree = ProcessManager(processManagerStore: processManagerStore)
+        XCTAssertEqual(processManagerThree.count, 0)
+    }
+
     func testProcessManager() {
+        XCTAssertEqual(processManager.count, 0)
         let processData = ProcessData(identifier: 1,
                                       startTime: Date(),
                                       commandPath: "test")!
@@ -64,6 +82,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
         }
 
         processManager.add(processData)
+        XCTAssertEqual(processManager.count, 1)
         let processManagerHasProcessDataResult = testProcessManagerHasProcessData(processManager)
         XCTAssertTrue(processManagerHasProcessDataResult)
 
@@ -76,6 +95,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
 
         // Remove the processes and make sure nil is returned
         _ = processManager.removeProcess(forIdentifier: processData.identifier)
+        XCTAssertEqual(processManager.count, 0)
 
         let testProcessManagerHasNoProcessData: (_ processManager: ProcessManager) -> Bool = { processManager in
             XCTAssertNil(processManager.processData(forIdentifier: processData.identifier))
@@ -92,5 +112,91 @@ class ProcessManagerTests: ProcessManagerTestCase {
         let processManagerThree = ProcessManager(processManagerStore: processManagerStore)
         let processManagerHasNoProcessDataResultTwo = testProcessManagerHasNoProcessData(processManagerThree)
         XCTAssertTrue(processManagerHasNoProcessDataResultTwo)
+    }
+
+    func testRunningProcessDats() {
+        let tasks = makeRunningTasks()
+        let processDatas = processManager.processDatas()
+        XCTAssertTrue(processDatas.count > 0)
+        let processDataIdentifiers = processDatas.map({ $0.identifier })
+        let taskIdentifiers = tasks.map({ $0.processIdentifier })
+        XCTAssertEqual(Set(processDataIdentifiers), Set(taskIdentifiers))
+
+        for task in tasks {
+            XCTAssertTrue(task.isRunning)
+        }
+
+        let runningProcessesExpectation = expectation(description: "Running processes")
+        processManager.runningProcessDatas { _, error in
+            XCTAssertNil(error)
+            for task in tasks {
+                XCTAssertTrue(task.isRunning)
+                let processDatas = self.processManager.processDatas()
+                XCTAssertTrue(processDatas.count > 0)
+                let processDataIdentifiers = processDatas.map({ $0.identifier })
+                let taskIdentifiers = tasks.map({ $0.processIdentifier })
+                XCTAssertEqual(Set(processDataIdentifiers), Set(taskIdentifiers))
+            }
+            runningProcessesExpectation.fulfill()
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+
+        let killProcessesExpectation = expectation(description: "Kill processes")
+        processManager.killAndRemoveRunningProcessDatas { _, error in
+            XCTAssertNil(error)
+            for task in tasks {
+                XCTAssertFalse(task.isRunning)
+                let processDatas = self.processManager.processDatas()
+                XCTAssertTrue(processDatas.count == 0)
+            }
+            killProcessesExpectation.fulfill()
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+
+        // This should be an error
+        let killProcessesExpectationTwo = expectation(description: "Running processes two")
+        processManager.killAndRemoveRunningProcessDatas { _, error in
+            XCTAssertNotNil(error)
+            guard let error = error else {
+                XCTAssertTrue(false)
+                return
+            }
+            XCTAssertEqual(error.code, noIdentifiersErrorCode)
+            killProcessesExpectationTwo.fulfill()
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
+    // MARK: Helper
+
+    func makeRunningTasks() -> [Process] {
+        var tasks = [Process]()
+        for _ in 0 ... 2 {
+            let commandPath = path(forResource: testDataShellScriptCatName,
+                                   ofType: testDataShellScriptExtension,
+                                   inDirectory: testDataSubdirectory)!
+
+            let runExpectation = expectation(description: "Task ran")
+            var task: Process?
+            task = SDATaskRunner.runTask(withCommandPath: commandPath,
+                                         withArguments: nil,
+                                         inDirectoryPath: nil,
+                                         delegate: nil) { (success) -> Void in
+                XCTAssertTrue(success)
+                XCTAssertNotNil(task)
+                guard let task = task else {
+                    XCTAssertTrue(false)
+                    return
+                }
+                tasks.append(task)
+                let processData = ProcessData(identifier: task.processIdentifier,
+                                              startTime: Date(),
+                                              commandPath: commandPath)!
+                self.processManager.add(processData)
+                runExpectation.fulfill()
+            }
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+        return tasks
     }
 }

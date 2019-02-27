@@ -11,7 +11,7 @@
 @implementation SUPProcessKiller
 
 + (BOOL)killProcessWithIdentifier:(pid_t)processIdentifier {
-    int result = kill(processIdentifier, SIGTERM);
+    int result = killpg(processIdentifier, SIGTERM);
     return result == 0;
 }
 

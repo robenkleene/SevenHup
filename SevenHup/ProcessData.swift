@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct ProcessData: Equatable {
+public struct ProcessData: Equatable {
     let identifier: Int32
     let startTime: Date
     let commandPath: String
 
-    init?(identifier: Int32,
-          startTime: Date,
-          commandPath: String) {
+    public init?(identifier: Int32,
+                 startTime: Date,
+                 commandPath: String) {
         // An all whitespace `commandPath` is not allowed
         let trimmedCommandPathCharacterCount = commandPath
             .trimmingCharacters(in: CharacterSet.whitespaces)
@@ -30,7 +30,7 @@ struct ProcessData: Equatable {
     }
 }
 
-func == (lhs: ProcessData, rhs: ProcessData) -> Bool {
+public func == (lhs: ProcessData, rhs: ProcessData) -> Bool {
     return lhs.identifier == rhs.identifier &&
         lhs.commandPath == rhs.commandPath &&
         lhs.startTime == rhs.startTime
