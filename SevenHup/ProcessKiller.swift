@@ -6,7 +6,7 @@
 //  Copyright © 2016 Roben Kleene. All rights reserved.
 //
 
-let timeoutTimeInterval = TimeInterval(5)
+let timeoutTimeInterval = TimeInterval(15)
 
 import Foundation
 
