@@ -108,9 +108,11 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
 }
 
 #import "WCLProcesses.h"
+#import "Constants.h"
 #include <pwd.h>
 
 @implementation WCLProcesses
+
 + (NSArray *)processes {
     kinfo_proc *list = NULL;
     size_t count = 0;
@@ -126,10 +128,10 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
         NSNumber *processID = [NSNumber numberWithInt:currentProcess->kp_proc.p_pid];
         NSString *processName = [NSString stringWithFormat:@"%s", currentProcess->kp_proc.p_comm];
         if (processID) {
-            [entry setObject:processID forKey:@"processID"];
+            [entry setObject:processID forKey:kProcessIDKey];
         }
         if (processName) {
-            [entry setObject:processName forKey:@"processName"];
+            [entry setObject:processName forKey:kProcessNameKey];
         }
 
         if (user) {
@@ -137,10 +139,10 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
             NSString *userName = [NSString stringWithFormat:@"%s", user->pw_name];
 
             if (userID) {
-                [entry setObject:userID forKey:@"userID"];
+                [entry setObject:userID forKey:kProcessUserIDKey];
             }
             if (userName) {
-                [entry setObject:userName forKey:@"userName"];
+                [entry setObject:userName forKey:kProcessUsernameKey];
             }
         }
 
@@ -150,4 +152,5 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
 
     return [NSArray arrayWithArray:processes];
 }
+
 @end
