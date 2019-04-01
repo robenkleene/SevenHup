@@ -107,8 +107,8 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     return err;
 }
 
-#import "SUPProcesses.h"
 #import "Constants.h"
+#import "SUPProcesses.h"
 #include <pwd.h>
 
 @implementation SUPProcesses

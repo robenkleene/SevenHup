@@ -11,7 +11,6 @@ import XCTest
 @testable import SevenHup
 import SodaStream
 
-
 class ProcessesTests: XCTestCase {
     func testWithProcesses() {
         var tasks = [Process]()

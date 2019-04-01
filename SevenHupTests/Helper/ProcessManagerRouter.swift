@@ -12,17 +12,17 @@ import SodaStream
 
 class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
     let processManager: ProcessManager
-    
+
     init(processManager: ProcessManager) {
         self.processManager = processManager
     }
-    
+
     // MARK: WCLTaskRunnerDelegate
-    
+
     func taskDidFinish(_ task: Process) {
         _ = processManager.removeProcess(forIdentifier: task.processIdentifier)
     }
-    
+
     func task(_ task: Process,
               didRunCommandPath commandPath: String,
               arguments _: [String]?,
@@ -36,4 +36,3 @@ class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
         }
     }
 }
-

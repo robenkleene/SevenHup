@@ -16,7 +16,7 @@ FOUNDATION_EXPORT const unsigned char SevenHupVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import
 // <SevenHup/PublicHeader.h>
+#import <SevenHup/Constants.h>
 #import <SevenHup/SUPProcessKiller.h>
 #import <SevenHup/SUPProcessMonitor.h>
 #import <SevenHup/SUPProcesses.h>
-#import <SevenHup/Constants.h>
