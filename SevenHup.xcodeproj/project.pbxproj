@@ -20,6 +20,8 @@
 		4514BC9B1FDDB14700A1EC32 /* SUPProcessKiller.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514BC951FDDB14700A1EC32 /* SUPProcessKiller.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4514E01622529B10001A778A /* WCLProcesses.m in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01522529B10001A778A /* WCLProcesses.m */; };
 		4514E01822529DCA001A778A /* WCLProcesses.h in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01722529DCA001A778A /* WCLProcesses.h */; };
+		4514E01A2252A13F001A778A /* ProcessesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514E0192252A13F001A778A /* ProcessesTests.swift */; };
+		4514E01D2252A186001A778A /* ProcessManagerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01C2252A186001A778A /* ProcessManagerRouter.swift */; };
 		452A33E01FDE1570002F28A6 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33DF1FDE1570002F28A6 /* TestConstants.swift */; };
 		452A33E21FDE1579002F28A6 /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */; };
 		452A33E41FDE15D4002F28A6 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 452A33E31FDE15D4002F28A6 /* Data */; };
@@ -72,6 +74,8 @@
 		4514BC951FDDB14700A1EC32 /* SUPProcessKiller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPProcessKiller.h; sourceTree = "<group>"; };
 		4514E01522529B10001A778A /* WCLProcesses.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLProcesses.m; sourceTree = "<group>"; };
 		4514E01722529DCA001A778A /* WCLProcesses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLProcesses.h; sourceTree = "<group>"; };
+		4514E0192252A13F001A778A /* ProcessesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessesTests.swift; sourceTree = "<group>"; };
+		4514E01C2252A186001A778A /* ProcessManagerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessManagerRouter.swift; sourceTree = "<group>"; };
 		452A33DF1FDE1570002F28A6 /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+BundleResources.swift"; sourceTree = "<group>"; };
 		452A33E31FDE15D4002F28A6 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 		4514BC7D1FDDB04500A1EC32 /* SevenHupTests */ = {
 			isa = PBXGroup;
 			children = (
+				4514E01B2252A170001A778A /* Helper */,
 				452A33E31FDE15D4002F28A6 /* Data */,
 				4514BC8A1FDDB13D00A1EC32 /* ProcessFilterTests.swift */,
 				4514BC8B1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift */,
@@ -153,8 +158,17 @@
 				452A33DF1FDE1570002F28A6 /* TestConstants.swift */,
 				452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */,
 				452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */,
+				4514E0192252A13F001A778A /* ProcessesTests.swift */,
 			);
 			path = SevenHupTests;
+			sourceTree = "<group>";
+		};
+		4514E01B2252A170001A778A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4514E01C2252A186001A778A /* ProcessManagerRouter.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		45B68F1C1FDE0A72000C3EA5 /* Frameworks */ = {
@@ -298,9 +312,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4514E01D2252A186001A778A /* ProcessManagerRouter.swift in Sources */,
 				452A33E21FDE1579002F28A6 /* XCTestCase+BundleResources.swift in Sources */,
 				4514BC8E1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift in Sources */,
 				4514BC8F1FDDB13D00A1EC32 /* ProcessManagerTests.swift in Sources */,
+				4514E01A2252A13F001A778A /* ProcessesTests.swift in Sources */,
 				452A33E01FDE1570002F28A6 /* TestConstants.swift in Sources */,
 				4514BC8D1FDDB13D00A1EC32 /* ProcessFilterTests.swift in Sources */,
 				452A33E71FDE198F002F28A6 /* XCTestCase+Tasks.swift in Sources */,

@@ -10,33 +10,6 @@
 import SodaStream
 import XCTest
 
-class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
-    let processManager: ProcessManager
-
-    init(processManager: ProcessManager) {
-        self.processManager = processManager
-    }
-
-    // MARK: WCLTaskRunnerDelegate
-
-    func taskDidFinish(_ task: Process) {
-        _ = processManager.removeProcess(forIdentifier: task.processIdentifier)
-    }
-
-    func task(_ task: Process,
-              didRunCommandPath commandPath: String,
-              arguments _: [String]?,
-              directoryPath _: String?) {
-        if
-            let commandPath = task.launchPath,
-            let processData = ProcessData(identifier: task.processIdentifier,
-                                          startTime: Date(),
-                                          commandPath: commandPath) {
-            processManager.add(processData)
-        }
-    }
-}
-
 class ProcessIntegrationTests: ProcessManagerTestCase {
     var processManagerRouter: ProcessManagerRouter!
 
