@@ -10,28 +10,33 @@ import Foundation
 
 public struct ProcessData: Equatable {
     let identifier: Int32
-    let startTime: Date
-    let commandPath: String
+    let name: String
+    let userID: String
+    let username: String
 
     public init?(identifier: Int32,
-                 startTime: Date,
-                 commandPath: String) {
+                 name: String,
+                 userID: String,
+                 username: String) {
+        // TODO:
         // An all whitespace `commandPath` is not allowed
-        let trimmedCommandPathCharacterCount = commandPath
-            .trimmingCharacters(in: CharacterSet.whitespaces)
-            .count
-        guard trimmedCommandPathCharacterCount > 0 else {
-            return nil
-        }
+        // let trimmedCommandPathCharacterCount = commandPath
+        //     .trimmingCharacters(in: CharacterSet.whitespaces)
+        //     .count
+        // guard trimmedCommandPathCharacterCount > 0 else {
+        //     return nil
+        // }
 
         self.identifier = identifier
-        self.startTime = startTime
-        self.commandPath = commandPath
+        self.name = name
+        self.userID = userID
+        self.username = username
     }
 }
 
 public func == (lhs: ProcessData, rhs: ProcessData) -> Bool {
     return lhs.identifier == rhs.identifier &&
-        lhs.commandPath == rhs.commandPath &&
-        lhs.startTime == rhs.startTime
+        lhs.name = rhs.name &&
+        lhs.userID = rhs.userID &&
+        lhs.username = rhs.username
 }
