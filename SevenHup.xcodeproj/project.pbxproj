@@ -18,13 +18,14 @@
 		4514BC991FDDB14700A1EC32 /* ProcessFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC931FDDB14700A1EC32 /* ProcessFilter.swift */; };
 		4514BC9A1FDDB14700A1EC32 /* ProcessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC941FDDB14700A1EC32 /* ProcessManager.swift */; };
 		4514BC9B1FDDB14700A1EC32 /* SUPProcessKiller.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514BC951FDDB14700A1EC32 /* SUPProcessKiller.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4514E01622529B10001A778A /* WCLProcesses.m in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01522529B10001A778A /* WCLProcesses.m */; };
-		4514E01822529DCA001A778A /* WCLProcesses.h in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01722529DCA001A778A /* WCLProcesses.h */; };
+		4514E01622529B10001A778A /* SUPProcesses.m in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01522529B10001A778A /* SUPProcesses.m */; };
+		4514E01822529DCA001A778A /* SUPProcesses.h in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01722529DCA001A778A /* SUPProcesses.h */; };
 		4514E01A2252A13F001A778A /* ProcessesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514E0192252A13F001A778A /* ProcessesTests.swift */; };
 		4514E01D2252A186001A778A /* ProcessManagerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01C2252A186001A778A /* ProcessManagerRouter.swift */; };
 		4514E01F2252A650001A778A /* ProcessMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01E2252A650001A778A /* ProcessMatcher.swift */; };
 		4514E0212252AAE6001A778A /* Constants.h in Sources */ = {isa = PBXBuildFile; fileRef = 4514E0202252AAE6001A778A /* Constants.h */; };
 		4514E0222252AC81001A778A /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514E0202252AAE6001A778A /* Constants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4514E0232252C043001A778A /* SUPProcesses.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514E01722529DCA001A778A /* SUPProcesses.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		452A33E01FDE1570002F28A6 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33DF1FDE1570002F28A6 /* TestConstants.swift */; };
 		452A33E21FDE1579002F28A6 /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */; };
 		452A33E41FDE15D4002F28A6 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 452A33E31FDE15D4002F28A6 /* Data */; };
@@ -75,8 +76,8 @@
 		4514BC931FDDB14700A1EC32 /* ProcessFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessFilter.swift; sourceTree = "<group>"; };
 		4514BC941FDDB14700A1EC32 /* ProcessManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessManager.swift; sourceTree = "<group>"; };
 		4514BC951FDDB14700A1EC32 /* SUPProcessKiller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPProcessKiller.h; sourceTree = "<group>"; };
-		4514E01522529B10001A778A /* WCLProcesses.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLProcesses.m; sourceTree = "<group>"; };
-		4514E01722529DCA001A778A /* WCLProcesses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLProcesses.h; sourceTree = "<group>"; };
+		4514E01522529B10001A778A /* SUPProcesses.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUPProcesses.m; sourceTree = "<group>"; };
+		4514E01722529DCA001A778A /* SUPProcesses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SUPProcesses.h; sourceTree = "<group>"; };
 		4514E0192252A13F001A778A /* ProcessesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessesTests.swift; sourceTree = "<group>"; };
 		4514E01C2252A186001A778A /* ProcessManagerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessManagerRouter.swift; sourceTree = "<group>"; };
 		4514E01E2252A650001A778A /* ProcessMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessMatcher.swift; sourceTree = "<group>"; };
@@ -145,8 +146,8 @@
 				4514BC731FDDB04500A1EC32 /* SevenHup.h */,
 				4514BC741FDDB04500A1EC32 /* Info.plist */,
 				45EA5C9E1FDDB79100303D1F /* Constants.swift */,
-				4514E01522529B10001A778A /* WCLProcesses.m */,
-				4514E01722529DCA001A778A /* WCLProcesses.h */,
+				4514E01522529B10001A778A /* SUPProcesses.m */,
+				4514E01722529DCA001A778A /* SUPProcesses.h */,
 				4514E01E2252A650001A778A /* ProcessMatcher.swift */,
 				4514E0202252AAE6001A778A /* Constants.h */,
 			);
@@ -197,6 +198,7 @@
 				4514BC811FDDB04500A1EC32 /* SevenHup.h in Headers */,
 				45A1D1962225577E005A7157 /* SUPProcessMonitor.h in Headers */,
 				4514E0222252AC81001A778A /* Constants.h in Headers */,
+				4514E0232252C043001A778A /* SUPProcesses.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,13 +308,13 @@
 			files = (
 				4514E0212252AAE6001A778A /* Constants.h in Sources */,
 				4514E01F2252A650001A778A /* ProcessMatcher.swift in Sources */,
-				4514E01622529B10001A778A /* WCLProcesses.m in Sources */,
+				4514E01622529B10001A778A /* SUPProcesses.m in Sources */,
 				4514BC961FDDB14700A1EC32 /* SUPProcessKiller.m in Sources */,
 				4514BC981FDDB14700A1EC32 /* ProcessKiller.swift in Sources */,
 				4514BC971FDDB14700A1EC32 /* ProcessData.swift in Sources */,
 				4514BC9A1FDDB14700A1EC32 /* ProcessManager.swift in Sources */,
 				45A1D1972225577E005A7157 /* SUPProcessMonitor.m in Sources */,
-				4514E01822529DCA001A778A /* WCLProcesses.h in Sources */,
+				4514E01822529DCA001A778A /* SUPProcesses.h in Sources */,
 				4514BC991FDDB14700A1EC32 /* ProcessFilter.swift in Sources */,
 				45EA5C9F1FDDB79100303D1F /* Constants.swift in Sources */,
 			);

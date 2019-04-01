@@ -75,10 +75,10 @@ class ProcessMatcher {
         // lstart: Start time
         // args: Command & Arguments
         // = Means don't display header for this column
-//        DispatchQueue.global(qos: .background).async {
-//            let 
-//
-//        }
+        DispatchQueue.global(qos: .background).async {
+            let processDictionaries = SUPProcesses.processes()
+            
+        }
         _ = SDATaskRunner.runTaskUntilFinished(withCommandPath: commandPath,
                                                withArguments: arguments as [NSString],
                                                inDirectoryPath: nil) { (standardOutput, _, error) -> Void in

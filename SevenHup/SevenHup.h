@@ -18,4 +18,5 @@ FOUNDATION_EXPORT const unsigned char SevenHupVersionString[];
 // <SevenHup/PublicHeader.h>
 #import <SevenHup/SUPProcessKiller.h>
 #import <SevenHup/SUPProcessMonitor.h>
+#import <SevenHup/SUPProcesses.h>
 #import <SevenHup/Constants.h>

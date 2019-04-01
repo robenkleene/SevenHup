@@ -1,5 +1,5 @@
 //
-//  WCLProcessFilter2.m
+//  SUPProcesses.h
 //  SevenHup
 //
 //  Created by Roben Kleene on 4/1/19.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@interface WCLProcesses : NSObject
+@interface SUPProcesses : NSObject
 + (NSArray *)processes;
 @end
 NS_ASSUME_NONNULL_END
