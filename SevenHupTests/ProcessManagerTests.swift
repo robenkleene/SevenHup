@@ -43,6 +43,39 @@ class ProcessManagerTestCase: XCTestCase {
         super.tearDown()
         processManager = nil
     }
+
+    // MARK: Helper
+
+    func makeRunningTasks() -> [Process] {
+        var tasks = [Process]()
+        for _ in 0 ... 2 {
+            let commandPath = path(forResource: testDataShellScriptCatName,
+                                   ofType: testDataShellScriptExtension,
+                                   inDirectory: testDataSubdirectory)!
+
+            let runExpectation = expectation(description: "Task ran")
+            var task: Process?
+            task = SDATaskRunner.runTask(withCommandPath: commandPath,
+                                         withArguments: nil,
+                                         inDirectoryPath: nil,
+                                         delegate: nil) { (success) -> Void in
+                XCTAssertTrue(success)
+                XCTAssertNotNil(task)
+                guard let task = task else {
+                    XCTAssertTrue(false)
+                    return
+                }
+                tasks.append(task)
+                let processData = ProcessData(identifier: task.processIdentifier,
+                                              startTime: Date(),
+                                              commandPath: commandPath)!
+                self.processManager.add(processData)
+                runExpectation.fulfill()
+            }
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+        return tasks
+    }
 }
 
 class ProcessManagerTests: ProcessManagerTestCase {
@@ -114,7 +147,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
         XCTAssertTrue(processManagerHasNoProcessDataResultTwo)
     }
 
-    func testRunningProcessDats() {
+    func testRunningProcessDatas() {
         let tasks = makeRunningTasks()
         let processDatas = processManager.processDatas()
         XCTAssertTrue(processDatas.count > 0)
@@ -167,36 +200,4 @@ class ProcessManagerTests: ProcessManagerTestCase {
         waitForExpectations(timeout: testTimeout, handler: nil)
     }
 
-    // MARK: Helper
-
-    func makeRunningTasks() -> [Process] {
-        var tasks = [Process]()
-        for _ in 0 ... 2 {
-            let commandPath = path(forResource: testDataShellScriptCatName,
-                                   ofType: testDataShellScriptExtension,
-                                   inDirectory: testDataSubdirectory)!
-
-            let runExpectation = expectation(description: "Task ran")
-            var task: Process?
-            task = SDATaskRunner.runTask(withCommandPath: commandPath,
-                                         withArguments: nil,
-                                         inDirectoryPath: nil,
-                                         delegate: nil) { (success) -> Void in
-                XCTAssertTrue(success)
-                XCTAssertNotNil(task)
-                guard let task = task else {
-                    XCTAssertTrue(false)
-                    return
-                }
-                tasks.append(task)
-                let processData = ProcessData(identifier: task.processIdentifier,
-                                              startTime: Date(),
-                                              commandPath: commandPath)!
-                self.processManager.add(processData)
-                runExpectation.fulfill()
-            }
-        }
-        waitForExpectations(timeout: testTimeout, handler: nil)
-        return tasks
-    }
 }
