@@ -15,6 +15,8 @@
 
 typedef struct kinfo_proc kinfo_proc;
 
+#pragma mark - C
+
 static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
 // Returns a list of all BSD processes on the system.  This routine
 // allocates the list and puts it in *procList and a count of the
@@ -108,3 +110,49 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     
     return err;
 }
+
+#import "WCLProcessFilter.h"
+#include <pwd.h>
+
+@implementation WCLProcessFilter
++ (NSArray *)processes
+{
+    kinfo_proc *list = NULL;
+    size_t count = 0;
+    GetBSDProcessList(&list, &count);
+    
+    NSMutableArray *processes = [NSMutableArray arrayWithCapacity:(int)count];
+    
+    for (int i = 0; i < count; i++) {
+        struct kinfo_proc *currentProcess = &list[i];
+        struct passwd *user = getpwuid(currentProcess->kp_eproc.e_ucred.cr_uid);
+        NSMutableDictionary *entry = [NSMutableDictionary dictionaryWithCapacity:4];
+        
+        NSNumber *processID = [NSNumber numberWithInt:currentProcess->kp_proc.p_pid];
+        NSString *processName = [NSString stringWithFormat: @"%s",currentProcess->kp_proc.p_comm];
+        if (processID) {
+            [entry setObject:processID forKey:@"processID"];
+        }
+        if (processName) {
+            [entry setObject:processName forKey:@"processName"];
+        }
+        
+        if (user) {
+            NSNumber *userID = [NSNumber numberWithUnsignedInt:currentProcess->kp_eproc.e_ucred.cr_uid];
+            NSString *userName = [NSString stringWithFormat: @"%s",user->pw_name];
+            
+            if (userID) {
+                [entry setObject:userID forKey:@"userID"];
+            }
+            if (userName) {
+                [entry setObject:userName forKey:@"userName"];
+            }
+        }
+        
+        [processes addObject:[NSDictionary dictionaryWithDictionary:entry]];
+    }
+    free(list);
+    
+    return [NSArray arrayWithArray:processes];
+}
+@end

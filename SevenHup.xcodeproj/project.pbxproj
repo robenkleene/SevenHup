@@ -19,6 +19,7 @@
 		4514BC9A1FDDB14700A1EC32 /* ProcessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC941FDDB14700A1EC32 /* ProcessManager.swift */; };
 		4514BC9B1FDDB14700A1EC32 /* SUPProcessKiller.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514BC951FDDB14700A1EC32 /* SUPProcessKiller.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4514E01622529B10001A778A /* WCLProcessFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01522529B10001A778A /* WCLProcessFilter.m */; };
+		4514E01822529DCA001A778A /* WCLProcessFilter.h in Sources */ = {isa = PBXBuildFile; fileRef = 4514E01722529DCA001A778A /* WCLProcessFilter.h */; };
 		452A33E01FDE1570002F28A6 /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33DF1FDE1570002F28A6 /* TestConstants.swift */; };
 		452A33E21FDE1579002F28A6 /* XCTestCase+BundleResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */; };
 		452A33E41FDE15D4002F28A6 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 452A33E31FDE15D4002F28A6 /* Data */; };
@@ -70,6 +71,7 @@
 		4514BC941FDDB14700A1EC32 /* ProcessManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessManager.swift; sourceTree = "<group>"; };
 		4514BC951FDDB14700A1EC32 /* SUPProcessKiller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPProcessKiller.h; sourceTree = "<group>"; };
 		4514E01522529B10001A778A /* WCLProcessFilter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLProcessFilter.m; sourceTree = "<group>"; };
+		4514E01722529DCA001A778A /* WCLProcessFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLProcessFilter.h; sourceTree = "<group>"; };
 		452A33DF1FDE1570002F28A6 /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+BundleResources.swift"; sourceTree = "<group>"; };
 		452A33E31FDE15D4002F28A6 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				4514BC741FDDB04500A1EC32 /* Info.plist */,
 				45EA5C9E1FDDB79100303D1F /* Contants.swift */,
 				4514E01522529B10001A778A /* WCLProcessFilter.m */,
+				4514E01722529DCA001A778A /* WCLProcessFilter.h */,
 			);
 			path = SevenHup;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				4514BC971FDDB14700A1EC32 /* ProcessData.swift in Sources */,
 				4514BC9A1FDDB14700A1EC32 /* ProcessManager.swift in Sources */,
 				45A1D1972225577E005A7157 /* SUPProcessMonitor.m in Sources */,
+				4514E01822529DCA001A778A /* WCLProcessFilter.h in Sources */,
 				4514BC991FDDB14700A1EC32 /* ProcessFilter.swift in Sources */,
 				45EA5C9F1FDDB79100303D1F /* Contants.swift in Sources */,
 			);
