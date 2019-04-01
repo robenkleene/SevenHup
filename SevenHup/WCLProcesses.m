@@ -107,10 +107,10 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     return err;
 }
 
-#import "WCLProcessFilter.h"
+#import "WCLProcesses.h"
 #include <pwd.h>
 
-@implementation WCLProcessFilter
+@implementation WCLProcesses
 + (NSArray *)processes {
     kinfo_proc *list = NULL;
     size_t count = 0;
