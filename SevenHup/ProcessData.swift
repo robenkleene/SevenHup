@@ -39,10 +39,11 @@ public struct ProcessData: Equatable {
 
     func dictionary() -> NSDictionary {
         let key = ProcessData.key(from: identifier)
+        let userKey = ProcessData.userKey(from: userIdentifier)
         return [
             processIdentifierKey: key,
             processNameKey: name,
-            processUserIdentifierKey: userIdentifier,
+            processUserIdentifierKey: userKey,
             processUsernameKey: username,
             processStartTimeKey: startTime
         ]
@@ -87,6 +88,10 @@ public struct ProcessData: Equatable {
     // though less than ideal, allows us to convert between one less type.
     static func key(from identifier: pid_t) -> NSString {
         return String(identifier) as NSString
+    }
+
+    static func userKey(from userIdentifier: uid_t) -> NSString {
+        return String(userIdentifier) as NSString
     }
 }
 
