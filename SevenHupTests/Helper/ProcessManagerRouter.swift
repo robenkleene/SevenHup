@@ -40,8 +40,8 @@ class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
                                           name: name,
                                           userIdentifier: userIdentifier,
                                           username: username) else {
-                                            assert(false)
-                                            return
+            assert(false)
+            return
         }
         processManager.add(processData)
     }
@@ -52,5 +52,4 @@ class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
         let username = SCDynamicStoreCopyConsoleUser(nil, &uid, &gid) as String?
         return (username: username, userIdentifier: uid, groupIdentifier: gid)
     }
-
 }

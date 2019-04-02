@@ -158,6 +158,4 @@ public class ProcessManager {
         let dictionary = processData.dictionary()
         return (key: key, dictionary: dictionary)
     }
-
-
 }

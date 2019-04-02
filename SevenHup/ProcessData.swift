@@ -42,16 +42,16 @@ public struct ProcessData: Equatable {
             processUsernameKey: username
         ]
     }
-    
+
     static func makeProcessData(dictionary: NSDictionary) -> ProcessData? {
         guard
             let key = dictionary[processIdentifierKey] as? NSString,
             let name = dictionary[processNameKey] as? String,
             let userKey = dictionary[processUserIdentifierKey] as? NSString,
-            let username = dictionary[processUsernameKey]  as? String
-            else {
-                assert(false)
-                return nil
+            let username = dictionary[processUsernameKey] as? String
+        else {
+            assert(false)
+            return nil
         }
 
         let identifier = ProcessData.identifier(from: key)
@@ -68,7 +68,7 @@ public struct ProcessData: Equatable {
     static func userIdentifier(from key: NSString) -> uid_t {
         return uid_t(key.intValue)
     }
-    
+
     static func identifier(from key: NSString) -> pid_t {
         return pid_t(key.intValue)
     }
