@@ -138,7 +138,7 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
         if (startTime) {
             entry[kProcessStartTimeKey] = startTime;
         }
-        
+
         struct passwd *user = getpwuid(process->kp_eproc.e_ucred.cr_uid);
         if (user) {
             NSNumber *userIdentifier = [NSNumber numberWithUnsignedInt:process->kp_eproc.e_ucred.cr_uid];

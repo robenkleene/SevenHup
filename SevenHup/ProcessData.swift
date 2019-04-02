@@ -27,8 +27,8 @@ public struct ProcessData: Equatable {
             trimmedNameCharacterCount > 0,
             trimmedUsernameCharacterCount > 0
         else {
-             return nil
-         }
+            return nil
+        }
 
         self.identifier = identifier
         self.name = name
