@@ -34,9 +34,9 @@ public class ProcessManager {
     }
 
     public func add(_ processData: ProcessData) {
-        let keyValue = type(of: self).keyAndValue(from: processData)
+        let keyDictionary = type(of: self).keyAndDictionary(from: processData)
         objc_sync_enter(self)
-        identifierKeyToProcessDataValue[keyValue.key] = keyValue.value
+        identifierKeyToProcessDataValue[keyDictionary.key] = keyDictionary.dictionary
         objc_sync_exit(self)
         save()
     }
@@ -152,10 +152,10 @@ public class ProcessManager {
         }
     }
 
-    private class func keyAndValue(from processData: ProcessData) -> (key: NSString, value: NSDictionary) {
-        let key = self.key(from: processData.identifier)
-        let value = self.value(for: processData)
-        return (key: key, value: value)
+    private class func keyAndDictionary(from processData: ProcessData) -> (key: NSString, dictionary: NSDictionary) {
+        let key = ProcessData.key(from: processData.identifier)
+        let dictionary = processData.dictionary()
+        return (key: key, dictionary: dictionary)
     }
 
 

@@ -66,8 +66,8 @@ public struct ProcessData: Equatable {
         return Int32((key as NSString).intValue)
     }
 
-    static func key(from value: Int32) -> String {
-        let valueNumber = String(value)
+    static func key(from value: Int32) -> NSString {
+        let valueNumber = String(value) as NSString
         return valueNumber
     }
 }
