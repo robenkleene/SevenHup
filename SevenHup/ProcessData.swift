@@ -75,6 +75,6 @@ public struct ProcessData: Equatable {
 public func == (lhs: ProcessData, rhs: ProcessData) -> Bool {
     return lhs.identifier == rhs.identifier &&
         lhs.name == rhs.name &&
-        lhs.userID == rhs.userID &&
+        lhs.userIdentifier == rhs.userIdentifier &&
         lhs.username == rhs.username
 }
