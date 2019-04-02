@@ -39,7 +39,8 @@ class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
             let processData = ProcessData(identifier: identifier,
                                           name: name,
                                           userIdentifier: userIdentifier,
-                                          username: username) else {
+                                          username: username,
+                                          startTime: Date()) else {
             assert(false)
             return
         }

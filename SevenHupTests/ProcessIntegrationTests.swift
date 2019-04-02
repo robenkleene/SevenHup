@@ -161,9 +161,12 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         let filterExpectationTwo = expectation(description: "Process filter")
 
         let oneSecondInThePast = Date(timeIntervalSinceNow: -1.0)
+
         guard let inThePastProcessData = ProcessData(identifier: processData.identifier,
-                                                     startTime: oneSecondInThePast,
-                                                     commandPath: processData.commandPath) else {
+                                                     name: processData.name,
+                                                     userIdentifier: processData.userIdentifier,
+                                                     username: processData.username,
+                                                     startTime: oneSecondInThePast) else {
             XCTAssertTrue(false)
             return
         }
