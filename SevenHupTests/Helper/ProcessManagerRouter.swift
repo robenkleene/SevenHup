@@ -46,8 +46,8 @@ class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
         }
         processManager.add(processData)
     }
-
-    private class func getUserInfo() -> (username: String?, userIdentifier: uid_t, groupIdentifier: gid_t) {
+    
+    class func getUserInfo() -> (username: String?, userIdentifier: uid_t, groupIdentifier: gid_t) {
         var uid: uid_t = 0
         var gid: gid_t = 0
         let username = SCDynamicStoreCopyConsoleUser(nil, &uid, &gid) as String?

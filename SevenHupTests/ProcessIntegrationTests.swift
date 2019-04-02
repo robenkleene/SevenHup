@@ -189,8 +189,10 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
 
         let oneSecondInTheFuture = Date(timeIntervalSinceNow: 1.0)
         guard let inTheFutureProcessData = ProcessData(identifier: processData.identifier,
-                                                       startTime: oneSecondInTheFuture,
-                                                       commandPath: processData.commandPath) else {
+                                                     name: processData.name,
+                                                     userIdentifier: processData.userIdentifier,
+                                                     username: processData.username,
+                                                     startTime: oneSecondInTheFuture) else {
             XCTAssertTrue(false)
             return
         }

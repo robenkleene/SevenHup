@@ -48,6 +48,12 @@ class ProcessManagerTestCase: XCTestCase {
 
     func makeRunningTasks() -> [Process] {
         var tasks = [Process]()
+        let userInfo = ProcessManagerRouter.getUserInfo()
+        let userIdentifier = userInfo.userIdentifier
+        guard let username = userInfo.username else {
+            XCTFail()
+            return [Process]()
+        }
         for _ in 0 ... 2 {
             let commandPath = path(forResource: testDataShellScriptCatName,
                                    ofType: testDataShellScriptExtension,
@@ -67,8 +73,10 @@ class ProcessManagerTestCase: XCTestCase {
                 }
                 tasks.append(task)
                 let processData = ProcessData(identifier: task.processIdentifier,
-                                              startTime: Date(),
-                                              commandPath: commandPath)!
+                    name: commandPath,
+                    userIdentifier: userIdentifier,
+                    username: username,
+                    startTime: Date())!
                 self.processManager.add(processData)
                 runExpectation.fulfill()
             }
@@ -80,10 +88,18 @@ class ProcessManagerTestCase: XCTestCase {
 
 class ProcessManagerTests: ProcessManagerTestCase {
     func testRemoveAll() {
+        let userInfo = ProcessManagerRouter.getUserInfo()
+        let userIdentifier = userInfo.userIdentifier
+        guard let username = userInfo.username else {
+            XCTFail()
+            return
+        }
         for i: Int32 in 1 ... 10 {
             let processData = ProcessData(identifier: i,
-                                          startTime: Date(),
-                                          commandPath: "test")!
+                                          name: "test",
+                                          userIdentifier: userIdentifier,
+                                          username: username,
+                                          startTime: Date())!
             processManager.add(processData)
         }
         XCTAssertEqual(processManager.count, 10)
@@ -96,10 +112,18 @@ class ProcessManagerTests: ProcessManagerTestCase {
     }
 
     func testProcessManager() {
+        let userInfo = ProcessManagerRouter.getUserInfo()
+        let userIdentifier = userInfo.userIdentifier
+        guard let username = userInfo.username else {
+            XCTFail()
+            return
+        }
         XCTAssertEqual(processManager.count, 0)
         let processData = ProcessData(identifier: 1,
-                                      startTime: Date(),
-                                      commandPath: "test")!
+                                      name: "test",
+                                      userIdentifier: userIdentifier,
+                                      username: username,
+                                      startTime: Date())!
 
         let testProcessManagerHasProcessData: (_ processManager: ProcessManager) -> Bool = { processManager in
             let returnedProcessData = processManager.processData(forIdentifier: processData.identifier)!
