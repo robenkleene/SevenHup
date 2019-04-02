@@ -126,7 +126,8 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
 
         NSNumber *processIdentifier = [NSNumber numberWithInt:process->kp_proc.p_pid];
         if (processIdentifier) {
-            entry[kProcessIdentifierKey] = processIdentifier;
+            // TODO: Fix this inefficient convert from `NSNumber` to `NSString`.
+            entry[kProcessIdentifierKey] = processIdentifier.stringValue;
         }
         NSString *processName = [NSString stringWithFormat:@"%s", process->kp_proc.p_comm];
         if (processName) {
@@ -143,7 +144,8 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
         if (user) {
             NSNumber *userIdentifier = [NSNumber numberWithUnsignedInt:process->kp_eproc.e_ucred.cr_uid];
             if (userIdentifier) {
-                entry[kProcessUserIdentifierKey] = userIdentifier;
+                // TODO: Fix this inefficient convert from `NSNumber` to `NSString`.
+                entry[kProcessUserIdentifierKey] = userIdentifier.stringValue;
             }
             NSString *userName = [NSString stringWithFormat:@"%s", user->pw_name];
             if (userName) {

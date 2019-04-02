@@ -65,7 +65,6 @@ class ProcessFilter {
             completionHandler(nil, error)
             return
         }
-
         DispatchQueue.global(qos: .background).async {
             let processDictionaries = SUPProcesses.processes() as [NSDictionary]
             let processDatas = makeProcessDatas(dictionaries: processDictionaries)
