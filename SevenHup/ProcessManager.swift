@@ -20,15 +20,16 @@ enum ProcessManagerError: Error {
 }
 
 public class ProcessManager {
+    private typealias ProcessDictionary = [NSString: AnyObject]
     private let processManagerStore: ProcessManagerStore
-    private var identifierKeyToProcessDataValue = [NSString: AnyObject]()
+    private var identifierKeyToProcessDataValue = ProcessDictionary()
     public var count: Int {
         return identifierKeyToProcessDataValue.count
     }
 
     public init(processManagerStore: ProcessManagerStore) {
         if let processDataDictionary = processManagerStore.dictionary(forKey: runningProcessesKey) {
-            identifierKeyToProcessDataValue = processDataDictionary as [NSString: AnyObject]
+            identifierKeyToProcessDataValue = processDataDictionary as ProcessDictionary
         }
         self.processManagerStore = processManagerStore
     }
@@ -48,12 +49,12 @@ public class ProcessManager {
         save()
     }
 
-    public func removeProcess(forIdentifier identifier: Int32) -> ProcessData? {
+    public func removeProcess(forIdentifier identifier: pid_t) -> ProcessData? {
         let processData = self.processData(forIdentifier: identifier, remove: true)
         return processData
     }
 
-    public func processData(forIdentifier identifier: Int32) -> ProcessData? {
+    public func processData(forIdentifier identifier: pid_t) -> ProcessData? {
         return processData(forIdentifier: identifier, remove: false)
     }
 
