@@ -73,10 +73,10 @@ class ProcessManagerTestCase: XCTestCase {
                 }
                 tasks.append(task)
                 let processData = ProcessData(identifier: task.processIdentifier,
-                    name: commandPath,
-                    userIdentifier: userIdentifier,
-                    username: username,
-                    startTime: Date())!
+                                              name: commandPath,
+                                              userIdentifier: userIdentifier,
+                                              username: username,
+                                              startTime: Date())!
                 self.processManager.add(processData)
                 runExpectation.fulfill()
             }
