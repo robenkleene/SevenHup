@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4514BC7A1FDDB04500A1EC32 /* SevenHup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4514BC701FDDB04500A1EC32 /* SevenHup.framework */; };
 		4514BC811FDDB04500A1EC32 /* SevenHup.h in Headers */ = {isa = PBXBuildFile; fileRef = 4514BC731FDDB04500A1EC32 /* SevenHup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4514BC8D1FDDB13D00A1EC32 /* ProcessFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC8A1FDDB13D00A1EC32 /* ProcessFilterTests.swift */; };
 		4514BC8E1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC8B1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift */; };
 		4514BC8F1FDDB13D00A1EC32 /* ProcessManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC8C1FDDB13D00A1EC32 /* ProcessManagerTests.swift */; };
 		4514BC961FDDB14700A1EC32 /* SUPProcessKiller.m in Sources */ = {isa = PBXBuildFile; fileRef = 4514BC901FDDB14700A1EC32 /* SUPProcessKiller.m */; };
@@ -66,7 +65,6 @@
 		4514BC741FDDB04500A1EC32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4514BC791FDDB04500A1EC32 /* SevenHupTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SevenHupTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4514BC801FDDB04500A1EC32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4514BC8A1FDDB13D00A1EC32 /* ProcessFilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessFilterTests.swift; sourceTree = "<group>"; };
 		4514BC8B1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessIntegrationTests.swift; sourceTree = "<group>"; };
 		4514BC8C1FDDB13D00A1EC32 /* ProcessManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessManagerTests.swift; sourceTree = "<group>"; };
 		4514BC901FDDB14700A1EC32 /* SUPProcessKiller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUPProcessKiller.m; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 			children = (
 				4514E01B2252A170001A778A /* Helper */,
 				452A33E31FDE15D4002F28A6 /* Data */,
-				4514BC8A1FDDB13D00A1EC32 /* ProcessFilterTests.swift */,
 				4514BC8B1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift */,
 				4514BC8C1FDDB13D00A1EC32 /* ProcessManagerTests.swift */,
 				4514BC801FDDB04500A1EC32 /* Info.plist */,
@@ -326,7 +323,6 @@
 				4514BC8F1FDDB13D00A1EC32 /* ProcessManagerTests.swift in Sources */,
 				4514E01A2252A13F001A778A /* ProcessesTests.swift in Sources */,
 				452A33E01FDE1570002F28A6 /* TestConstants.swift in Sources */,
-				4514BC8D1FDDB13D00A1EC32 /* ProcessFilterTests.swift in Sources */,
 				452A33E71FDE198F002F28A6 /* XCTestCase+Tasks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
