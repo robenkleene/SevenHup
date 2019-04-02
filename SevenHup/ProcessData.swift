@@ -18,14 +18,15 @@ public struct ProcessData: Equatable {
                  name: String,
                  userIdentifier: uid_t,
                  username: String) {
-        // TODO:
-        // An all whitespace `commandPath` is not allowed
-        // let trimmedCommandPathCharacterCount = commandPath
-        //     .trimmingCharacters(in: CharacterSet.whitespaces)
-        //     .count
-        // guard trimmedCommandPathCharacterCount > 0 else {
-        //     return nil
-        // }
+        // Don't allow all whitespace `name` or `username`
+        let trimmedNameCharacterCount = name.trimmingCharacters(in: CharacterSet.whitespaces).count
+        let trimmedUsernameCharacterCount = username.trimmingCharacters(in: CharacterSet.whitespaces).count
+        guard
+            trimmedNameCharacterCount > 0,
+            trimmedUsernameCharacterCount > 0
+        else {
+             return nil
+         }
 
         self.identifier = identifier
         self.name = name
