@@ -10,6 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface SUPProcesses : NSObject
-+ (NSArray *)processes;
++ (NSArray<NSDictionary *> *)processes;
 @end
 NS_ASSUME_NONNULL_END

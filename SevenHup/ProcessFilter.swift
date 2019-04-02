@@ -68,7 +68,7 @@ class ProcessFilter {
         }
 
         DispatchQueue.global(qos: .background).async {
-            let processDictionaries = SUPProcesses.processes()
+            let processDictionaries = SUPProcesses.processes() as [NSDictionary]
             let processDatas = makeProcessDatas(dictionaries: processDictionaries)
             completionHandler(processDatas, nil)
         }
@@ -79,7 +79,7 @@ class ProcessFilter {
     class func makeProcessDatas(dictionaries: [NSDictionary]) -> [Int32: ProcessData] {
         var identifierToProcessData = [Int32: ProcessData]()
         for dictionary in dictionaries {
-            if let processData = makeProcessData(dictionary: dictionary) {
+            if let processData = ProcessData.makeProcessData(dictionary: dictionary) {
                 identifierToProcessData[processData.identifier] = processData
             }
         }
