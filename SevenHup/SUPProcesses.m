@@ -122,23 +122,23 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
 
     for (int i = 0; i < count; i++) {
         struct kinfo_proc *process = &list[i];
-        NSMutableDictionary *entry = [NSMutableDictionary dictionaryWithCapacity:4];
+        NSMutableDictionary *processDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
 
         // TODO: Fix this inefficient convert from `NSNumber` to `NSString`.
         NSNumber *processIdentifierNumber = [NSNumber numberWithInt:process->kp_proc.p_pid];
         NSString *processIdentifier = processIdentifierNumber.stringValue;
         if (processIdentifier) {
-            entry[kProcessIdentifierKey] = processIdentifier;
+            processDictionary[kProcessIdentifierKey] = processIdentifier;
         }
         NSString *processName = [NSString stringWithFormat:@"%s", process->kp_proc.p_comm];
         if (processName) {
-            entry[kProcessNameKey] = processName;
+            processDictionary[kProcessNameKey] = processName;
         }
 
         NSTimeInterval timeInterval = process->kp_proc.p_starttime.tv_sec + process->kp_proc.p_starttime.tv_usec / 1.e6;
         NSDate *startTime = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         if (startTime) {
-            entry[kProcessStartTimeKey] = startTime;
+            processDictionary[kProcessStartTimeKey] = startTime;
         }
 
         struct passwd *user = getpwuid(process->kp_eproc.e_ucred.cr_uid);
@@ -147,15 +147,15 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
             NSNumber *userIdentifierNumber = [NSNumber numberWithUnsignedInt:process->kp_eproc.e_ucred.cr_uid];
             NSString *userIdentifier = userIdentifierNumber.stringValue;
             if (userIdentifier) {
-                entry[kProcessUserIdentifierKey] = userIdentifier;
+                processDictionary[kProcessUserIdentifierKey] = userIdentifier;
             }
             NSString *userName = [NSString stringWithFormat:@"%s", user->pw_name];
             if (userName) {
-                entry[kProcessUsernameKey] = userName;
+                processDictionary[kProcessUsernameKey] = userName;
             }
         }
 
-        identifierToProcessInfo[processIdentifier] = entry;
+        identifierToProcessInfo[processIdentifier] = processDictionary;
     }
     free(list);
 
