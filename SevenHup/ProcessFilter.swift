@@ -93,24 +93,4 @@ class ProcessFilter {
         }
         return identifierToProcessData
     }
-
-    private class func makeProcessData(dictionary: String) -> ProcessData? {
-        guard let identifier = dictionary[processIDKey] else {
-            return nil
-        }
-
-        guard let name = identifier = dictionary[kProcessNameKey] else {
-            return nil
-        }
-
-        guard let userID = identifier = dictionary[processUserIDKey] else {
-            return nil
-        }
-
-        guard let username = identifier = dictionary[processUsernameKey] else {
-            return nil
-        }
-
-        return ProcessData(identifier: identifier, startTime: date, commandPath: command)
-    }
 }

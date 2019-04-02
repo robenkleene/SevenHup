@@ -12,7 +12,7 @@ let noIdentifiersErrorCode = 100
 let runningProcessesKey = "WCLRunningProcesses"
 let errorDomain = Bundle(for: ProcessManager.self).bundleIdentifier!
 
-let processIDKey = kProcessIDKey
+let processIdentifierKey = kProcessIdentifierKey
 let processNameKey = kProcessNameKey
-let processUserIDKey = kProcessUserIDKey
+let processUserIdentifierKey = kProcessUserIdentifierKey
 let processUsernameKey = kProcessUsernameKey

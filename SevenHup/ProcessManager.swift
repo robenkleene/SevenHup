@@ -20,15 +20,6 @@ enum ProcessManagerError: Error {
 }
 
 public class ProcessManager {
-    enum ProcessDataKey: String {
-        case identifier
-        case commandPath
-        case startTime
-        func key() -> NSString {
-            return rawValue as NSString
-        }
-    }
-
     private let processManagerStore: ProcessManagerStore
     private var identifierKeyToProcessDataValue = [NSString: AnyObject]()
     public var count: Int {
@@ -75,8 +66,8 @@ public class ProcessManager {
 
         for value in values {
             if let
-                value = value as? NSDictionary,
-                let processData = type(of: self).processData(for: value) {
+                dictionary = value as? NSDictionary,
+                let processData = ProcessData.processData(for: dictionary) {
                 processDatas.append(processData)
             }
         }
@@ -140,7 +131,7 @@ public class ProcessManager {
             return nil
         }
 
-        return type(of: self).processData(for: processDataValue)
+        return ProcessData.processData(for: processDataValue)
     }
 
     // MARK: Helper
@@ -167,37 +158,5 @@ public class ProcessManager {
         return (key: key, value: value)
     }
 
-    private class func processData(for dictionary: NSDictionary) -> ProcessData? {
-        guard
-            let key = dictionary[ProcessDataKey.identifier.key()] as? NSString,
-            let commandPath = dictionary[ProcessDataKey.commandPath.key()] as? String,
-            let startTime = dictionary[ProcessDataKey.startTime.key()] as? Date
-        else {
-            return nil
-        }
 
-        let identifier = self.identifier(from: key)
-
-        return ProcessData(identifier: identifier,
-                           startTime: startTime,
-                           commandPath: commandPath)
-    }
-
-    private class func value(for processData: ProcessData) -> NSDictionary {
-        let dictionary = NSMutableDictionary()
-        let key = self.key(from: processData.identifier)
-        dictionary[ProcessDataKey.identifier.key()] = key
-        dictionary[ProcessDataKey.commandPath.key()] = processData.commandPath
-        dictionary[ProcessDataKey.startTime.key()] = processData.startTime
-        return dictionary
-    }
-
-    private class func identifier(from key: NSString) -> Int32 {
-        return Int32(key.intValue)
-    }
-
-    private class func key(from value: Int32) -> NSString {
-        let valueNumber = String(value)
-        return valueNumber as NSString
-    }
 }

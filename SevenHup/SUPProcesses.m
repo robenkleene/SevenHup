@@ -121,25 +121,25 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     NSMutableArray *processes = [NSMutableArray arrayWithCapacity:(int)count];
 
     for (int i = 0; i < count; i++) {
-        struct kinfo_proc *currentProcess = &list[i];
-        struct passwd *user = getpwuid(currentProcess->kp_eproc.e_ucred.cr_uid);
+        struct kinfo_proc *process = &list[i];
+        struct passwd *user = getpwuid(process->kp_eproc.e_ucred.cr_uid);
         NSMutableDictionary *entry = [NSMutableDictionary dictionaryWithCapacity:4];
 
-        NSNumber *processID = [NSNumber numberWithInt:currentProcess->kp_proc.p_pid];
-        NSString *processName = [NSString stringWithFormat:@"%s", currentProcess->kp_proc.p_comm];
-        if (processID) {
-            entry[kProcessIDKey] = processID;
+        NSNumber *processIdentifier = [NSNumber numberWithInt:process->kp_proc.p_pid];
+        NSString *processName = [NSString stringWithFormat:@"%s", process->kp_proc.p_comm];
+        if (processIdentifier) {
+            entry[kProcessIdentifierKey] = processIdentifier;
         }
         if (processName) {
             entry[kProcessNameKey] = processName;
         }
 
         if (user) {
-            NSNumber *userID = [NSNumber numberWithUnsignedInt:currentProcess->kp_eproc.e_ucred.cr_uid];
+            NSNumber *userIdentifier = [NSNumber numberWithUnsignedInt:process->kp_eproc.e_ucred.cr_uid];
             NSString *userName = [NSString stringWithFormat:@"%s", user->pw_name];
 
-            if (userID) {
-                entry[kProcessUserIDKey] = userID;
+            if (userIdentifier) {
+                entry[kProcessUserIdentifierKey] = userIdentifier;
             }
             if (userName) {
                 entry[kProcessUsernameKey] = userName;

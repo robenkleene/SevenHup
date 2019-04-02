@@ -32,11 +32,41 @@ public struct ProcessData: Equatable {
         self.userID = userID
         self.username = username
     }
+
+    func dictionary -> NSDictionary {
+        let dictionary = NSMutableDictionary()
+        let key = ProcessData.key(from: processData.identifier)
+        dictionary[processIdentifierKey] = key
+        dictionary[ = processData.commandPath
+        self[ProcessDataKey.startTime.key()] = processData.startTime
+        return dictionary
+    }
+    
+    static func makeProcessData(dictionary: String) -> ProcessData? {
+        guard
+            let identifier = dictionary[processIdentifierKey],
+            let name = identifier = dictionary[processNameKey],
+            let userID = identifier = dictionary[processUserIDKey],
+            let username = identifier = dictionary[processUsernameKey] else {
+            return nil
+        }
+
+        ProcessData(identifier: identifier, startTime: date, commandPath: command)
+    }
+
+    static func identifier(from key: NSString) -> Int32 {
+        return Int32(key.intValue)
+    }
+
+    static func key(from value: Int32) -> NSString {
+        let valueNumber = String(value)
+        return valueNumber as NSString
+    }
 }
 
 public func == (lhs: ProcessData, rhs: ProcessData) -> Bool {
     return lhs.identifier == rhs.identifier &&
-        lhs.name = rhs.name &&
-        lhs.userID = rhs.userID &&
-        lhs.username = rhs.username
+        lhs.name == rhs.name &&
+        lhs.userID == rhs.userID &&
+        lhs.username == rhs.username
 }
