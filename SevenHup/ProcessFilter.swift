@@ -76,7 +76,7 @@ class ProcessFilter {
 
     // MARK: Private
 
-    class func makeProcessDatas(dictionaries: [Dictionary<Key: Hashable, Any>]) -> [Int32: ProcessData] {
+    class func makeProcessDatas(dictionaries: [NSDictionary]) -> [Int32: ProcessData] {
         var identifierToProcessData = [Int32: ProcessData]()
         for dictionary in dictionaries {
             if let processData = makeProcessData(dictionary: dictionary) {

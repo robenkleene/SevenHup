@@ -67,7 +67,7 @@ public class ProcessManager {
         for value in values {
             if let
                 dictionary = value as? NSDictionary,
-                let processData = ProcessData.processData(for: dictionary) {
+                let processData = ProcessData.makeProcessData(dictionary: dictionary) {
                 processDatas.append(processData)
             }
         }
@@ -127,17 +127,17 @@ public class ProcessManager {
     }
 
     private func processData(forIdentifier identifier: Int32, remove: Bool) -> ProcessData? {
-        guard let processDataValue = processDataValue(forIdentifier: identifier, remove: remove) else {
+        guard let processDataDictionary = processDataDictionary(forIdentifier: identifier, remove: remove) else {
             return nil
         }
 
-        return ProcessData.processData(for: processDataValue)
+        return ProcessData.makeProcessData(dictionary: processDataDictionary)
     }
 
     // MARK: Helper
 
-    private func processDataValue(forIdentifier identifier: Int32, remove: Bool) -> NSDictionary? {
-        let key = type(of: self).key(from: identifier)
+    private func processDataDictionary(forIdentifier identifier: Int32, remove: Bool) -> NSDictionary? {
+        let key = ProcessData.key(from: identifier)
         if remove {
             objc_sync_enter(self)
             let processDataValue = identifierKeyToProcessDataValue.removeValue(forKey: key) as? NSDictionary
