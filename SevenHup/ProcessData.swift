@@ -43,7 +43,8 @@ public struct ProcessData: Equatable {
             processIdentifierKey: key,
             processNameKey: name,
             processUserIdentifierKey: userIdentifier,
-            processUsernameKey: username
+            processUsernameKey: username,
+            processStartTimeKey: startTime
         ]
     }
 
