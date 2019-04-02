@@ -11,12 +11,12 @@ import Foundation
 public struct ProcessData: Equatable {
     let identifier: Int32
     let name: String
-    let userID: String
+    let userIdentifier: String
     let username: String
 
     public init?(identifier: Int32,
                  name: String,
-                 userID: String,
+                 userIdentifier: String,
                  username: String) {
         // TODO:
         // An all whitespace `commandPath` is not allowed
@@ -29,38 +29,46 @@ public struct ProcessData: Equatable {
 
         self.identifier = identifier
         self.name = name
-        self.userID = userID
+        self.userIdentifier = userIdentifier
         self.username = username
     }
 
-    func dictionary -> NSDictionary {
-        let dictionary = NSMutableDictionary()
-        let key = ProcessData.key(from: processData.identifier)
-        dictionary[processIdentifierKey] = key
-        dictionary[ = processData.commandPath
-        self[ProcessDataKey.startTime.key()] = processData.startTime
-        return dictionary
+    func dictionary() -> NSDictionary {
+        let key = ProcessData.key(from: identifier)
+        return [
+            processIdentifierKey: key,
+            processNameKey: name,
+            processUserIdentifierKey: userIdentifier,
+            processUsernameKey: username
+        ]
     }
     
-    static func makeProcessData(dictionary: String) -> ProcessData? {
+    static func makeProcessData(dictionary: NSDictionary) -> ProcessData? {
         guard
-            let identifier = dictionary[processIdentifierKey],
-            let name = identifier = dictionary[processNameKey],
-            let userID = identifier = dictionary[processUserIDKey],
-            let username = identifier = dictionary[processUsernameKey] else {
+            let key = dictionary[processIdentifierKey] as? String,
+            let name = dictionary[processNameKey] as? String,
+            let userIdentifier = dictionary[processUserIdentifierKey] as? String,
+            let username = dictionary[processUsernameKey]  as? String
+            else {
             return nil
         }
 
-        ProcessData(identifier: identifier, startTime: date, commandPath: command)
+        let identifier = ProcessData.identifier(from: key)
+        return ProcessData(
+            identifier: identifier,
+            name: name,
+            userIdentifier: userIdentifier,
+            username: username
+        )
     }
 
-    static func identifier(from key: NSString) -> Int32 {
-        return Int32(key.intValue)
+    static func identifier(from key: String) -> Int32 {
+        return Int32((key as NSString).intValue)
     }
 
-    static func key(from value: Int32) -> NSString {
+    static func key(from value: Int32) -> String {
         let valueNumber = String(value)
-        return valueNumber as NSString
+        return valueNumber
     }
 }
 

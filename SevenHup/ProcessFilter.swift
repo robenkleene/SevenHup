@@ -46,11 +46,12 @@ extension ProcessFilter {
 
     class func doesRunningProcessData(_ runningProcessData: ProcessData,
                                       matchProcessData processData: ProcessData) -> Bool {
-        // Make sure the running process started on or before the other `ProcessData`'s `startTime`
-        if runningProcessData.startTime.compare(processData.startTime as Date) == ComparisonResult.orderedDescending {
-            return false
-        }
-
+        // TODO
+//        // Make sure the running process started on or before the other `ProcessData`'s `startTime`
+//        if runningProcessData.startTime.compare(processData.startTime as Date) == ComparisonResult.orderedDescending {
+//            return false
+//        }
+//
         return true
     }
 }
@@ -66,15 +67,6 @@ class ProcessFilter {
             return
         }
 
-        let commandPath = "/bin/ps"
-        let identifiersParameter = identifiers.map({ String($0) }).joined(separator: ",")
-        let arguments = ["-o pid=,lstart=,args=", "-p \(identifiersParameter)"]
-
-        // o: Change format
-        // pid: Process ID
-        // lstart: Start time
-        // args: Command & Arguments
-        // = Means don't display header for this column
         DispatchQueue.global(qos: .background).async {
             let processDictionaries = SUPProcesses.processes()
             let processDatas = makeProcessDatas(dictionaries: processDictionaries)
@@ -84,7 +76,7 @@ class ProcessFilter {
 
     // MARK: Private
 
-    class func makeProcessDatas(dictionaries: [Any]) -> [Int32: ProcessData] {
+    class func makeProcessDatas(dictionaries: [Dictionary<Key: Hashable, Any>]) -> [Int32: ProcessData] {
         var identifierToProcessData = [Int32: ProcessData]()
         for dictionary in dictionaries {
             if let processData = makeProcessData(dictionary: dictionary) {
