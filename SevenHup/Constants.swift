@@ -16,3 +16,4 @@ let processIdentifierKey = kProcessIdentifierKey
 let processNameKey = kProcessNameKey
 let processUserIdentifierKey = kProcessUserIdentifierKey
 let processUsernameKey = kProcessUsernameKey
+let processStartTimeKey = kProcessStartTimeKey

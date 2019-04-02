@@ -13,11 +13,13 @@ public struct ProcessData: Equatable {
     let name: String
     let userIdentifier: uid_t
     let username: String
+    let startTime: Date
 
     public init?(identifier: pid_t,
                  name: String,
                  userIdentifier: uid_t,
-                 username: String) {
+                 username: String,
+                 startTime: Date) {
         // Don't allow all whitespace `name` or `username`
         let trimmedNameCharacterCount = name.trimmingCharacters(in: CharacterSet.whitespaces).count
         let trimmedUsernameCharacterCount = username.trimmingCharacters(in: CharacterSet.whitespaces).count
@@ -32,6 +34,7 @@ public struct ProcessData: Equatable {
         self.name = name
         self.userIdentifier = userIdentifier
         self.username = username
+        self.startTime = startTime
     }
 
     func dictionary() -> NSDictionary {
@@ -49,7 +52,8 @@ public struct ProcessData: Equatable {
             let key = dictionary[processIdentifierKey] as? NSString,
             let name = dictionary[processNameKey] as? String,
             let userKey = dictionary[processUserIdentifierKey] as? NSString,
-            let username = dictionary[processUsernameKey] as? String
+            let username = dictionary[processUsernameKey] as? String,
+            let startTime = dictionary[processStartTimeKey] as? Date
         else {
             assert(false)
             return nil
@@ -62,7 +66,8 @@ public struct ProcessData: Equatable {
             identifier: identifier,
             name: name,
             userIdentifier: userIdentifier,
-            username: username
+            username: username,
+            startTime: startTime
         )
     }
 
@@ -88,5 +93,6 @@ public func == (lhs: ProcessData, rhs: ProcessData) -> Bool {
     return lhs.identifier == rhs.identifier &&
         lhs.name == rhs.name &&
         lhs.userIdentifier == rhs.userIdentifier &&
-        lhs.username == rhs.username
+        lhs.username == rhs.username &&
+        lhs.startTime == rhs.startTime
 }

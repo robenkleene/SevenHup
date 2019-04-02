@@ -44,14 +44,13 @@ extension ProcessFilter {
         }
     }
 
-    class func doesRunningProcessData(_: ProcessData,
-                                      matchProcessData _: ProcessData) -> Bool {
-        // TODO:
-//        // Make sure the running process started on or before the other `ProcessData`'s `startTime`
-//        if runningProcessData.startTime.compare(processData.startTime as Date) == ComparisonResult.orderedDescending {
-//            return false
-//        }
-//
+    class func doesRunningProcessData(_ runningProcessData: ProcessData,
+                                      matchProcessData processData: ProcessData) -> Bool {
+        // Make sure the running process started on or before the other
+                                                // `ProcessData`'s `startTime`
+        if runningProcessData.startTime.compare(processData.startTime as Date) == ComparisonResult.orderedDescending {
+            return false
+        }
         return true
     }
 }

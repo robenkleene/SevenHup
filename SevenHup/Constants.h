@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define kProcessIdentifierKey @"processID"
+#define kProcessIdentifierKey @"processIdentifier"
 #define kProcessNameKey @"processName"
-#define kProcessUserIdentifierKey @"userID"
+#define kProcessUserIdentifierKey @"userIdentifier"
 #define kProcessUsernameKey @"username"
+#define kProcessStartTimeKey @"startTime"

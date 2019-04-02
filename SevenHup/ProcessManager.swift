@@ -110,7 +110,8 @@ public class ProcessManager {
                     completionHandler(optionalIdentifierToProcessData, error as NSError)
                     return
                 }
-                // TODO: This is returning too early, we need to wait for all the tasks to actually finish terminating
+                // TODO: This is returning too early, we need to wait for all
+                // the tasks to actually finish terminating
                 self.remove(processDatas: processDatas)
                 completionHandler(optionalIdentifierToProcessData, error)
             }
