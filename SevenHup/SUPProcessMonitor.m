@@ -18,7 +18,7 @@
 
 @implementation SUPProcessMonitor
 
-- (instancetype)initWithIdentifier:(int)identifier {
+- (instancetype)initWithIdentifier:(pid_t)identifier {
     self = [super init];
     if (self != nil) {
         _identifier = identifier;
