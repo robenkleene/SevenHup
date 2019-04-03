@@ -66,25 +66,22 @@ class ProcessFilter {
             return
         }
         DispatchQueue.global(qos: .background).async {
-            let identifiersSet = Set(identifiers)
-            let identifierToProcesses = SUPProcesses.identifierToProcesses(forIdentifiers: identifiersSet as Set<NSNumber>)
-            let dictionaries = Array(identifierToProcesses.values)
-            guard let processDictionaries = dictionaries as? [NSDictionary] else {
-                assert(false)
-                let userInfo = [NSLocalizedDescriptionKey: "Type error"]
-                let error = NSError(domain: errorDomain, code: typeErrorCode, userInfo: userInfo)
-                completionHandler(nil, error)
-            }
-            let processDatas = makeProcessDatas(dictionaries: processDictionaries)
+            let dictionaries = Processes.processInfos(for: identifiers)
+            let processDatas = makeProcessDatas(dictionaries: dictionaries)
             completionHandler(processDatas, nil)
         }
     }
 
     // MARK: Private
 
-    private class func makeProcessDatas(dictionaries: [NSDictionary]) -> [Int32: ProcessData] {
+    private class func makeProcessDatas(dictionaries: [Any]) -> [Int32: ProcessData] {
+        guard let processDictionaries = dictionaries as? [NSDictionary] else {
+            assert(false)
+            return [Int32: ProcessData]()
+        }
+
         var identifierToProcessData = [Int32: ProcessData]()
-        for dictionary in dictionaries {
+        for dictionary in processDictionaries {
             if let processData = ProcessData.makeProcessData(dictionary: dictionary) {
                 identifierToProcessData[processData.identifier] = processData
             }

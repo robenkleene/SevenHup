@@ -37,6 +37,7 @@
 		45F15025225547B4004D9308 /* ProcessStatusFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F15024225547B4004D9308 /* ProcessStatusFilter.swift */; };
 		45F15027225549C0004D9308 /* ProcessStatusFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F15026225549C0004D9308 /* ProcessStatusFilterTests.swift */; };
 		45F1502922554A40004D9308 /* ProcessFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F1502822554A40004D9308 /* ProcessFilterTests.swift */; };
+		45F1502B2255611B004D9308 /* Processes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F1502A2255611B004D9308 /* Processes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		45F15024225547B4004D9308 /* ProcessStatusFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStatusFilter.swift; sourceTree = "<group>"; };
 		45F15026225549C0004D9308 /* ProcessStatusFilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessStatusFilterTests.swift; sourceTree = "<group>"; };
 		45F1502822554A40004D9308 /* ProcessFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFilterTests.swift; sourceTree = "<group>"; };
+		45F1502A2255611B004D9308 /* Processes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Processes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				4514BC731FDDB04500A1EC32 /* SevenHup.h */,
 				4514BC741FDDB04500A1EC32 /* Info.plist */,
 				45EA5C9E1FDDB79100303D1F /* Constants.swift */,
+				45F1502A2255611B004D9308 /* Processes.swift */,
 				4514E01522529B10001A778A /* SUPProcesses.m */,
 				4514E01722529DCA001A778A /* SUPProcesses.h */,
 				4514E01E2252A650001A778A /* ProcessFilter.swift */,
@@ -314,6 +317,7 @@
 				4514E01F2252A650001A778A /* ProcessFilter.swift in Sources */,
 				4514E01622529B10001A778A /* SUPProcesses.m in Sources */,
 				4514BC961FDDB14700A1EC32 /* SUPProcessKiller.m in Sources */,
+				45F1502B2255611B004D9308 /* Processes.swift in Sources */,
 				4514BC981FDDB14700A1EC32 /* ProcessKiller.swift in Sources */,
 				4514BC971FDDB14700A1EC32 /* ProcessData.swift in Sources */,
 				4514BC9A1FDDB14700A1EC32 /* ProcessManager.swift in Sources */,
