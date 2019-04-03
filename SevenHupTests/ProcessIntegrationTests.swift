@@ -234,7 +234,6 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
             RunLoop.current.run(mode: RunLoop.Mode.default, before: loopUntil as Date)
         }
 
-        
         // Confirm the process has been removed from the `ProcessManager`
 
         let processDatasTwo = processManager.processDatas()
