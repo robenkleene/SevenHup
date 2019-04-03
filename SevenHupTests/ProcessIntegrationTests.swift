@@ -228,7 +228,13 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         // of `killProcessData` exists. Really the completion handler of
         // `killProcessData` not fire until the process has been terminated.
         wait(forTerminationOf: [task])
+        // Seems the callback to remove the process data doesn't always fire in time either
+        let loopUntil = NSDate(timeIntervalSinceNow: testTimeoutInterval)
+        while processManager.processDatas().count != 0, loopUntil.timeIntervalSinceNow > 0 {
+            RunLoop.current.run(mode: RunLoop.Mode.default, before: loopUntil as Date)
+        }
 
+        
         // Confirm the process has been removed from the `ProcessManager`
 
         let processDatasTwo = processManager.processDatas()
