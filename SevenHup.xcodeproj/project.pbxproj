@@ -34,6 +34,9 @@
 		45A1D1972225577E005A7157 /* SUPProcessMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A1D1952225577E005A7157 /* SUPProcessMonitor.m */; };
 		45B68F1E1FDE0A72000C3EA5 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		45EA5C9F1FDDB79100303D1F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA5C9E1FDDB79100303D1F /* Constants.swift */; };
+		45F15025225547B4004D9308 /* ProcessStatusFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F15024225547B4004D9308 /* ProcessStatusFilter.swift */; };
+		45F15027225549C0004D9308 /* ProcessStatusFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F15026225549C0004D9308 /* ProcessStatusFilterTests.swift */; };
+		45F1502922554A40004D9308 /* ProcessFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F1502822554A40004D9308 /* ProcessFilterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,9 @@
 		45A1D1952225577E005A7157 /* SUPProcessMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUPProcessMonitor.m; sourceTree = "<group>"; };
 		45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SodaStream.framework; path = Carthage/Build/Mac/SodaStream.framework; sourceTree = "<group>"; };
 		45EA5C9E1FDDB79100303D1F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		45F15024225547B4004D9308 /* ProcessStatusFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStatusFilter.swift; sourceTree = "<group>"; };
+		45F15026225549C0004D9308 /* ProcessStatusFilterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessStatusFilterTests.swift; sourceTree = "<group>"; };
+		45F1502822554A40004D9308 /* ProcessFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessFilterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +151,7 @@
 				4514E01722529DCA001A778A /* SUPProcesses.h */,
 				4514E01E2252A650001A778A /* ProcessFilter.swift */,
 				4514E0202252AAE6001A778A /* Constants.h */,
+				45F15024225547B4004D9308 /* ProcessStatusFilter.swift */,
 			);
 			path = SevenHup;
 			sourceTree = "<group>";
@@ -155,9 +162,11 @@
 				4514E01B2252A170001A778A /* Helper */,
 				452A33E31FDE15D4002F28A6 /* Data */,
 				4514BC8B1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift */,
+				45F15026225549C0004D9308 /* ProcessStatusFilterTests.swift */,
 				4514BC8C1FDDB13D00A1EC32 /* ProcessManagerTests.swift */,
 				4514BC801FDDB04500A1EC32 /* Info.plist */,
 				452A33DF1FDE1570002F28A6 /* TestConstants.swift */,
+				45F1502822554A40004D9308 /* ProcessFilterTests.swift */,
 				452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */,
 				452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */,
 				4514E0192252A13F001A778A /* ProcessesTests.swift */,
@@ -301,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4514E0212252AAE6001A778A /* Constants.h in Sources */,
+				45F15025225547B4004D9308 /* ProcessStatusFilter.swift in Sources */,
 				4514E01F2252A650001A778A /* ProcessFilter.swift in Sources */,
 				4514E01622529B10001A778A /* SUPProcesses.m in Sources */,
 				4514BC961FDDB14700A1EC32 /* SUPProcessKiller.m in Sources */,
@@ -322,8 +332,10 @@
 				4514BC8E1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift in Sources */,
 				4514BC8F1FDDB13D00A1EC32 /* ProcessManagerTests.swift in Sources */,
 				4514E01A2252A13F001A778A /* ProcessesTests.swift in Sources */,
+				45F15027225549C0004D9308 /* ProcessStatusFilterTests.swift in Sources */,
 				452A33E01FDE1570002F28A6 /* TestConstants.swift in Sources */,
 				452A33E71FDE198F002F28A6 /* XCTestCase+Tasks.swift in Sources */,
+				45F1502922554A40004D9308 /* ProcessFilterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
