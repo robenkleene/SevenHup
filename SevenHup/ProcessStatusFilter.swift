@@ -6,6 +6,20 @@
 //  Copyright © 2019 Roben Kleene. All rights reserved.
 //
 
+class ProcessStatusFilter {
+    class func runningProcesses(withIdentifiers identifiers: [Int32],
+                                completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+        _ error: NSError?) -> Void)) {
+        if identifiers.isEmpty {
+            completionHandler([Int32: ProcessData](), nil)
+            return
+        }
+    }
+    
+    // MARK: Private
+}
+
+
 //import Foundation
 //
 //import SodaStream

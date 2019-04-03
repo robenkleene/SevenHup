@@ -8,8 +8,6 @@
 
 import Foundation
 
-import SodaStream
-
 extension ProcessFilter {
     class func runningProcessMap(matching processDatas: [ProcessData],
                                  completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
