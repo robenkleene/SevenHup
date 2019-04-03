@@ -113,7 +113,7 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
 
 @implementation SUPProcesses
 
-+ (NSDictionary *)identifierToProcesses {
++ (NSDictionary *)identifierToProcessesForIdentifiers:(NSSet <NSNumber *> *)identifiersSet {
     kinfo_proc *list = NULL;
     size_t count = 0;
     GetBSDProcessList(&list, &count);
@@ -124,8 +124,11 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
         struct kinfo_proc *process = &list[i];
         NSMutableDictionary *processDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
 
-        // TODO: Fix this inefficient convert from `NSNumber` to `NSString`.
         NSNumber *processIdentifierNumber = [NSNumber numberWithInt:process->kp_proc.p_pid];
+        if (![identifiersSet containsObject:processIdentifierNumber]) {
+            continue;
+        }
+
         NSString *processIdentifier = processIdentifierNumber.stringValue;
         if (processIdentifier) {
             processDictionary[kProcessIdentifierKey] = processIdentifier;

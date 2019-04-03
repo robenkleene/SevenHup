@@ -66,17 +66,14 @@ class ProcessFilter {
             return
         }
         DispatchQueue.global(qos: .background).async {
-            // TODO: This is slow, instead figure out if we can either filter
-            // the processes as we are accessing them, or at least only collect
-            // the identifiers we're looking for to begin with
-            let identifierToProcesses = SUPProcesses.identifierToProcesses()
-            var processDictionaries = [NSDictionary]()
-            for identifier in identifiers {
-                let key = ProcessData.key(from: identifier)
-                guard let processDictionary = identifierToProcesses[key] as? NSDictionary else {
-                    continue
-                }
-                processDictionaries.append(processDictionary)
+            let identifiersSet = Set(identifiers)
+            let identifierToProcesses = SUPProcesses.identifierToProcesses(forIdentifiers: identifiersSet as Set<NSNumber>)
+            let dictionaries = Array(identifierToProcesses.values)
+            guard let processDictionaries = dictionaries as? [NSDictionary] else {
+                assert(false)
+                let userInfo = [NSLocalizedDescriptionKey: "Type error"]
+                let error = NSError(domain: errorDomain, code: typeErrorCode, userInfo: userInfo)
+                completionHandler(nil, error)
             }
             let processDatas = makeProcessDatas(dictionaries: processDictionaries)
             completionHandler(processDatas, nil)
