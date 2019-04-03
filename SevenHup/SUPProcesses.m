@@ -125,6 +125,10 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
         NSMutableDictionary *processDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
 
         NSNumber *processIdentifierNumber = [NSNumber numberWithInt:process->kp_proc.p_pid];
+        // TODO: This manual iteration of every process is inefficient, ideally
+        // this would be modified to instead have `GetBSDProcessList` take a
+        // list of identifiers and only return those (not sure if this is
+        // possible)
         if (![identifiersSet containsObject:processIdentifierNumber]) {
             continue;
         }
