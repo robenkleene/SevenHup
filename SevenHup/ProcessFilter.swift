@@ -60,9 +60,7 @@ class ProcessFilter {
                                 completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
                                                                _ error: NSError?) -> Void)) {
         if identifiers.isEmpty {
-            let userInfo = [NSLocalizedDescriptionKey: "No identifiers specified"]
-            let error = NSError(domain: errorDomain, code: noIdentifiersErrorCode, userInfo: userInfo)
-            completionHandler(nil, error)
+            completionHandler([Int32: ProcessData](), nil)
             return
         }
         DispatchQueue.global(qos: .background).async {

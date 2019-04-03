@@ -8,7 +8,6 @@
 
 import Foundation
 
-let noIdentifiersErrorCode = 100
 let runningProcessesKey = "WCLRunningProcesses"
 let errorDomain = Bundle(for: ProcessManager.self).bundleIdentifier!
 
