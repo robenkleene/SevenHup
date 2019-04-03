@@ -104,16 +104,19 @@ public class ProcessManager {
                 return
             }
             let processDatas = Array(identifierToProcessData.values)
-            ProcessKiller.kill(processDatas) { success in
-                guard success else {
-                    let error = ProcessManagerError.failedToKillError(processDatas: processDatas)
-                    completionHandler(optionalIdentifierToProcessData, error as NSError)
-                    return
+
+            DispatchQueue.main.async {
+                ProcessKiller.kill(processDatas) { success in
+                    guard success else {
+                        let error = ProcessManagerError.failedToKillError(processDatas: processDatas)
+                        completionHandler(optionalIdentifierToProcessData, error as NSError)
+                        return
+                    }
+                    // TODO: This is returning too early, we need to wait for all
+                    // the tasks to actually finish terminating
+                    self.remove(processDatas: processDatas)
+                    completionHandler(optionalIdentifierToProcessData, error)
                 }
-                // TODO: This is returning too early, we need to wait for all
-                // the tasks to actually finish terminating
-                self.remove(processDatas: processDatas)
-                completionHandler(optionalIdentifierToProcessData, error)
             }
         }
     }

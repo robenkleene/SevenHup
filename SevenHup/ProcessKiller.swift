@@ -13,6 +13,8 @@ import Foundation
 class ProcessKiller {
     class func kill(_ processDatas: [ProcessData],
                     completion: ((Bool) -> Void)?) {
+        // `SUPProcessMonitor` doesn't work if not called on the main thread
+        assert(Thread.isMainThread)
         var result = true
         var processMonitorsSet = Set<SUPProcessMonitor>()
         var didTimeout = false
