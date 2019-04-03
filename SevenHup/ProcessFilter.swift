@@ -58,5 +58,6 @@ class ProcessFilter {
                                 completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
                                                                _ error: NSError?) -> Void)) {
         Processes.runningProcesses(withIdentifiers: identifiers, completionHandler: completionHandler)
+//        ProcessStatusFilter.runningProcesses(withIdentifiers: identifiers, completionHandler: completionHandler)
     }
 }
