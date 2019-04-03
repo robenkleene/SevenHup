@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface SUPProcessMonitor : NSObject
-- (instancetype)initWithIdentifier:(int)identifier;
+- (instancetype)initWithIdentifier:(pid_t)identifier;
 @property (nonatomic, readonly) BOOL isRunning;
 - (void)watchWithCompletionHandler:(void (^)(BOOL success))completionHandler;
 @end
