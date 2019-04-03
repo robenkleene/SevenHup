@@ -66,7 +66,9 @@ class ProcessFilter {
             return
         }
         DispatchQueue.global(qos: .background).async {
-            // TODO: This is slow, instead figure out if we can either filter the processes as we are accessing them, or at least only collect the identifiers we're looking for to begin with
+            // TODO: This is slow, instead figure out if we can either filter
+            // the processes as we are accessing them, or at least only collect
+            // the identifiers we're looking for to begin with
             let identifierToProcesses = SUPProcesses.identifierToProcesses()
             var processDictionaries = [NSDictionary]()
             for identifier in identifiers {
