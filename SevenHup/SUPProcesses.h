@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface SUPProcesses : NSObject
++ (NSDictionary *)identifierToProcessesForIdentifiers2:(NSArray<NSNumber *> *)identifiers;
 + (NSDictionary *)identifierToProcessesForIdentifiers:(NSSet<NSNumber *> *)identifiersSet;
 @end
 NS_ASSUME_NONNULL_END
