@@ -71,6 +71,12 @@ class ProcessesTests: XCTestCase {
         XCTAssertEqual(alternativeProcessIdentifiers, taskIdentifiers)
         XCTAssertEqual(runningProcessIdentifiers, taskIdentifiers)
         
+        for identifier in runningProcessIdentifiers {
+            let processData = runningIdentifierToProcessData[identifier]
+            let alternativeProcessData = runningIdentifierToProcessData[identifier]
+            XCTAssertEqual(processData, alternativeProcessData)
+        }
+        
         // Clean up
 
         for task in tasks {
