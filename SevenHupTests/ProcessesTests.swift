@@ -34,6 +34,7 @@ class ProcessesTests: XCTestCase {
         let taskIdentifiers = tasks.map { $0.processIdentifier }.sorted { $0 < $1 }
         let processFilterExpectation = expectation(description: "Filter processes")
         
+        var finished = false
         var runningIdentifierToProcessData: [Int32 : ProcessData]!
         var alternativeIdentifierToProcessData: [Int32 : ProcessData]!
         ProcessFilter.runningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessData, error) -> Void in
@@ -45,6 +46,7 @@ class ProcessesTests: XCTestCase {
             XCTAssertEqual(identifierToProcessData.count, 3)
 
             runningIdentifierToProcessData = identifierToProcessData
+            finished = true
             processFilterExpectation.fulfill()
         }
 
@@ -58,6 +60,8 @@ class ProcessesTests: XCTestCase {
             XCTAssertEqual(identifierToProcessData.count, 3)
 
             alternativeIdentifierToProcessData = identifierToProcessData
+            // Confirm that the other method of getting running processes is faster
+            XCTAssertTrue(finished)
             alternativeProcessFilterExpectation.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
