@@ -69,7 +69,9 @@ class ProcessStatusFilterNoProcessTests: XCTestCase {
 
         XCTAssertEqual(processData.identifier, testProcessData.identifier)
         XCTAssertEqual(processData.startTime, testProcessData.startTime)
-        XCTAssertEqual(processData.commandPath, testProcessData.commandPath)
+        XCTAssertEqual(processData.name, testProcessData.name)
+        XCTAssertEqual(processData.username, testProcessData.username)
+        XCTAssertEqual(processData.userIdentifier, testProcessData.userIdentifier)
     }
 
     func testBadExampleInput() {
@@ -88,6 +90,8 @@ class ProcessStatusFilterNoProcessTests: XCTestCase {
 
         XCTAssertEqual(processData.identifier, testProcessData.identifier)
         XCTAssertEqual(processData.startTime, testProcessData.startTime)
-        XCTAssertEqual(processData.commandPath, testProcessData.commandPath)
+        XCTAssertEqual(processData.name, testProcessData.name)
+        XCTAssertEqual(processData.username, testProcessData.username)
+        XCTAssertEqual(processData.userIdentifier, testProcessData.userIdentifier)
     }
 }
