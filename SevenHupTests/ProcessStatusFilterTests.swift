@@ -12,7 +12,6 @@ import XCTest
 
 class ProcessStatusFilterNoProcessTests: XCTestCase {
     lazy var testProcessData: ProcessData = {
-
         let identifier = Int32(74)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss yyyy"

@@ -113,7 +113,7 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
 
 @implementation SUPProcesses
 
-+ (NSDictionary *)identifierToProcessesForIdentifiers:(NSSet <NSNumber *> *)identifiersSet {
++ (NSDictionary *)identifierToProcessesForIdentifiers:(NSSet<NSNumber *> *)identifiersSet {
     kinfo_proc *list = NULL;
     size_t count = 0;
     GetBSDProcessList(&list, &count);

@@ -17,19 +17,19 @@ class ProcessFilterTests: XCTestCase {
             let commandPath = path(forResource: testDataShellScriptCatName,
                                    ofType: testDataShellScriptExtension,
                                    inDirectory: testDataSubdirectory)!
-            
+
             let runExpectation = expectation(description: "Task ran")
             let task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                              withArguments: nil,
                                              inDirectoryPath: nil,
                                              delegate: nil) { (success) -> Void in
-                                                XCTAssertTrue(success)
-                                                runExpectation.fulfill()
+                XCTAssertTrue(success)
+                runExpectation.fulfill()
             }
             tasks.append(task)
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
-        
+
         let taskIdentifiers = tasks.map { $0.processIdentifier }.sorted { $0 < $1 }
         let processFilterExpectation = expectation(description: "Filter processes")
         ProcessFilter.runningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessData, error) -> Void in
@@ -38,17 +38,17 @@ class ProcessFilterTests: XCTestCase {
                 return
             }
             XCTAssertNil(error)
-            
+
             XCTAssertEqual(identifierToProcessData.count, 3)
-            
+
             let processIdentifiers = identifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
             XCTAssertEqual(processIdentifiers, taskIdentifiers)
             processFilterExpectation.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
-        
+
         // Clean up
-        
+
         for task in tasks {
             let interruptExpectation = expectation(description: "Interrupt finished")
             task.wcl_interrupt { (success) -> Void in
@@ -56,26 +56,26 @@ class ProcessFilterTests: XCTestCase {
                 interruptExpectation.fulfill()
             }
         }
-        
+
         waitForExpectations(timeout: testTimeout, handler: nil)
     }
-    
+
     func testWithProcess() {
         let commandPath = path(forResource: testDataShellScriptCatName,
                                ofType: testDataShellScriptExtension,
                                inDirectory: testDataSubdirectory)!
-        
+
         let runExpectation = expectation(description: "Task ran")
         let task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                          withArguments: nil,
                                          inDirectoryPath: nil,
                                          delegate: nil) { (success) -> Void in
-                                            XCTAssertTrue(success)
-                                            runExpectation.fulfill()
+            XCTAssertTrue(success)
+            runExpectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: testTimeout, handler: nil)
-        
+
         let processFilterExpectation = expectation(description: "Filter processes")
         ProcessFilter.runningProcesses(withIdentifiers: [task.processIdentifier]) {
             (identifierToProcessData, error) -> Void in
@@ -85,7 +85,7 @@ class ProcessFilterTests: XCTestCase {
                 XCTAssertTrue(false)
                 return
             }
-            
+
             XCTAssertEqual(identifierToProcessData.count, 1)
             guard let processData = identifierToProcessData[task.processIdentifier] else {
                 XCTAssertTrue(false)
@@ -95,9 +95,9 @@ class ProcessFilterTests: XCTestCase {
             processFilterExpectation.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
-        
+
         // Clean up
-        
+
         let interruptExpectation = expectation(description: "Interrupt finished")
         task.wcl_interrupt { (success) -> Void in
             XCTAssertTrue(success)

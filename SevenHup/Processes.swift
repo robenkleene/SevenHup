@@ -11,7 +11,7 @@ import Foundation
 class Processes {
     class func runningProcesses(withIdentifiers identifiers: [Int32],
                                 completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
-        _ error: NSError?) -> Void)) {
+                                                               _ error: NSError?) -> Void)) {
         if identifiers.isEmpty {
             completionHandler([Int32: ProcessData](), nil)
             return
@@ -30,13 +30,13 @@ class Processes {
         let identifierToProcesses = SUPProcesses.identifierToProcesses(forIdentifiers: identifiersSet as Set<NSNumber>)
         return Array(identifierToProcesses.values)
     }
-    
+
     private class func makeProcessDatas(dictionaries: [Any]) -> [Int32: ProcessData] {
         guard let processDictionaries = dictionaries as? [NSDictionary] else {
             assert(false)
             return [Int32: ProcessData]()
         }
-        
+
         var identifierToProcessData = [Int32: ProcessData]()
         for dictionary in processDictionaries {
             if let processData = ProcessData.makeProcessData(dictionary: dictionary) {

@@ -33,10 +33,10 @@ class ProcessesTests: XCTestCase {
 
         let taskIdentifiers = tasks.map { $0.processIdentifier }.sorted { $0 < $1 }
         let processFilterExpectation = expectation(description: "Filter processes")
-        
+
         var finished = false
-        var runningIdentifierToProcessData: [Int32 : ProcessData]!
-        var alternativeIdentifierToProcessData: [Int32 : ProcessData]!
+        var runningIdentifierToProcessData: [Int32: ProcessData]!
+        var alternativeIdentifierToProcessData: [Int32: ProcessData]!
         ProcessFilter.runningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessData, error) -> Void in
             guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)
@@ -70,13 +70,13 @@ class ProcessesTests: XCTestCase {
         let alternativeProcessIdentifiers = alternativeIdentifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
         XCTAssertEqual(alternativeProcessIdentifiers, taskIdentifiers)
         XCTAssertEqual(runningProcessIdentifiers, taskIdentifiers)
-        
+
         for identifier in runningProcessIdentifiers {
             let processData = runningIdentifierToProcessData[identifier]
             let alternativeProcessData = runningIdentifierToProcessData[identifier]
             XCTAssertEqual(processData, alternativeProcessData)
         }
-        
+
         // Clean up
 
         for task in tasks {
