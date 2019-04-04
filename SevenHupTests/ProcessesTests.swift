@@ -33,22 +33,40 @@ class ProcessesTests: XCTestCase {
 
         let taskIdentifiers = tasks.map { $0.processIdentifier }.sorted { $0 < $1 }
         let processFilterExpectation = expectation(description: "Filter processes")
-
+        
+        var runningIdentifierToProcessData: [Int32 : ProcessData]!
+        var alternativeIdentifierToProcessData: [Int32 : ProcessData]!
         ProcessFilter.runningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessData, error) -> Void in
             guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)
                 return
             }
             XCTAssertNil(error)
-
             XCTAssertEqual(identifierToProcessData.count, 3)
 
-            let processIdentifiers = identifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
-            XCTAssertEqual(processIdentifiers, taskIdentifiers)
+            runningIdentifierToProcessData = identifierToProcessData
             processFilterExpectation.fulfill()
+        }
+
+        let alternativeProcessFilterExpectation = expectation(description: "Filter processes")
+        ProcessFilter.alternativeRunningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessData, error) -> Void in
+            guard let identifierToProcessData = identifierToProcessData else {
+                XCTAssertTrue(false)
+                return
+            }
+            XCTAssertNil(error)
+            XCTAssertEqual(identifierToProcessData.count, 3)
+
+            alternativeIdentifierToProcessData = identifierToProcessData
+            alternativeProcessFilterExpectation.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
 
+        let runningProcessIdentifiers = runningIdentifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
+        let alternativeProcessIdentifiers = alternativeIdentifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
+        XCTAssertEqual(alternativeProcessIdentifiers, taskIdentifiers)
+        XCTAssertEqual(runningProcessIdentifiers, taskIdentifiers)
+        
         // Clean up
 
         for task in tasks {

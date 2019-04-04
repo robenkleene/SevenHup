@@ -58,6 +58,12 @@ class ProcessFilter {
                                 completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
                                                                _ error: NSError?) -> Void)) {
         Processes.runningProcesses(withIdentifiers: identifiers, completionHandler: completionHandler)
-//        ProcessStatusFilter.runningProcesses(withIdentifiers: identifiers, completionHandler: completionHandler)
     }
+
+    class func alternativeRunningProcesses(withIdentifiers identifiers: [Int32],
+                                completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+        _ error: NSError?) -> Void)) {
+        ProcessStatusFilter.runningProcesses(withIdentifiers: identifiers, completionHandler: completionHandler)
+    }
+
 }
