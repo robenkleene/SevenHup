@@ -76,7 +76,7 @@ class ProcessStatusFilter {
     }
     
     private class func makeProcessData(line: String) -> ProcessData? {
-        if line.count < 35 {
+        if line.count < 106 {
             return nil
         }
         
