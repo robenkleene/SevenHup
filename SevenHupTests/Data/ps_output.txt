@@ -1,326 +1,416 @@
-    1 Wed Dec 16 02:09:14 2015     /sbin/launchd
-   45 Wed Dec 16 02:09:32 2015     /usr/libexec/UserEventAgent
-   46 Wed Dec 16 02:09:32 2015     /usr/sbin/syslogd
-   48 Wed Dec 16 02:09:32 2015     /Library/Backblaze.bzpkg/bzserv
-   50 Wed Dec 16 02:09:32 2015     /usr/libexec/kextd
-   51 Wed Dec 16 02:09:32 2015     /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/FSEvents.framework/Versions/A/Support/fseventsd
-   55 Wed Dec 16 02:09:32 2015     /System/Library/CoreServices/appleeventsd
-   56 Wed Dec 16 02:09:32 2015     /usr/libexec/configd
-   57 Wed Dec 16 02:09:32 2015     /System/Library/CoreServices/powerd.bundle/powerd
-   62 Wed Dec 16 02:09:32 2015     /usr/libexec/airportd
-   64 Wed Dec 16 02:09:32 2015     /usr/libexec/warmd
-   65 Wed Dec 16 02:09:32 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Support/mds
-   69 Wed Dec 16 02:09:32 2015     /System/Library/CoreServices/iconservicesd
-   70 Wed Dec 16 02:09:32 2015     /System/Library/CoreServices/iconservicesagent
-   71 Wed Dec 16 02:09:32 2015     /usr/libexec/diskarbitrationd
-   73 Wed Dec 16 02:09:32 2015     /usr/libexec/coreduetd
-   74 Wed Dec 16 02:09:32 2015     /usr/libexec/wdhelper
-   76 Wed Dec 16 02:09:32 2015     /usr/libexec/opendirectoryd
-   77 Wed Dec 16 02:09:32 2015     /usr/sbin/wirelessproxd
-   79 Wed Dec 16 02:09:32 2015     /System/Library/PrivateFrameworks/ApplePushService.framework/apsd
-   80 Wed Dec 16 02:09:32 2015     /System/Library/CoreServices/launchservicesd
-   81 Wed Dec 16 02:09:32 2015     /System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/Resources/usbmuxd
-   82 Wed Dec 16 02:09:32 2015     /usr/sbin/securityd
-   84 Wed Dec 16 02:09:32 2015     /usr/libexec/locationd
-   87 Wed Dec 16 02:09:32 2015     /usr/sbin/blued
-   88 Wed Dec 16 02:09:32 2015     autofsd
-   92 Wed Dec 16 02:09:32 2015     /System/Library/PrivateFrameworks/Heimdal.framework/Helpers/kdc
-   94 Wed Dec 16 02:09:32 2015     /usr/sbin/mDNSResponder
-   96 Wed Dec 16 02:09:32 2015     /Library/PrivilegedHelperTools/screens_connectd
-   97 Wed Dec 16 02:09:32 2015     /System/Library/PrivateFrameworks/GenerationalStorage.framework/Versions/A/Support/revisiond
-   98 Wed Dec 16 02:09:32 2015     /System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow
-   99 Wed Dec 16 02:09:32 2015     /System/Library/CoreServices/logind
-  100 Wed Dec 16 02:09:32 2015     /usr/sbin/KernelEventAgent
-  103 Wed Dec 16 02:09:32 2015     /usr/libexec/hidd
-  104 Wed Dec 16 02:09:32 2015     /usr/libexec/AirPlayXPCHelper
-  105 Wed Dec 16 02:09:32 2015     /usr/sbin/notifyd
-  106 Wed Dec 16 02:09:32 2015     /usr/libexec/amfid
-  108 Wed Dec 16 02:09:32 2015     /usr/sbin/distnoted
-  109 Wed Dec 16 02:09:32 2015     /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/authd.xpc/Contents/MacOS/authd
-  110 Wed Dec 16 02:09:32 2015     aslmanager
-  111 Wed Dec 16 02:09:32 2015     /usr/sbin/cfprefsd
-  114 Wed Dec 16 02:09:32 2015     /System/Library/CoreServices/coreservicesd
-  117 Wed Dec 16 02:09:33 2015     /usr/libexec/diagnosticd
-  123 Wed Dec 16 02:09:33 2015     /usr/libexec/sandboxd
-  151 Wed Dec 16 02:09:33 2015     /System/Library/Frameworks/PCSC.framework/Versions/A/XPCServices/com.apple.ctkpcscd.xpc/Contents/MacOS/com.apple.ctkpcscd
-  157 Wed Dec 16 02:09:33 2015     /System/Library/Frameworks/CryptoTokenKit.framework/ctkd
-  160 Wed Dec 16 02:09:33 2015     /usr/libexec/secinitd
-  161 Wed Dec 16 02:09:33 2015     /System/Library/PrivateFrameworks/CoreSymbolication.framework/coresymbolicationd
-  162 Wed Dec 16 02:09:33 2015     /usr/sbin/coreaudiod
-  176 Wed Dec 16 02:09:33 2015     /System/Library/Frameworks/CoreAudio.framework/Versions/A/XPCServices/com.apple.audio.DriverHelper.xpc/Contents/MacOS/com.apple.audio.DriverHelper
-  177 Wed Dec 16 02:09:33 2015     /System/Library/PrivateFrameworks/WirelessDiagnostics.framework/Support/awdd
-  179 Wed Dec 16 02:09:33 2015     /System/Library/CoreServices/CrashReporterSupportHelper
-  184 Wed Dec 16 02:09:33 2015     /usr/libexec/networkd
-  186 Wed Dec 16 02:09:33 2015     /usr/libexec/networkd_privileged
-  187 Wed Dec 16 02:09:33 2015     /System/Library/Frameworks/Security.framework/Versions/A/XPCServices/com.apple.CodeSigningHelper.xpc/Contents/MacOS/com.apple.CodeSigningHelper
-  189 Wed Dec 16 02:09:33 2015     /usr/libexec/findmydeviced
-  195 Wed Dec 16 02:09:34 2015     /usr/libexec/lsd
-  197 Wed Dec 16 02:09:34 2015     /System/Library/Frameworks/ApplicationServices.framework/Frameworks/CoreGraphics.framework/Resources/WindowServer
-  199 Wed Dec 16 02:09:34 2015     /usr/libexec/smd
-  203 Wed Dec 16 02:09:34 2015     /System/Library/CoreServices/backupd.bundle/Contents/Resources/backupd-helper
-  207 Wed Dec 16 02:09:35 2015     /usr/libexec/nsurlsessiond
-  208 Wed Dec 16 02:09:35 2015     /usr/libexec/nehelper
-  209 Wed Dec 16 02:09:35 2015     /usr/sbin/ntpd
-  210 Wed Dec 16 02:09:35 2015     /usr/sbin/cron
-  211 Wed Dec 16 02:09:35 2015     /usr/libexec/corestoraged
-  213 Wed Dec 16 02:09:35 2015     /usr/libexec/usbd
-  214 Wed Dec 16 02:09:35 2015     /System/Library/CryptoTokenKit/com.apple.ifdreader.slotd/Contents/MacOS/com.apple.ifdreader
-  216 Wed Dec 16 02:09:35 2015     /System/Library/Frameworks/CoreMediaIO.framework/Resources/VDC.plugin/Contents/Resources/VDCAssistant
-  217 Wed Dec 16 02:09:35 2015     /usr/libexec/symptomsd
-  219 Wed Dec 16 02:09:36 2015     /usr/libexec/periodic-wrapper
-  242 Wed Dec 16 02:09:36 2015     /System/Library/PrivateFrameworks/AuthKit.framework/Versions/A/Support/akd
-  243 Wed Dec 16 02:09:37 2015     /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/CVMServer
-  256 Wed Dec 16 02:09:37 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mds_stores
-  268 Wed Dec 16 02:09:40 2015     /System/Library/PrivateFrameworks/AccountPolicy.framework/XPCServices/com.apple.AccountPolicyHelper.xpc/Contents/MacOS/com.apple.AccountPolicyHelper
-  272 Wed Dec 16 02:09:40 2015     /usr/libexec/securityd_service
-  273 Wed Dec 16 02:09:41 2015     /usr/libexec/UserEventAgent
-  275 Wed Dec 16 02:09:41 2015     /usr/sbin/distnoted
-  277 Wed Dec 16 02:09:41 2015     /usr/sbin/cfprefsd
-  279 Wed Dec 16 02:09:41 2015     /System/Library/Frameworks/CoreTelephony.framework/Support/CommCenter
-  280 Wed Dec 16 02:09:41 2015     /usr/libexec/lsd
-  282 Wed Dec 16 02:09:41 2015     /usr/sbin/WirelessRadioManagerd
-  283 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/SyncedDefaults.framework/Support/syncdefaultsd
-  284 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/IDS.framework/identityservicesd.app/Contents/MacOS/identityservicesd
-  285 Wed Dec 16 02:09:41 2015     /usr/sbin/usernoted
-  286 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/CalendarAgent.framework/Executables/CalendarAgent
-  287 Wed Dec 16 02:09:41 2015     /usr/libexec/nsurlsessiond
-  288 Wed Dec 16 02:09:41 2015     /usr/libexec/secd
-  289 Wed Dec 16 02:09:41 2015     /usr/libexec/secinitd
-  291 Wed Dec 16 02:09:41 2015     /System/Library/CoreServices/cloudphotosd.app/Contents/MacOS/cloudphotosd
-  292 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/CoreSuggestions.framework/Versions/A/Support/suggestd
-  293 Wed Dec 16 02:09:41 2015     /System/Library/CoreServices/SocialPushAgent.app/Contents/MacOS/SocialPushAgent
-  295 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/GameCenterFoundation.framework/Versions/A/gamed
-  296 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/TCC.framework/Resources/tccd
-  297 Wed Dec 16 02:09:41 2015     /System/Library/Frameworks/Accounts.framework/Versions/A/Support/accountsd
-  298 Wed Dec 16 02:09:41 2015     /System/Library/Frameworks/AddressBook.framework/Versions/A/XPCServices/com.apple.AddressBook.ContactsAccountsService.xpc/Contents/MacOS/com.apple.AddressBook.ContactsAccountsService
-  299 Wed Dec 16 02:09:41 2015     /usr/libexec/SafariCloudHistoryPushAgent
-  300 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/CallHistory.framework/Support/CallHistorySyncHelper
-  301 Wed Dec 16 02:09:41 2015     /System/Library/CoreServices/mapspushd
-  303 Wed Dec 16 02:09:41 2015     /usr/libexec/fmfd
-  305 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/AskPermission.framework/Versions/A/Resources/askpermissiond
-  306 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/AuthKit.framework/Versions/A/Support/akd
-  307 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/Versions/A/Support/bird
-  309 Wed Dec 16 02:09:41 2015     /usr/libexec/nsurlstoraged
-  310 Wed Dec 16 02:09:41 2015     /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Support/cloudd
-  311 Wed Dec 16 02:09:42 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Resources/storeaccountd
-  312 Wed Dec 16 02:09:42 2015     /System/Library/PrivateFrameworks/CalendarAgent.framework/Versions/A/XPCServices/CalNCService.xpc/Contents/MacOS/CalNCService
-  313 Wed Dec 16 02:09:42 2015     /System/Library/PrivateFrameworks/TelephonyUtilities.framework/callservicesd
-  314 Wed Dec 16 02:09:42 2015     /usr/libexec/watchdogd
-  315 Wed Dec 16 02:09:42 2015     /System/Library/PrivateFrameworks/IMCore.framework/imagent.app/Contents/MacOS/imagent
-  316 Wed Dec 16 02:09:42 2015     /System/Library/PrivateFrameworks/IMDPersistence.framework/XPCServices/IMDPersistenceAgent.xpc/Contents/MacOS/IMDPersistenceAgent
-  323 Wed Dec 16 02:09:43 2015     /System/Library/PrivateFrameworks/CacheDelete.framework/deleted
-  324 Wed Dec 16 02:09:43 2015     /System/Library/CoreServices/backupd.bundle/Contents/Resources/TMCacheDelete
-  325 Wed Dec 16 02:09:43 2015     /System/Library/PrivateFrameworks/PackageKit.framework/Resources/installd
-  326 Wed Dec 16 02:09:44 2015     /usr/sbin/pboard
-  329 Wed Dec 16 02:09:45 2015     /usr/sbin/filecoordinationd
-  330 Wed Dec 16 02:09:46 2015     /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/XPCServices/ContainerMetadataExtractor.xpc/Contents/MacOS/ContainerMetadataExtractor
-  337 Wed Dec 16 02:09:47 2015     /System/Library/CoreServices/ScopedBookmarkAgent
-  338 Wed Dec 16 02:09:47 2015     /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod
-  339 Wed Dec 16 02:09:47 2015     /System/Library/PrivateFrameworks/UserActivity.framework/Agents/useractivityd
-  341 Wed Dec 16 02:09:47 2015     /usr/libexec/sharingd
-  342 Wed Dec 16 02:09:47 2015     /usr/sbin/systemsoundserverd
-  343 Wed Dec 16 02:09:47 2015     /System/Library/CoreServices/sharedfilelistd
-  344 Wed Dec 16 02:09:47 2015     /System/Library/PrivateFrameworks/TCC.framework/Resources/tccd
-  345 Wed Dec 16 02:09:47 2015     /System/Library/CoreServices/AppleIDAuthAgent
-  347 Wed Dec 16 02:09:49 2015     /System/Library/CoreServices/pbs
-  348 Wed Dec 16 02:09:49 2015     /usr/libexec/swcd
-  349 Wed Dec 16 02:09:49 2015     /System/Library/Frameworks/ApplicationServices.framework/Frameworks/ATS.framework/Support/fontd
-  353 Wed Dec 16 02:09:50 2015     /usr/libexec/taskgated
-  355 Wed Dec 16 02:09:50 2015     /System/Library/CoreServices/sharedfilelistd
-  357 Wed Dec 16 02:09:50 2015     /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/HIServices.framework/Versions/A/XPCServices/com.apple.hiservices-xpcservice.xpc/Contents/MacOS/com.apple.hiservices-xpcservice
-  360 Wed Dec 16 02:09:50 2015     /System/Library/PrivateFrameworks/CloudPhotoServices.framework/Versions/A/Frameworks/CloudPhotosConfigurationXPC.framework/Versions/A/XPCServices/com.apple.CloudPhotosConfiguration.xpc/Contents/MacOS/com.apple.CloudPhotosConfiguration
-  364 Wed Dec 16 02:09:51 2015     /System/Library/Frameworks/Security.framework/Versions/A/Resources/CloudKeychainProxy.bundle/Contents/MacOS/CloudKeychainProxy
-  365 Wed Dec 16 02:09:51 2015     /System/Library/CoreServices/FolderActionsDispatcher.app/Contents/MacOS/FolderActionsDispatcher
-  367 Wed Dec 16 02:09:52 2015     /System/Library/PrivateFrameworks/CommunicationsFilter.framework/CMFSyncAgent.app/Contents/MacOS/CMFSyncAgent
-  368 Wed Dec 16 02:09:52 2015     /System/Library/CoreServices/EscrowSecurityAlert.app/Contents/MacOS/EscrowSecurityAlert
-  374 Wed Dec 16 02:09:56 2015     /System/Library/PrivateFrameworks/SystemAdministration.framework/XPCServices/writeconfig.xpc/Contents/MacOS/writeconfig
-  376 Wed Dec 16 02:09:57 2015     /System/Library/PrivateFrameworks/PhotoLibraryPrivate.framework/Versions/A/Support/photolibraryd
-  377 Wed Dec 16 02:09:57 2015     /usr/libexec/nsurlstoraged
-  388 Wed Dec 16 02:09:58 2015     /System/Library/CoreServices/cloudphotosd.app/Contents/XPCServices/com.apple.ICPPhotoStreamLibraryService.xpc/Contents/MacOS/com.apple.ICPPhotoStreamLibraryService
-  389 Wed Dec 16 02:09:58 2015     /System/Library/PrivateFrameworks/CloudServices.framework/Versions/A/XPCServices/com.apple.sbd.xpc/Contents/MacOS/com.apple.sbd
-  391 Wed Dec 16 02:09:58 2015     corestoragehelperd
-  393 Wed Dec 16 02:09:58 2015     /System/Library/PrivateFrameworks/CloudServices.framework/Versions/A/Frameworks/EscrowService.framework/Versions/A/XPCServices/com.apple.lakitu.xpc/Contents/MacOS/com.apple.lakitu
-  396 Wed Dec 16 02:09:58 2015     /usr/sbin/cfprefsd
-  417 Wed Dec 16 02:10:00 2015     /System/Library/Frameworks/Security.framework/Versions/A/Resources/IDSKeychainSyncingProxy.bundle/Contents/MacOS/IDSKeychainSyncingProxy
-  420 Wed Dec 16 02:10:00 2015     /usr/sbin/distnoted
-  429 Wed Dec 16 02:10:00 2015     /usr/libexec/secd
-  434 Wed Dec 16 02:10:00 2015     /usr/libexec/secinitd
-  436 Wed Dec 16 02:10:00 2015     /System/Library/PrivateFrameworks/TCC.framework/Resources/tccd
-  438 Wed Dec 16 02:10:00 2015     /System/Library/PrivateFrameworks/IMDPersistence.framework/XPCServices/IMDPersistenceAgent.xpc/Contents/MacOS/IMDPersistenceAgent
-  439 Wed Dec 16 02:10:00 2015     /System/Library/Frameworks/AddressBook.framework/Versions/A/XPCServices/com.apple.AddressBook.ContactsAccountsService.xpc/Contents/MacOS/com.apple.AddressBook.ContactsAccountsService
-  455 Wed Dec 16 02:10:01 2015     /System/Library/Frameworks/Security.framework/Versions/A/Resources/CloudKeychainProxy.bundle/Contents/MacOS/CloudKeychainProxy
-  456 Wed Dec 16 02:10:02 2015     /System/Library/PrivateFrameworks/AssetCacheServices.framework/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService
-  460 Wed Dec 16 02:10:04 2015     /System/Library/PrivateFrameworks/PhotoLibraryPrivate.framework/Versions/A/Frameworks/PhotoLibraryServices.framework/Versions/A/XPCServices/com.apple.photomoments.xpc/Contents/MacOS/com.apple.photomoments
-  461 Wed Dec 16 02:10:04 2015     /System/Library/PrivateFrameworks/PhotoLibraryPrivate.framework/Versions/A/Frameworks/PhotoLibraryServices.framework/Versions/A/XPCServices/com.apple.photomodel.xpc/Contents/MacOS/com.apple.photomodel
-  468 Wed Dec 16 02:10:05 2015     /usr/libexec/diskmanagementd
-  469 Wed Dec 16 02:10:05 2015     /System/Library/PrivateFrameworks/CoreCDP.framework/Versions/A/Resources/cdpd
-  470 Wed Dec 16 02:10:05 2015     /System/Library/PrivateFrameworks/CoreFollowUp.framework/Versions/A/Support/followupd
-  473 Wed Dec 16 02:10:05 2015     /System/Library/PrivateFrameworks/PhotoLibrary.framework/Versions/A/XPCServices/com.apple.PhotoIngestService.xpc/Contents/MacOS/com.apple.PhotoIngestService
-  479 Wed Dec 16 02:10:05 2015     /System/Library/PrivateFrameworks/IASUtilities.framework/Versions/A/XPCServices/com.apple.IASUtilities.IASCloudConfigHelper.xpc/Contents/MacOS/com.apple.IASUtilities.IASCloudConfigHelper
-  481 Wed Dec 16 02:10:05 2015     /System/Library/Frameworks/AddressBook.framework/Versions/A/XPCServices/com.apple.AddressBook.InternetAccountsBridge.xpc/Contents/MacOS/com.apple.AddressBook.InternetAccountsBridge
-  498 Wed Dec 16 02:10:07 2015     /System/Library/CoreServices/Software Update.app/Contents/Resources/softwareupdated
-  499 Wed Dec 16 02:10:07 2015     /System/Library/PrivateFrameworks/SoftwareUpdate.framework/Resources/suhelperd
-  506 Wed Dec 16 02:11:14 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdflagwriter
-  511 Wed Dec 16 02:11:15 2015     /usr/sbin/distnoted
-  512 Wed Dec 16 02:11:15 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker
-  518 Wed Dec 16 02:11:19 2015     /System/Library/PrivateFrameworks/CoreSpotlight.framework/Support/com.apple.spotlight.IndexAgent
-  523 Wed Dec 16 02:11:35 2015     /System/Library/PrivateFrameworks/CoreSuggestions.framework/Versions/A/Support/reversetemplated
-  524 Wed Dec 16 02:11:35 2015     /System/Library/PrivateFrameworks/DataDetectorsCore.framework/Versions/A/XPCServices/DataDetectorsDynamicData.xpc/Contents/MacOS/DataDetectorsDynamicData
-  597 Wed Dec 16 02:12:30 2015     /System/Library/PrivateFrameworks/CloudPhotoServices.framework/Versions/A/Frameworks/CloudPhotosConfigurationXPC.framework/Versions/A/XPCServices/com.apple.CloudPhotosConfiguration.xpc/Contents/MacOS/com.apple.CloudPhotosConfiguration
-  602 Wed Dec 16 02:12:40 2015     /usr/sbin/spindump
-  603 Wed Dec 16 02:12:40 2015     /System/Library/CoreServices/SubmitDiagInfo
-  604 Wed Dec 16 02:12:41 2015     /usr/libexec/systemstatsd
-  609 Wed Dec 16 02:13:00 2015     /Applications/Safari.app/Contents/MacOS/Safari
-  614 Wed Dec 16 02:13:00 2015     /Applications/Utilities/Terminal.app/Contents/MacOS/Terminal
-  615 Wed Dec 16 02:13:00 2015     /Users/robenkleene/Applications/LaunchBar.app/Contents/MacOS/LaunchBar
-  616 Wed Dec 16 02:13:00 2015     /Users/robenkleene/Applications/TextMate.app/Contents/MacOS/TextMate
-  618 Wed Dec 16 02:13:00 2015     /System/Library/CoreServices/Dock.app/Contents/MacOS/Dock
-  620 Wed Dec 16 02:13:00 2015     /System/Library/CoreServices/SystemUIServer.app/Contents/MacOS/SystemUIServer
-  621 Wed Dec 16 02:13:00 2015     /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
-  624 Wed Dec 16 02:13:01 2015     /usr/libexec/pkd
-  625 Wed Dec 16 02:13:01 2015     /System/Library/CoreServices/Spotlight.app/Contents/MacOS/Spotlight
-  626 Wed Dec 16 02:13:01 2015     /System/Library/PrivateFrameworks/PerformanceAnalysis.framework/Versions/A/XPCServices/com.apple.PerformanceAnalysis.animationperfd.xpc/Contents/MacOS/com.apple.PerformanceAnalysis.animationperfd
-  627 Wed Dec 16 02:13:01 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Resources/storeassetd
-  628 Wed Dec 16 02:13:01 2015     /System/Library/PrivateFrameworks/CoreWLANKit.framework/Versions/A/XPCServices/WiFiProxy.xpc/Contents/MacOS/WiFiProxy
-  629 Wed Dec 16 02:13:01 2015     /System/Library/PrivateFrameworks/ParsecUI.framework/Versions/A/Support/SpotlightNetHelper.app/Contents/MacOS/SpotlightNetHelper
-  630 Wed Dec 16 02:13:01 2015     /System/Library/CoreServices/iconservicesagent
-  632 Wed Dec 16 02:13:01 2015     /System/Library/CoreServices/Dock.app/Contents/XPCServices/com.apple.dock.extra.xpc/Contents/MacOS/com.apple.dock.extra
-  634 Wed Dec 16 02:13:01 2015     /System/Library/PrivateFrameworks/MessagesKit.framework/Resources/soagent.app/Contents/MacOS/soagent
-  636 Wed Dec 16 02:13:02 2015     /System/Library/PrivateFrameworks/CallHistory.framework/Support/CallHistoryPluginHelper
-  637 Wed Dec 16 02:13:02 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.Networking.xpc/Contents/MacOS/com.apple.WebKit.Networking
-  640 Wed Dec 16 02:13:02 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/XPCServices/com.apple.CommerceKit.TransactionService.xpc/Contents/MacOS/com.apple.CommerceKit.TransactionService
-  642 Wed Dec 16 02:13:04 2015     /System/Library/Frameworks/AudioToolbox.framework/XPCServices/com.apple.audio.SandboxHelper.xpc/Contents/MacOS/com.apple.audio.SandboxHelper
-  666 Wed Dec 16 02:13:04 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/XPCServices/com.apple.CommerceKit.TransactionService.xpc/Contents/MacOS/com.apple.CommerceKit.TransactionService
- 1097 Wed Dec 16 02:13:06 2015     /System/Library/Frameworks/CoreMediaIO.framework/Versions/A/XPCServices/com.apple.cmio.registerassistantservice.xpc/Contents/MacOS/com.apple.cmio.registerassistantservice
- 1131 Wed Dec 16 02:13:06 2015     /System/Library/PrivateFrameworks/BookKit.framework/Versions/A/XPCServices/com.apple.BKAgentService.xpc/Contents/MacOS/com.apple.BKAgentService
- 1176 Wed Dec 16 02:13:06 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Resources/storedownloadd
- 1184 Wed Dec 16 02:13:06 2015     /System/Library/PrivateFrameworks/CharacterPicker.framework/Versions/A/XPCServices/com.apple.CharacterPicker.FileService.xpc/Contents/MacOS/com.apple.CharacterPicker.FileService
- 1187 Wed Dec 16 02:13:08 2015     /Applications/iTunes.app/Contents/MacOS/iTunesHelper.app/Contents/MacOS/iTunesHelper
- 1188 Wed Dec 16 02:13:10 2015     /usr/libexec/spindump_agent
- 1191 Wed Dec 16 02:13:10 2015     2BUA8C4S2C.com.agilebits.onepassword-osx-helper
- 1192 Wed Dec 16 02:13:10 2015     /System/Library/CoreServices/Keychain Circle Notification.app/Contents/MacOS/Keychain Circle Notification
- 1194 Wed Dec 16 02:13:10 2015     /Library/Backblaze.bzpkg/bzbmenu.app/Contents/MacOS/bzbmenu
- 1196 Wed Dec 16 02:13:10 2015     /System/Library/CoreServices/NotificationCenter.app/Contents/MacOS/NotificationCenter
- 1198 Wed Dec 16 02:13:10 2015     /System/Library/Image Capture/Support/icdd
- 1203 Wed Dec 16 02:13:10 2015     /System/Library/CoreServices/AirPlayUIAgent.app/Contents/MacOS/AirPlayUIAgent
- 1204 Wed Dec 16 02:13:10 2015     /System/Library/CoreServices/cloudpaird
- 1206 Wed Dec 16 02:13:10 2015     /System/Library/CoreServices/WiFiAgent.app/Contents/MacOS/WiFiAgent
- 1207 Wed Dec 16 02:13:10 2015     /System/Library/CoreServices/diagnostics_agent
- 1213 Wed Dec 16 02:13:11 2015     /Users/robenkleene/Applications/Dropbox.app/Contents/MacOS/Dropbox
- 1216 Wed Dec 16 02:13:11 2015     /Library/PreferencePanes/Screens Connect.prefPane/Contents/MacOS/Screens Connect.app/Contents/MacOS/Screens Connect
- 1217 Wed Dec 16 02:13:12 2015     /Users/robenkleene/Applications/OmniPresence.app/Contents/MacOS/OmniPresence
- 1218 Wed Dec 16 02:13:12 2015     /System/Library/CoreServices/NotificationCenter.app/Contents/XPCServices/com.apple.notificationcenterui.WeatherSummary.xpc/Contents/MacOS/com.apple.notificationcenterui.WeatherSummary
- 1220 Wed Dec 16 02:13:12 2015     /System/Library/PrivateFrameworks/WeatherKit.framework/Versions/A/XPCServices/com.apple.WeatherKitService.xpc/Contents/MacOS/com.apple.WeatherKitService
- 1224 Wed Dec 16 02:13:13 2015     /System/Library/Services/AppleSpell.service/Contents/MacOS/AppleSpell
- 1230 Wed Dec 16 02:13:13 2015     /System/Library/Frameworks/InputMethodKit.framework/Versions/A/XPCServices/com.apple.InputMethodKit.TextReplacementService.xpc/Contents/MacOS/com.apple.InputMethodKit.TextReplacementService
- 1235 Wed Dec 16 02:13:15 2015     /System/Library/PrivateFrameworks/UniversalAccess.framework/Versions/A/Resources/universalAccessAuthWarn.app/Contents/MacOS/universalAccessAuthWarn
- 1249 Wed Dec 16 02:13:18 2015     /Library/DropboxHelperTools/Dropbox_u501/dbfseventsd
- 1250 Wed Dec 16 02:13:18 2015     /Library/DropboxHelperTools/Dropbox_u501/dbfseventsd
- 1252 Wed Dec 16 02:13:18 2015     /Library/DropboxHelperTools/Dropbox_u501/dbfseventsd
- 1262 Wed Dec 16 02:13:22 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Resources/storelegacy
- 1263 Wed Dec 16 02:13:23 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Resources/LaterAgent.app/Contents/MacOS/LaterAgent
- 1267 Wed Dec 16 02:13:26 2015     /Users/robenkleene/Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/MacOS/garcon
- 1274 Wed Dec 16 02:13:39 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdflagwriter
- 1284 Wed Dec 16 02:18:35 2015     sysmond
- 1361 Wed Dec 16 04:07:33 2015     /System/Library/CoreServices/Software Update.app/Contents/Resources/softwareupdate_download_service
- 1362 Wed Dec 16 04:07:36 2015     /System/Library/PrivateFrameworks/AssetCacheServices.framework/XPCServices/AssetCacheLocatorService.xpc/Contents/MacOS/AssetCacheLocatorService
- 1364 Wed Dec 16 04:07:36 2015     /System/Library/PrivateFrameworks/TCC.framework/Resources/tccd
- 1366 Wed Dec 16 04:07:37 2015     /System/Library/PrivateFrameworks/PackageKit.framework/Resources/system_installd
- 1419 Wed Dec 16 07:16:25 2015     /System/Library/PrivateFrameworks/GeoServices.framework/Versions/A/XPCServices/com.apple.geod.xpc/Contents/MacOS/com.apple.geod
- 1454 Wed Dec 16 07:16:39 2015     /System/Library/PrivateFrameworks/KerberosHelper/Helpers/DiskUnmountWatcher
- 1459 Wed Dec 16 07:16:39 2015     /System/Library/PrivateFrameworks/AmbientDisplay.framework/Versions/A/XPCServices/com.apple.AmbientDisplayAgent.xpc/Contents/MacOS/com.apple.AmbientDisplayAgent
- 1464 Wed Dec 16 07:16:44 2015     /Users/robenkleene/Applications/FastScripts.app/Contents/MacOS/FastScripts
- 1472 Wed Dec 16 07:16:55 2015     /System/Library/PrivateFrameworks/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.SearchHelper.xpc/Contents/MacOS/com.apple.Safari.SearchHelper
- 1474 Wed Dec 16 07:16:56 2015     /System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/com.apple.Safari.SafeBrowsing.Service
- 1514 Wed Dec 16 07:23:18 2015     /System/Library/LoginPlugins/BezelServices.loginPlugin/Contents/Resources/BezelUI/BezelUIServer
- 1631 Wed Dec 16 07:53:14 2015     /System/Library/PrivateFrameworks/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.ImageDecoder.xpc/Contents/MacOS/com.apple.Safari.ImageDecoder
- 1701 Wed Dec 16 08:22:32 2015     /usr/libexec/loginitemregisterd
- 1708 Wed Dec 16 08:26:10 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.Databases.xpc/Contents/MacOS/com.apple.WebKit.Databases
- 1718 Wed Dec 16 08:27:57 2015     /usr/libexec/syspolicyd
- 1719 Wed Dec 16 08:27:58 2015     /System/Library/PrivateFrameworks/Noticeboard.framework/Versions/A/Resources/nbagent.app/Contents/MacOS/nbagent
- 1720 Wed Dec 16 08:27:59 2015     /System/Library/PrivateFrameworks/Noticeboard.framework/Versions/A/Resources/nbstated
- 1721 Wed Dec 16 08:28:26 2015     /usr/libexec/periodic-wrapper
- 1792 Wed Dec 16 08:35:38 2015     /System/Library/CoreServices/rcd.app/Contents/MacOS/rcd
- 1803 Wed Dec 16 08:52:00 2015     /Users/robenkleene/Applications/OmniPresence.app/Contents/Frameworks/OmniSoftwareUpdate.framework/Versions/A/XPCServices/com.omnigroup.OmniSoftwareUpdate.OSUCheckService.xpc/Contents/MacOS/com.omnigroup.OmniSoftwareUpdate.OSUCheckService
- 1832 Wed Dec 16 09:35:04 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/XPCServices/com.apple.CommerceKit.TransactionService.xpc/Contents/MacOS/com.apple.CommerceKit.TransactionService
- 1849 Wed Dec 16 10:36:21 2015     /System/Library/PrivateFrameworks/CoreRecents.framework/Versions/A/Support/recentsd
- 2233 Thu Dec 17 08:27:31 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Resources/storeuid.app/Contents/MacOS/storeuid
- 2235 Thu Dec 17 08:27:32 2015     /System/Library/PrivateFrameworks/StoreXPCServices.framework/Versions/A/XPCServices/com.apple.appstore.PluginXPCService.xpc/Contents/MacOS/com.apple.appstore.PluginXPCService
- 2371 Thu Dec 17 12:05:18 2015     /System/Library/PrivateFrameworks/IMFoundation.framework/XPCServices/IMRemoteURLConnectionAgent.xpc/Contents/MacOS/IMRemoteURLConnectionAgent
- 2488 Thu Dec 17 23:39:50 2015     /usr/libexec/periodic-wrapper
- 2659 Fri Dec 18 00:00:32 2015     /System/Library/PrivateFrameworks/ViewBridge.framework/Versions/A/XPCServices/ViewBridgeAuxiliary.xpc/Contents/MacOS/ViewBridgeAuxiliary
- 3480 Fri Dec 18 20:31:15 2015     /System/Library/PrivateFrameworks/WeatherKit.framework/Versions/A/XPCServices/com.apple.WeatherKitService.xpc/Contents/MacOS/com.apple.WeatherKitService
- 4261 Sat Dec 19 03:25:00 2015     /usr/sbin/aslmanager
- 4824 Sat Dec 19 14:48:10 2015     /usr/libexec/USBAgent
- 4830 Sat Dec 19 14:48:35 2015     /usr/bin/ssh-agent
- 4929 Sat Dec 19 15:22:21 2015     /Applications/OmniOutliner Pro.app/Contents/MacOS/OmniOutliner Pro
- 4932 Sat Dec 19 15:22:23 2015     /System/Library/Frameworks/ApplicationServices.framework/Frameworks/PrintCore.framework/Versions/A/printtool
- 4941 Sat Dec 19 15:23:35 2015     /System/Library/PrivateFrameworks/SafariServices.framework/Versions/A/XPCServices/com.apple.SafariServices.xpc/Contents/MacOS/com.apple.SafariServices
- 4948 Sat Dec 19 15:24:23 2015     /Users/robenkleene/Applications/OmniFocus.app/Contents/MacOS/OmniFocus
- 4952 Sat Dec 19 15:24:25 2015     /System/Library/PrivateFrameworks/RemoteViewServices.framework/XPCServices/com.apple.security.pboxd.xpc/Contents/MacOS/com.apple.security.pboxd
- 5091 Sat Dec 19 15:48:17 2015     /Applications/Xcode.app/Contents/Developer/Library/PrivateFrameworks/CoreSimulator.framework/Versions/A/XPCServices/com.apple.CoreSimulator.CoreSimulatorService.xpc/Contents/MacOS/com.apple.CoreSimulator.CoreSimulatorService
- 5233 Sat Dec 19 15:54:05 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/Resources/storeinappd
- 5234 Sat Dec 19 15:54:05 2015     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions/A/XPCServices/com.apple.CommerceKit.TransactionService.xpc/Contents/MacOS/com.apple.CommerceKit.TransactionService
- 5320 Sat Dec 19 15:59:03 2015     /System/Library/PrivateFrameworks/SafariShared.framework/Versions/A/XPCServices/com.apple.Safari.History.xpc/Contents/MacOS/com.apple.Safari.History
- 7358 Sat Dec 19 18:29:47 2015     /System/Library/PrivateFrameworks/DiskImages.framework/Resources/diskimages-helper
- 7362 Sat Dec 19 18:29:50 2015     /System/Library/PrivateFrameworks/DiskImages.framework/Resources/hdiejectd
- 7369 Sat Dec 19 18:29:51 2015     /System/Library/PrivateFrameworks/PackageKit.framework/Resources/installd
- 7389 Sat Dec 19 18:32:38 2015     /System/Library/PrivateFrameworks/DiskImages.framework/Resources/diskimages-helper
- 7616 Sat Dec 19 18:42:53 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker
- 7744 Sat Dec 19 18:43:34 2015     /System/Library/PrivateFrameworks/DiskImages.framework/Resources/diskimages-helper
- 8388 Sat Dec 19 18:56:24 2015     /System/Library/PrivateFrameworks/DiskImages.framework/Resources/diskimages-helper
- 9050 Sun Dec 20 00:17:39 2015     /Users/robenkleene/Applications/OmniFocus.app/Contents/Frameworks/OmniSoftwareUpdate.framework/Versions/A/XPCServices/com.omnigroup.OmniSoftwareUpdate.OSUCheckService.xpc/Contents/MacOS/com.omnigroup.OmniSoftwareUpdate.OSUCheckService
-11730 Sun Dec 20 14:06:46 2015     /System/Library/Frameworks/ApplicationServices.framework/Frameworks/SpeechSynthesis.framework/Resources/com.apple.speech.speechsynthesisd
-11966 Sun Dec 20 15:28:27 2015     /System/Library/Image Capture/Support/Image Capture Extension.app/Contents/MacOS/Image Capture Extension
-15988 Mon Dec 21 09:09:18 2015     /usr/sbin/ocspd
-16163 Mon Dec 21 09:25:36 2015     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServices/WorkflowServiceRunner.xpc/Contents/MacOS/WorkflowServiceRunner
-16396 Mon Dec 21 09:32:53 2015     /System/Library/CoreServices/CoreServicesUIAgent.app/Contents/MacOS/CoreServicesUIAgent
-16438 Mon Dec 21 09:35:59 2015     /Applications/iTunes.app/Contents/MacOS/iTunes
-17752 Mon Dec 21 10:38:14 2015     /Users/robenkleene/Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents/MacOS/garcon
-19396 Mon Dec 21 11:19:59 2015     /Applications/Xcode.app/Contents/MacOS/Xcode
-19401 Mon Dec 21 11:20:02 2015     /Applications/Xcode.app/Contents/SharedFrameworks/DVTSourceControl.framework/Versions/A/XPCServices/com.apple.dt.Xcode.sourcecontrol.SSHHelper.xpc/Contents/MacOS/com.apple.dt.Xcode.sourcecontrol.SSHHelper
-19407 Mon Dec 21 11:20:03 2015     /Applications/Xcode.app/Contents/SharedFrameworks/GPUTools.framework/Resources/GPUToolsAgent.app/Contents/MacOS/GPUToolsAgent
-19410 Mon Dec 21 11:20:03 2015     /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/sourcekitd.framework/Versions/A/XPCServices/SourceKitService.xpc/Contents/MacOS/SourceKitService
-19413 Mon Dec 21 11:20:04 2015     /Applications/Xcode.app/Contents/SharedFrameworks/DVTSourceControl.framework/Versions/A/XPCServices/com.apple.dt.Xcode.sourcecontrol.WorkingCopyScanner.xpc/Contents/MacOS/com.apple.dt.Xcode.sourcecontrol.WorkingCopyScanner
-19498 Mon Dec 21 11:20:23 2015     /Applications/Xcode.app/Contents/Developer/Library/Xcode/Tools/XcodeDeviceMonitor
-19502 Mon Dec 21 11:20:24 2015     /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Versions/A/XPCServices/com.apple.dt.Xcode.AttachToXPCService.xpc/Contents/MacOS/com.apple.dt.Xcode.AttachToXPCService
-19514 Mon Dec 21 11:20:40 2015     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServices/WorkflowServiceRunner.xpc/Contents/MacOS/WorkflowServiceRunner
-19540 Mon Dec 21 11:21:58 2015     /Users/robenkleene/Applications/Kaleidoscope.app/Contents/MacOS/Kaleidoscope
-20770 Mon Dec 21 13:04:34 2015     /usr/sbin/netbiosd
-20772 Mon Dec 21 13:04:35 2015     /System/Library/CoreServices/AirPort Base Station Agent.app/Contents/MacOS/AirPort Base Station Agent
-20931 Mon Dec 21 13:33:22 2015     /Applications/Xcode.app/Contents/XPCServices/com.apple.dt.Xcode.Playground.xpc/Contents/MacOS/com.apple.dt.Xcode.Playground
-24005 Mon Dec 21 14:11:01 2015     /Users/robenkleene/Applications/BBEdit.app/Contents/MacOS/BBEdit
-24006 Mon Dec 21 14:11:01 2015     /Users/robenkleene/Applications/BBEdit.app/Contents/Helpers/Crash Reporter.app/Contents/Helpers/crash-catcher
-27518 Mon Dec 21 15:54:47 2015     /Library/Backblaze.bzpkg/bzfilelist
-27540 Mon Dec 21 15:56:43 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-27789 Mon Dec 21 16:17:53 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28042 Mon Dec 21 16:26:05 2015     /System/Library/PrivateFrameworks/HelpData.framework/Versions/A/Resources/helpd
-28054 Mon Dec 21 16:26:18 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker
-28055 Mon Dec 21 16:26:21 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker
-28060 Mon Dec 21 16:27:07 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker
-28072 Mon Dec 21 16:34:54 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker
-28073 Mon Dec 21 16:34:54 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker
-28094 Mon Dec 21 16:35:42 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker
-28182 Mon Dec 21 16:38:57 2015     /System/Library/PrivateFrameworks/AOSKit.framework/Versions/A/XPCServices/com.apple.iCloudHelper.xpc/Contents/MacOS/com.apple.iCloudHelper
-28184 Mon Dec 21 16:39:01 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28244 Mon Dec 21 16:42:14 2015     /System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Versions/A/Support/mdworker
-28723 Mon Dec 21 16:55:50 2015     /System/Library/Frameworks/QuickLook.framework/Resources/quicklookd.app/Contents/MacOS/quicklookd
-28724 Mon Dec 21 16:55:51 2015     /System/Library/Frameworks/QuickLook.framework/Versions/A/Resources/quicklookd.app/Contents/XPCServices/QuickLookSatellite.xpc/Contents/MacOS/QuickLookSatellite
-28954 Mon Dec 21 17:05:21 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28955 Mon Dec 21 17:05:36 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28956 Mon Dec 21 17:05:37 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28960 Mon Dec 21 17:06:20 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28963 Mon Dec 21 17:06:38 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28989 Mon Dec 21 17:07:24 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28991 Mon Dec 21 17:07:28 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28992 Mon Dec 21 17:07:29 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28993 Mon Dec 21 17:07:30 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-28994 Mon Dec 21 17:07:44 2015     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServices/com.apple.WebKit.WebContent.xpc/Contents/MacOS/com.apple.WebKit.WebContent
-29116 Mon Dec 21 17:17:23 2015     /System/Library/Frameworks/QuickLook.framework/Versions/A/Resources/quicklookd.app/Contents/XPCServices/QuickLookSatellite.xpc/Contents/MacOS/QuickLookSatellite
-29675 Mon Dec 21 17:18:52 2015     /System/Library/CoreServices/System Events.app/Contents/MacOS/System Events
-29148 Mon Dec 21 17:18:50 2015     login
-29149 Mon Dec 21 17:18:50 2015     -fish
-29716 Mon Dec 21 17:19:13 2015     ps
-29717 Mon Dec 21 17:19:13 2015     mate
-23467 Mon Dec 21 14:10:54 2015     login
-23468 Mon Dec 21 14:10:55 2015     -fish
+  266 Tue Mar  5 18:45:20 2019     /usr/libexec/UserEventAgent (Aqua)                                 501 robenkleene
+  268 Tue Mar  5 18:45:20 2019     /usr/sbin/distnoted agent                                          501 robenkleene
+  270 Tue Mar  5 18:45:20 2019     /System/Library/Frameworks/CoreTelephony.framework/Support/CommC   501 robenkleene
+  271 Tue Mar  5 18:45:20 2019     /usr/libexec/lsd                                                   501 robenkleene
+  272 Tue Mar  5 18:45:20 2019     /usr/libexec/trustd --agent                                        501 robenkleene
+  274 Tue Mar  5 18:45:20 2019     /Library/Little Snitch/Little Snitch Agent.app/Contents/MacOS/Li   501 robenkleene
+  276 Tue Mar  5 18:45:20 2019     /System/Library/CoreServices/sharedfilelistd                       501 robenkleene
+  279 Tue Mar  5 18:45:20 2019     /System/Library/CoreServices/backgroundtaskmanagementagent         501 robenkleene
+  283 Tue Mar  5 18:45:20 2019     /Applications/Reminders.app/Contents/MacOS/Reminders -psn_0_7374   501 robenkleene
+  284 Tue Mar  5 18:45:21 2019     /Applications/Dash.app/Contents/MacOS/Dash -psn_0_77843            501 robenkleene
+  286 Tue Mar  5 18:45:21 2019     /Applications/OmniFocus.app/Contents/MacOS/OmniFocus -psn_0_8194   501 robenkleene
+  288 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/CloudKitDaemon.framework/Suppo   501 robenkleene
+  290 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/TelephonyUtilities.framework/c   501 robenkleene
+  293 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/IDS.framework/identityservices   501 robenkleene
+  294 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/TCC.framework/Resources/tccd     501 robenkleene
+  295 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/IMCore.framework/imagent.app/C   501 robenkleene
+  296 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/IMDPersistence.framework/XPCSe   501 robenkleene
+  297 Tue Mar  5 18:45:21 2019     /usr/libexec/nsurlsessiond                                         501 robenkleene
+  299 Tue Mar  5 18:45:21 2019     /System/Library/Frameworks/AddressBook.framework/Executables/Con   501 robenkleene
+  300 Tue Mar  5 18:45:21 2019     /usr/libexec/rapportd                                              501 robenkleene
+  301 Tue Mar  5 18:45:21 2019     /Applications/Messages.app/Contents/MacOS/Messages -psn_0_90134    501 robenkleene
+  302 Tue Mar  5 18:45:21 2019     /Applications/Calendar.app/Contents/MacOS/Calendar -psn_0_94231    501 robenkleene
+  303 Tue Mar  5 18:45:21 2019     /usr/libexec/secinitd                                              501 robenkleene
+  305 Tue Mar  5 18:45:21 2019     /usr/libexec/routined LAUNCHED_BY_LAUNCHD                          501 robenkleene
+  306 Tue Mar  5 18:45:21 2019     /usr/sbin/usernoted                                                501 robenkleene
+  307 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/CalendarAgent.framework/Execut   501 robenkleene
+  308 Tue Mar  5 18:45:21 2019     /System/Library/CoreServices/ControlStrip.app/Contents/MacOS/Con   501 robenkleene
+  309 Tue Mar  5 18:45:21 2019     /usr/libexec/networkserviceproxy                                   501 robenkleene
+  311 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/AssistantServices.framework/Ve   501 robenkleene
+  312 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/Vers   501 robenkleene
+  313 Tue Mar  5 18:45:21 2019     /usr/libexec/swcd                                                  501 robenkleene
+  314 Tue Mar  5 18:45:21 2019     /System/Library/Frameworks/ApplicationServices.framework/Framewo   501 robenkleene
+  315 Tue Mar  5 18:45:21 2019     /System/Library/CoreServices/talagent                              501 robenkleene
+  316 Tue Mar  5 18:45:21 2019     /System/Library/CoreServices/Dock.app/Contents/MacOS/Dock          501 robenkleene
+  318 Tue Mar  5 18:45:21 2019     /System/Library/CoreServices/SystemUIServer.app/Contents/MacOS/S   501 robenkleene
+  319 Tue Mar  5 18:45:21 2019     /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder      501 robenkleene
+  325 Tue Mar  5 18:45:21 2019     /usr/libexec/pboard                                                501 robenkleene
+  327 Tue Mar  5 18:45:21 2019     /System/Library/CoreServices/NotificationCenter.app/Contents/Mac   501 robenkleene
+  328 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/AuthKit.framework/Versions/A/S   501 robenkleene
+  330 Tue Mar  5 18:45:21 2019     /usr/libexec/pkd                                                   501 robenkleene
+  331 Tue Mar  5 18:45:21 2019     /System/Library/CoreServices/iconservicesagent                     501 robenkleene
+  335 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/ViewBridge.framework/Versions/   501 robenkleene
+  337 Tue Mar  5 18:45:21 2019     /System/Library/CoreServices/Spotlight.app/Contents/MacOS/Spotli   501 robenkleene
+  338 Tue Mar  5 18:45:21 2019     /System/Library/PrivateFrameworks/CalendarNotification.framework   501 robenkleene
+  339 Tue Mar  5 18:45:22 2019     /System/Library/CoreServices/WiFiAgent.app/Contents/MacOS/WiFiAg   501 robenkleene
+  340 Tue Mar  5 18:45:22 2019     /usr/libexec/nsurlstoraged                                         501 robenkleene
+  342 Tue Mar  5 18:45:22 2019     /System/Library/CoreServices/CoreServicesUIAgent.app/Contents/Ma   501 robenkleene
+  347 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/CoreParsec.framework/parsecd     501 robenkleene
+  349 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions   501 robenkleene
+  350 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/GeoServices.framework/Versions   501 robenkleene
+  351 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/MessagesKit.framework/Resource   501 robenkleene
+  353 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/CoreCDP.framework/Versions/A/R   501 robenkleene
+  354 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/UserActivity.framework/Agents/   501 robenkleene
+  355 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/HomeKitDaemon.framework/Suppor   501 robenkleene
+  356 Tue Mar  5 18:45:22 2019     /usr/libexec/sharingd                                              501 robenkleene
+  357 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/IMFoundation.framework/XPCServ   501 robenkleene
+  358 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/ProtectedCloudStorage.framewor   501 robenkleene
+  359 Tue Mar  5 18:45:22 2019     /System/Library/CoreServices/EscrowSecurityAlert.app/Contents/Ma   501 robenkleene
+  360 Tue Mar  5 18:45:22 2019     /System/Library/CoreServices/Keychain Circle Notification.app/Co   501 robenkleene
+  361 Tue Mar  5 18:45:22 2019     /System/Library/Frameworks/Security.framework/Versions/A/Resourc   501 robenkleene
+  363 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/FamilyCircle.framework/Version   501 robenkleene
+  364 Tue Mar  5 18:45:22 2019     /System/Library/PrivateFrameworks/MediaRemote.framework/Support/   501 robenkleene
+  367 Tue Mar  5 18:45:22 2019     /usr/libexec/fmfd                                                  501 robenkleene
+  376 Tue Mar  5 18:45:23 2019     /System/Library/PrivateFrameworks/CoreFollowUp.framework/Version   501 robenkleene
+  377 Tue Mar  5 18:45:23 2019     /System/Library/CoreServices/Dock.app/Contents/XPCServices/com.a   501 robenkleene
+  381 Tue Mar  5 18:45:23 2019     /System/Library/PrivateFrameworks/IMFoundation.framework/XPCServ   501 robenkleene
+  383 Tue Mar  5 18:45:23 2019     /System/Library/PrivateFrameworks/CoreWLANKit.framework/Versions   501 robenkleene
+  384 Tue Mar  5 18:45:23 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions   501 robenkleene
+  385 Tue Mar  5 18:45:23 2019     /System/Library/CoreServices/CoreLocationAgent.app/Contents/MacO   501 robenkleene
+  388 Tue Mar  5 18:45:23 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+  389 Tue Mar  5 18:45:23 2019     /System/Library/PrivateFrameworks/CallHistory.framework/Support/   501 robenkleene
+  390 Tue Mar  5 18:45:23 2019     /System/Library/PrivateFrameworks/CommunicationsFilter.framework   501 robenkleene
+  394 Tue Mar  5 18:45:24 2019     /System/Library/PrivateFrameworks/IMFoundation.framework/XPCServ   501 robenkleene
+  396 Tue Mar  5 18:45:24 2019     /usr/libexec/spindump_agent                                        501 robenkleene
+  399 Tue Mar  5 18:45:24 2019     /System/Library/CoreServices/ScopedBookmarkAgent                   501 robenkleene
+  401 Tue Mar  5 18:45:24 2019     /System/Library/PrivateFrameworks/FileProvider.framework/Support   501 robenkleene
+  402 Tue Mar  5 18:45:24 2019     /System/Library/Frameworks/AudioToolbox.framework/AudioComponent   501 robenkleene
+  403 Tue Mar  5 18:45:24 2019     /usr/libexec/SidecarRelay                                          501 robenkleene
+  406 Tue Mar  5 18:45:24 2019     /System/Library/PrivateFrameworks/BookKit.framework/Versions/A/X   501 robenkleene
+  409 Tue Mar  5 18:45:24 2019     /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/XPCS   501 robenkleene
+  410 Tue Mar  5 18:45:25 2019     /System/Library/Frameworks/MediaAccessibility.framework/Versions   501 robenkleene
+  411 Tue Mar  5 18:45:25 2019     /usr/libexec/knowledge-agent                                       501 robenkleene
+  412 Tue Mar  5 18:45:25 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+  419 Tue Mar  5 18:45:25 2019     /System/Library/CoreServices/pbs                                   501 robenkleene
+  422 Tue Mar  5 18:45:26 2019     /System/Library/Frameworks/LocalAuthentication.framework/Support   501 robenkleene
+  429 Tue Mar  5 18:45:26 2019     /System/Library/PrivateFrameworks/WeatherKit.framework/Versions/   501 robenkleene
+  524 Tue Mar  5 18:45:28 2019     /System/Library/PrivateFrameworks/HearingCore.framework/Versions   501 robenkleene
+  525 Tue Mar  5 18:45:29 2019     /System/Library/CoreServices/SafariSupport.bundle/Contents/MacOS   501 robenkleene
+  527 Tue Mar  5 18:45:29 2019     /System/Library/Frameworks/ApplicationServices.framework/Version   501 robenkleene
+  529 Tue Mar  5 18:45:30 2019     /System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/c   501 robenkleene
+  530 Tue Mar  5 18:45:30 2019     /usr/libexec/SafariCloudHistoryPushAgent                           501 robenkleene
+  532 Tue Mar  5 18:45:30 2019     /System/Library/Frameworks/InputMethodKit.framework/Resources/im   501 robenkleene
+  533 Tue Mar  5 18:45:30 2019     /System/Library/Input Methods/PressAndHold.app/Contents/PlugIns/   501 robenkleene
+  534 Tue Mar  5 18:45:30 2019     /System/Library/Input Methods/EmojiFunctionRowIM.app/Contents/Pl   501 robenkleene
+  536 Tue Mar  5 18:45:30 2019     /System/Library/PrivateFrameworks/CoreRecents.framework/Versions   501 robenkleene
+  541 Tue Mar  5 18:45:31 2019     /usr/libexec/keyboardservicesd                                     501 robenkleene
+  547 Tue Mar  5 18:45:32 2019     /System/Library/PrivateFrameworks/RemoteViewServices.framework/X   501 robenkleene
+  565 Tue Mar  5 18:45:33 2019     /System/Library/CoreServices/LocationMenu.app/Contents/MacOS/Loc   501 robenkleene
+  566 Tue Mar  5 18:45:34 2019     /System/Library/PrivateFrameworks/CacheDelete.framework/deleted    501 robenkleene
+  567 Tue Mar  5 18:45:34 2019     /System/Library/PrivateFrameworks/AssetCacheServices.framework/V   501 robenkleene
+  568 Tue Mar  5 18:45:34 2019     /System/Library/CoreServices/ReportCrash agent                     501 robenkleene
+  570 Tue Mar  5 18:45:34 2019     /Library/Little Snitch/Little Snitch Network Monitor.app/Content   501 robenkleene
+  573 Tue Mar  5 18:45:36 2019     /System/Library/PrivateFrameworks/CloudServices.framework/Versio   501 robenkleene
+  574 Tue Mar  5 18:45:36 2019     /System/Library/PrivateFrameworks/UniversalAccess.framework/Vers   501 robenkleene
+  577 Tue Mar  5 18:45:37 2019     /System/Library/PrivateFrameworks/CoreSpeech.framework/corespeec   501 robenkleene
+  578 Tue Mar  5 18:45:37 2019     /Library/Little Snitch/Little Snitch Helper.app/Contents/MacOS/L   501 robenkleene
+  580 Tue Mar  5 18:45:37 2019     /System/Library/CoreServices/SocialPushAgent.app/Contents/MacOS/   501 robenkleene
+  583 Tue Mar  5 18:45:37 2019     /Library/Backblaze.bzpkg/bzbmenu.app/Contents/MacOS/bzbmenu        501 robenkleene
+  584 Tue Mar  5 18:45:37 2019     /usr/libexec/dmd                                                   501 robenkleene
+  585 Tue Mar  5 18:45:37 2019     /System/Library/CoreServices/Siri.app/Contents/MacOS/Siri launch   501 robenkleene
+  586 Tue Mar  5 18:45:37 2019     /System/Library/Image Capture/Support/icdd                         501 robenkleene
+  590 Tue Mar  5 18:45:37 2019     /System/Library/CoreServices/AirPlayUIAgent.app/Contents/MacOS/A   501 robenkleene
+  592 Tue Mar  5 18:45:37 2019     /System/Library/CoreServices/cloudpaird                            501 robenkleene
+  593 Tue Mar  5 18:45:37 2019     /System/Library/PrivateFrameworks/Noticeboard.framework/Versions   501 robenkleene
+  594 Tue Mar  5 18:45:37 2019     /System/Library/CoreServices/diagnostics_agent                     501 robenkleene
+  597 Tue Mar  5 18:45:37 2019     /System/Library/CoreServices/Script Menu.app/Contents/MacOS/Scri   501 robenkleene
+  601 Tue Mar  5 18:45:37 2019     /System/Library/Frameworks/CryptoTokenKit.framework/ctkahp.bundl   501 robenkleene
+  602 Tue Mar  5 18:45:37 2019     /Applications/Keyboard Maestro.app/Contents/MacOS/Keyboard Maest   501 robenkleene
+  603 Tue Mar  5 18:45:37 2019     /System/Library/Frameworks/CryptoTokenKit.framework/ctkd -tw       501 robenkleene
+  611 Tue Mar  5 18:45:38 2019     /Applications/Micro Snitch.app/Contents/MacOS/Micro Snitch -psn_   501 robenkleene
+  614 Tue Mar  5 18:45:38 2019     /Applications/1Password 7.app/Contents/MacOS/1Password 7 -psn_0_   501 robenkleene
+  615 Tue Mar  5 18:45:38 2019     /Applications/RescueTime.app/Contents/MacOS/RescueTime             501 robenkleene
+  616 Tue Mar  5 18:45:38 2019     /Applications/OmniPresence.app/Contents/MacOS/OmniPresence         501 robenkleene
+  620 Tue Mar  5 18:45:39 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+  622 Tue Mar  5 18:45:39 2019     /System/Library/PrivateFrameworks/ContextKit.framework/Versions/   501 robenkleene
+  623 Tue Mar  5 18:45:39 2019     /usr/libexec/findmydevice-user-agent                               501 robenkleene
+  626 Tue Mar  5 18:45:40 2019     /System/Library/CoreServices/cloudphotosd.app/Contents/MacOS/clo   501 robenkleene
+  628 Tue Mar  5 18:45:40 2019     /System/Library/PrivateFrameworks/QuickLookThumbnailing.framewor   501 robenkleene
+  639 Tue Mar  5 18:45:40 2019     /System/Library/PrivateFrameworks/CloudPhotoServices.framework/V   501 robenkleene
+  645 Tue Mar  5 18:45:41 2019     /System/Library/Frameworks/MediaLibrary.framework/Versions/A/XPC   501 robenkleene
+  646 Tue Mar  5 18:45:41 2019     /System/Library/PrivateFrameworks/PhotoLibraryPrivate.framework/   501 robenkleene
+  647 Tue Mar  5 18:45:41 2019     2BUA8C4S2C.com.agilebits.onepassword7-helper                       501 robenkleene
+  648 Tue Mar  5 18:45:42 2019     /System/Library/PrivateFrameworks/AssistantServices.framework/Ve   501 robenkleene
+  649 Tue Mar  5 18:45:42 2019     /System/Library/PrivateFrameworks/PrintingPrivate.framework/Vers   501 robenkleene
+  653 Tue Mar  5 18:45:42 2019     /System/Library/Frameworks/iTunesLibrary.framework/Versions/A/XP   501 robenkleene
+  673 Tue Mar  5 18:45:43 2019     /System/Library/PrivateFrameworks/PhotoLibraryPrivate.framework/   501 robenkleene
+  674 Tue Mar  5 18:45:43 2019     /System/Library/PrivateFrameworks/PhotoLibrary.framework/Version   501 robenkleene
+  676 Tue Mar  5 18:45:44 2019     /System/Library/PrivateFrameworks/PhotoAnalysis.framework/Versio   501 robenkleene
+  723 Tue Mar  5 18:45:47 2019     /System/Library/CoreServices/Software Update.app/Contents/Resour   501 robenkleene
+  727 Tue Mar  5 18:45:47 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions   501 robenkleene
+  732 Tue Mar  5 18:45:48 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions   501 robenkleene
+  734 Tue Mar  5 18:45:48 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Resource   501 robenkleene
+ 1077 Mon Apr  1 12:05:48 2019     /Applications/iTerm.app/Contents/MacOS/iTerm2                      501 robenkleene
+ 1218 Tue Mar  5 18:46:28 2019     /System/Library/Frameworks/SafariServices.framework/Versions/A/X   501 robenkleene
+ 1221 Tue Mar  5 18:46:38 2019     /System/Library/CoreServices/Siri.app/Contents/XPCServices/SiriN   501 robenkleene
+ 1222 Tue Mar  5 18:46:39 2019     /System/Library/Frameworks/ApplicationServices.framework/Framewo   501 robenkleene
+ 1225 Tue Mar  5 18:46:46 2019     /System/Library/PrivateFrameworks/SafariShared.framework/Version   501 robenkleene
+ 1291 Tue Mar  5 18:48:18 2019     /System/Library/Frameworks/LocalAuthentication.framework/Support   501 robenkleene
+ 1293 Tue Mar  5 18:48:29 2019     /System/Library/PrivateFrameworks/CoreSuggestions.framework/Vers   501 robenkleene
+ 1299 Tue Mar  5 18:48:35 2019     /System/Library/CoreServices/NotificationCenter.app/Contents/XPC   501 robenkleene
+ 1302 Tue Mar  5 18:48:35 2019     /System/Library/PrivateFrameworks/WeatherKit.framework/Versions/   501 robenkleene
+ 1308 Tue Mar  5 18:48:45 2019     /System/Library/Frameworks/ColorSync.framework/Support/colorsync   501 robenkleene
+ 1325 Tue Mar  5 18:49:42 2019     /System/Library/CoreServices/PowerChime.app/Contents/MacOS/Power   501 robenkleene
+ 1327 Tue Mar  5 18:49:43 2019     /usr/libexec/USBAgent                                              501 robenkleene
+ 1329 Tue Mar  5 18:49:45 2019     /System/Library/PrivateFrameworks/AssistantServices.framework/Ve   501 robenkleene
+ 1330 Tue Mar  5 18:49:45 2019     /System/Library/CoreServices/mapspushd                             501 robenkleene
+ 1346 Tue Mar  5 18:50:21 2019     /System/Library/Frameworks/ApplicationServices.framework/Framewo   501 robenkleene
+ 1373 Tue Mar  5 19:23:19 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions   501 robenkleene
+ 1375 Tue Mar  5 19:23:22 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+ 1389 Tue Mar  5 19:24:13 2019     /System/Library/PrivateFrameworks/KerberosHelper/Helpers/DiskUnm   501 robenkleene
+ 1534 Tue Mar  5 20:10:34 2019     /System/Library/PrivateFrameworks/AppStoreDaemon.framework/Suppo   501 robenkleene
+ 1541 Tue Mar  5 20:10:41 2019     /usr/libexec/assertiond                                            501 robenkleene
+ 1710 Mon Apr  1 12:16:13 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+ 1737 Mon Apr  1 12:17:24 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+ 1979 Tue Mar  5 20:12:57 2019     /usr/libexec/silhouette                                            501 robenkleene
+ 2003 Tue Mar  5 20:14:46 2019     /System/Library/PreferencePanes/Displays.prefPane/Contents/Resou   501 robenkleene
+ 2007 Tue Mar  5 20:14:52 2019     /System/Library/CoreServices/OSDUIHelper.app/Contents/MacOS/OSDU   501 robenkleene
+ 2248 Tue Mar  5 20:43:57 2019     /System/Library/PrivateFrameworks/PassKitCore.framework/passd      501 robenkleene
+ 2392 Tue Mar  5 21:30:12 2019     /System/Library/PrivateFrameworks/PhotoLibraryPrivate.framework/   501 robenkleene
+ 2485 Tue Mar  5 22:54:16 2019     /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPC   501 robenkleene
+ 2513 Tue Mar  5 23:03:40 2019     /usr/libexec/mobileactivationd                                     501 robenkleene
+ 2641 Fri Mar  8 17:25:44 2019     /usr/libexec/webinspectord                                         501 robenkleene
+ 2793 Wed Mar  6 05:54:19 2019     /System/Library/PrivateFrameworks/FMClient.framework/Versions/A/   501 robenkleene
+ 2803 Wed Mar  6 05:54:23 2019     /usr/libexec/siriknowledged                                        501 robenkleene
+ 2804 Wed Mar  6 05:54:23 2019     /System/Library/Frameworks/iTunesLibrary.framework/Versions/A/XP   501 robenkleene
+ 3368 Wed Mar  6 06:03:19 2019     /usr/bin/ssh-agent -l                                              501 robenkleene
+ 5129 Sat Mar 16 09:21:50 2019     /System/Library/PrivateFrameworks/PhotoLibraryPrivate.framework/   501 robenkleene
+ 5130 Sat Mar 16 09:21:50 2019     /System/Library/Frameworks/VideoToolbox.framework/Versions/A/XPC   501 robenkleene
+ 7672 Mon Apr  1 16:09:05 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+ 8860 Sat Mar 23 14:39:08 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+ 8861 Sat Mar 23 14:39:11 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+ 8862 Sat Mar 23 14:39:14 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+ 8882 Sat Mar 23 14:39:55 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+10299 Tue Mar 26 17:56:18 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+11735 Wed Mar  6 14:07:20 2019     /Applications/OmniPresence.app/Contents/Frameworks/OmniSoftwareU   501 robenkleene
+11758 Wed Mar  6 14:07:38 2019     /System/Library/PrivateFrameworks/CallHistory.framework/Support/   501 robenkleene
+11768 Wed Mar  6 14:07:50 2019     /System/Library/PrivateFrameworks/DistributedEvaluation.framewor   501 robenkleene
+11837 Wed Mar  6 14:13:57 2019     /System/Library/PrivateFrameworks/XprotectFramework.framework/Ve   501 robenkleene
+11848 Wed Mar  6 14:14:04 2019     /System/Library/Frameworks/ApplicationServices.framework/Framewo   501 robenkleene
+12273 Mon Apr  1 20:03:24 2019     /Applications/iTunes.app/Contents/MacOS/iTunes                     501 robenkleene
+12274 Mon Apr  1 20:03:25 2019     /Applications/iTunes.app/Contents/XPCServices/VisualizerService.   501 robenkleene
+12315 Wed Mar  6 14:34:22 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions   501 robenkleene
+12327 Mon Apr  1 20:06:26 2019     /System/Library/PrivateFrameworks/StorageManagement.framework/Re   501 robenkleene
+12328 Mon Apr  1 20:06:27 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+14368 Wed Mar  6 14:46:30 2019     /System/Library/CoreServices/rcd.app/Contents/MacOS/rcd            501 robenkleene
+14427 Wed Mar  6 14:48:55 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions   501 robenkleene
+14434 Wed Mar  6 14:49:03 2019     /System/Library/Frameworks/CoreServices.framework/Versions/A/Fra   501 robenkleene
+14966 Mon Apr  1 20:49:30 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+15581 Wed Mar 27 06:28:47 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+16128 Wed Mar 27 06:40:55 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+17074 Tue Mar 12 14:17:10 2019     /System/Library/CoreServices/UIKitSystem.app/Contents/MacOS/UIKi   501 robenkleene
+17076 Tue Mar 12 14:17:11 2019     /usr/libexec/adservicesd                                           501 robenkleene
+18630 Wed Mar  6 15:58:40 2019     /System/Library/PrivateFrameworks/ToneLibrary.framework/Versions   501 robenkleene
+18645 Wed Mar  6 16:02:11 2019     /System/Library/PrivateFrameworks/IMFoundation.framework/XPCServ   501 robenkleene
+18665 Wed Mar  6 16:02:13 2019     /System/Library/PrivateFrameworks/IMFoundation.framework/XPCServ   501 robenkleene
+19031 Wed Mar  6 18:44:54 2019     /Applications/OmniFocus.app/Contents/Frameworks/OmniSoftwareUpda   501 robenkleene
+19046 Wed Mar  6 18:44:58 2019     /System/Library/PrivateFrameworks/IMDPersistence.framework/IMAut   501 robenkleene
+19459 Tue Apr  2 06:55:56 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions   501 robenkleene
+19930 Tue Apr  2 11:22:15 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+19931 Tue Apr  2 11:22:15 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+19939 Tue Apr  2 11:22:20 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+19940 Tue Apr  2 11:22:20 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+19944 Tue Apr  2 11:22:35 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+20883 Wed Mar 27 12:09:06 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+20885 Wed Mar 27 12:09:09 2019     /System/Library/Frameworks/AudioToolbox.framework/XPCServices/co   501 robenkleene
+21466 Wed Mar 27 12:34:47 2019     /Applications/TextMate.app/Contents/MacOS/TextMate                 501 robenkleene
+21790 Fri Mar 29 15:06:27 2019     /System/Library/PrivateFrameworks/Lookup.framework/Versions/A/XP   501 robenkleene
+21837 Fri Mar 29 15:06:28 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+22143 Tue Apr  2 12:07:27 2019     /System/Library/Frameworks/iTunesLibrary.framework/Versions/A/XP   501 robenkleene
+22227 Sun Mar 24 07:01:48 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+22238 Sun Mar 24 07:02:04 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+22576 Tue Apr  2 12:34:12 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+22662 Sun Mar 24 07:15:10 2019     /Applications/Safari.app/Contents/MacOS/Safari                     501 robenkleene
+22665 Sun Mar 24 07:15:10 2019     /Applications/1Blocker.app/Contents/PlugIns/SafariExtension.appe   501 robenkleene
+22668 Sun Mar 24 07:15:11 2019     /System/Library/Frameworks/SafariServices.framework/Versions/A/X   501 robenkleene
+22672 Sun Mar 24 07:15:11 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+22673 Sun Mar 24 07:15:12 2019     /Applications/Safari.app/Contents/XPCServices/com.apple.Safari.S   501 robenkleene
+22674 Sun Mar 24 07:15:12 2019     /System/Library/PrivateFrameworks/SafariShared.framework/Version   501 robenkleene
+22686 Sun Mar 24 07:15:13 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+22693 Sun Mar 24 07:15:14 2019     /System/Library/PrivateFrameworks/SafariShared.framework/Version   501 robenkleene
+23754 Wed Mar 27 13:26:03 2019     /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents   501 robenkleene
+23778 Wed Mar 27 13:32:26 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+24459 Fri Mar 29 17:22:05 2019     /Applications/Mail.app/Contents/MacOS/Mail                         501 robenkleene
+24807 Sun Mar 24 07:28:22 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+24808 Sun Mar 24 07:28:34 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+24811 Sun Mar 24 07:28:35 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+24812 Sun Mar 24 07:28:35 2019     /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents   501 robenkleene
+24815 Sun Mar 24 07:28:38 2019     /System/Library/Frameworks/Quartz.framework/Versions/A/Framework   501 robenkleene
+24948 Tue Apr  2 13:54:43 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+25066 Fri Mar 29 17:24:52 2019     /System/Library/Frameworks/AudioToolbox.framework/XPCServices/co   501 robenkleene
+25071 Fri Mar 29 17:25:00 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+25072 Fri Mar 29 17:25:00 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+25766 Fri Mar 29 17:29:06 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+26805 Sat Mar  9 12:19:40 2019     /System/Library/Frameworks/Quartz.framework/Versions/A/Framework   501 robenkleene
+27817 Fri Mar 29 17:46:19 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+28302 Thu Mar  7 05:56:04 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+29173 Fri Mar 29 17:52:27 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+32300 Thu Mar  7 10:33:22 2019     /System/Library/CoreServices/navd                                  501 robenkleene
+32833 Fri Mar 29 19:13:03 2019     /Library/Developer/PrivateFrameworks/CoreSimulator.framework/Ver   501 robenkleene
+32834 Fri Mar 29 19:13:03 2019     /Library/Developer/PrivateFrameworks/CoreSimulator.framework/Ver   501 robenkleene
+33073 Tue Apr  2 15:52:41 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+34039 Sat Mar 30 06:13:26 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+34069 Sat Mar 30 06:14:47 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+34097 Sat Mar 30 06:16:10 2019     /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents   501 robenkleene
+34434 Thu Mar  7 11:00:00 2019     /System/Library/PrivateFrameworks/WeatherFoundation.framework/Ve   501 robenkleene
+34438 Thu Mar  7 11:00:10 2019     /System/Library/PrivateFrameworks/WeatherKit.framework/Versions/   501 robenkleene
+34697 Sat Mar 30 06:27:46 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+34700 Sat Mar 30 06:27:47 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+34701 Sat Mar 30 06:27:47 2019     /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents   501 robenkleene
+36551 Thu Mar 14 18:17:20 2019     /System/Library/PrivateFrameworks/IMTranscoding.framework/XPCSer   501 robenkleene
+37003 Tue Apr  2 17:42:13 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+37216 Tue Apr  2 17:47:41 2019     /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents   501 robenkleene
+37263 Tue Apr  2 17:57:09 2019     /System/Library/Frameworks/CryptoTokenKit.framework/PlugIns/seto   501 robenkleene
+37264 Tue Apr  2 17:57:09 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+37287 Tue Apr  2 17:58:53 2019     /usr/sbin/universalaccessd launchd -s                              501 robenkleene
+38338 Fri Mar 22 05:53:35 2019     /usr/sbin/cfprefsd agent                                           501 robenkleene
+38699 Wed Mar 27 16:51:05 2019     /System/Library/Frameworks/AudioToolbox.framework/XPCServices/co   501 robenkleene
+38793 Sat Mar 30 10:43:36 2019     /System/Library/CoreServices/NowPlayingTouchUI.app/Contents/MacO   501 robenkleene
+38997 Thu Mar  7 14:54:36 2019     /System/Library/Frameworks/SafariServices.framework/Versions/A/X   501 robenkleene
+39039 Thu Mar  7 14:59:50 2019     /System/Library/Frameworks/Foundation.framework/Versions/C/XPCSe   501 robenkleene
+39565 Sun Mar 24 13:57:19 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+43321 Tue Apr  2 20:22:43 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+44175 Wed Mar 13 10:02:02 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+48468 Fri Mar 22 11:05:38 2019     /Applications/Safari Technology Preview.app/Contents/MacOS/Safar   501 robenkleene
+48469 Fri Mar 22 11:05:39 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+48471 Fri Mar 22 11:05:39 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+48478 Fri Mar 22 11:05:40 2019     /Applications/Safari Technology Preview.app/Contents/XPCServices   501 robenkleene
+48480 Fri Mar 22 11:05:43 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+48492 Fri Mar 22 11:05:44 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+48549 Wed Apr  3 07:29:00 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+48661 Sun Mar 31 06:33:10 2019     /System/Library/PrivateFrameworks/Lookup.framework/Versions/A/XP   501 robenkleene
+48694 Sun Mar 31 06:33:19 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+50060 Mon Mar 25 06:23:12 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+51523 Sun Mar 31 11:56:50 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+53018 Wed Mar 27 19:58:30 2019     /System/Library/Frameworks/AudioToolbox.framework/XPCServices/co   501 robenkleene
+54364 Mon Mar 25 12:15:03 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+54524 Thu Mar 28 05:56:32 2019     /System/Library/Services/AppleSpell.service/Contents/MacOS/Apple   501 robenkleene
+54745 Wed Apr  3 12:19:25 2019     /System/Library/Frameworks/QTKit.framework/Versions/A/XPCService   501 robenkleene
+54746 Wed Apr  3 12:19:26 2019     /System/Library/Frameworks/QTKit.framework/Versions/A/XPCService   501 robenkleene
+54747 Wed Apr  3 12:19:26 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+54806 Wed Apr  3 12:24:23 2019     /System/Library/Frameworks/AudioToolbox.framework/XPCServices/co   501 robenkleene
+55756 Mon Mar 25 15:12:25 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+56401 Tue Mar 19 18:16:18 2019     /Applications/Dropbox.app/Contents/MacOS/Dropbox /firstrunupdate   501 robenkleene
+56403 Tue Mar 19 18:16:19 2019     /Applications/Dropbox.app/Contents/MacOS/Dropbox -type:crashpad-   501 robenkleene
+56404 Tue Mar 19 18:16:19 2019     /Applications/Dropbox.app/Contents/MacOS/Dropbox -type:exit-moni   501 robenkleene
+56418 Tue Mar 19 18:16:25 2019     /Applications/Dropbox.app/Contents/Frameworks/Tungsten.framework   501 robenkleene
+56419 Tue Mar 19 18:16:25 2019     /Applications/Dropbox.app/Contents/Frameworks/Tungsten.framework   501 robenkleene
+56468 Tue Mar 19 18:16:31 2019     /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents   501 robenkleene
+61455 Wed Apr  3 14:34:21 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+61979 Mon Mar 11 11:13:07 2019     /System/Library/Frameworks/Quartz.framework/Versions/A/Framework   501 robenkleene
+62183 Mon Mar 11 11:27:08 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+65883 Sun Mar 31 14:52:17 2019     /Library/DropboxHelperTools/Dropbox_u501/dbfseventsd                 0 root       
+65884 Sun Mar 31 14:52:17 2019     /Library/DropboxHelperTools/Dropbox_u501/dbfseventsd                 0 root       
+65885 Sun Mar 31 14:52:17 2019     /Library/DropboxHelperTools/Dropbox_u501/dbfseventsd               501 robenkleene
+67196 Mon Mar 11 12:33:49 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+71216 Wed Apr  3 16:04:21 2019     /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents   501 robenkleene
+73906 Fri Mar  8 10:57:59 2019     /System/Library/PrivateFrameworks/ContactsDonation.framework/Ver   501 robenkleene
+73916 Fri Mar  8 10:58:11 2019     /System/Library/PrivateFrameworks/PersonaKit.framework/Versions/   501 robenkleene
+79786 Wed Mar 20 13:39:09 2019     /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents   501 robenkleene
+81827 Sun Mar 31 16:50:00 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+81831 Sun Mar 31 16:50:10 2019     /System/Library/Frameworks/AudioToolbox.framework/XPCServices/co   501 robenkleene
+84958 Mon Mar 11 15:06:34 2019     /System/Library/Frameworks/ScreenSaver.framework/PlugIns/iLifeSl   501 robenkleene
+84974 Mon Mar 11 15:06:52 2019     /System/Library/Frameworks/MediaLibrary.framework/Versions/A/XPC   501 robenkleene
+85732 Thu Apr  4 10:35:20 2019     /Applications/1Password 7.app/Contents/PlugIns/1PasswordSafariAp   501 robenkleene
+85983 Thu Apr  4 10:51:06 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+86497 Thu Apr  4 11:14:22 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+86503 Thu Apr  4 11:14:32 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+86531 Fri Mar 22 17:20:36 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+86646 Tue Mar 26 05:53:08 2019     /System/Library/PrivateFrameworks/Lookup.framework/Versions/A/XP   501 robenkleene
+86657 Tue Mar 26 05:54:50 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+86677 Fri Mar 22 17:36:07 2019     /Applications/1Blocker.app/Contents/PlugIns/SafariExtension.appe   501 robenkleene
+86678 Fri Mar 22 17:36:10 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+86693 Fri Mar 22 17:38:17 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+87491 Sun Mar 31 18:00:09 2019     /System/Library/PrivateFrameworks/CoreSuggestions.framework/Vers   501 robenkleene
+87493 Sun Mar 31 18:00:10 2019     /usr/libexec/secd                                                  501 robenkleene
+87672 Sat Mar 23 06:04:32 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+87715 Sun Mar 31 18:19:33 2019     /System/Library/Frameworks/Accounts.framework/Versions/A/Support   501 robenkleene
+87764 Sun Mar 31 18:24:39 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+87991 Sun Mar 31 18:29:00 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+88001 Sun Mar 31 18:30:17 2019     /System/Library/PrivateFrameworks/CommerceKit.framework/Versions   501 robenkleene
+88018 Sun Mar 31 18:32:47 2019     /System/Library/Services/AppleSpell.service/Contents/MacOS/Apple   501 robenkleene
+88045 Sun Mar 31 18:35:52 2019     /System/Library/Frameworks/AudioToolbox.framework/XPCServices/co   501 robenkleene
+88046 Sun Mar 31 18:35:52 2019     /System/Library/Frameworks/AudioToolbox.framework/XPCServices/co   501 robenkleene
+90327 Fri Mar 15 17:30:32 2019     /System/Library/Frameworks/SafariServices.framework/Versions/A/X   501 robenkleene
+90673 Mon Apr  1 05:57:54 2019     /usr/libexec/adprivacyd                                            501 robenkleene
+91681 Mon Apr  1 06:16:40 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+91876 Mon Apr  1 06:46:16 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+92096 Thu Apr  4 11:48:34 2019     tmux new-session tmux run-shell ~/.tmux/plugins/tmux-resurrect/s   501 robenkleene
+92352 Tue Mar 26 13:39:12 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+93309 Mon Mar 11 20:12:46 2019     /usr/libexec/avconferenced                                         501 robenkleene
+93310 Mon Mar 11 20:12:46 2019     /System/Library/PrivateFrameworks/IMFoundation.framework/XPCServ   501 robenkleene
+93698 Tue Mar 26 14:04:59 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+94654 Thu Mar 28 21:02:51 2019     /Users/robenkleene/Library/Application Support/Steam/Steam.AppBu   501 robenkleene
+94782 Thu Apr  4 12:03:03 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+94817 Thu Apr  4 12:09:32 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+94905 Thu Apr  4 12:15:23 2019     /Applications/Xcode.app/Contents/MacOS/Xcode                       501 robenkleene
+94917 Thu Apr  4 12:15:27 2019     /Applications/Xcode.app/Contents/PlugIns/GitLabSelfHostBuiltInEx   501 robenkleene
+94918 Thu Apr  4 12:15:27 2019     /Applications/Xcode.app/Contents/PlugIns/BitbucketHostBuiltInExt   501 robenkleene
+94919 Thu Apr  4 12:15:27 2019     /Applications/Xcode.app/Contents/PlugIns/GitHubHostBuiltInExtens   501 robenkleene
+94920 Thu Apr  4 12:15:27 2019     /Applications/Xcode.app/Contents/PlugIns/GitLabHostBuiltInExtens   501 robenkleene
+94921 Thu Apr  4 12:15:27 2019     /Applications/Xcode.app/Contents/PlugIns/BitbucketServerHostBuil   501 robenkleene
+94922 Thu Apr  4 12:15:27 2019     /Applications/Xcode.app/Contents/PlugIns/GitHubEnterpriseHostBui   501 robenkleene
+94923 Thu Apr  4 12:15:27 2019     /Applications/Xcode.app/Contents/SharedFrameworks/DVTSourceContr   501 robenkleene
+94950 Thu Apr  4 12:15:30 2019     /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.plat   501 robenkleene
+94951 Thu Apr  4 12:15:30 2019     /Applications/Xcode.app/Contents/PlugIns/XCDocumenterExtension.a   501 robenkleene
+94952 Thu Apr  4 12:15:30 2019     /Applications/Xcode.app/Contents/PlugIns/XcodeBuiltInExtensions.   501 robenkleene
+94953 Thu Apr  4 12:15:30 2019     /Applications/Xcode.app/Contents/Frameworks/IDEFoundation.framew   501 robenkleene
+94954 Thu Apr  4 12:15:30 2019     /Applications/Xcode.app/Contents/SharedFrameworks/SourceKit.fram   501 robenkleene
+94964 Thu Apr  4 12:15:31 2019     /Applications/Xcode.app/Contents/SharedFrameworks/XCBuild.framew   501 robenkleene
+94973 Thu Apr  4 12:15:31 2019     /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefau   501 robenkleene
+95118 Thu Apr  4 12:20:11 2019     /Applications/Xcode.app/Contents/SharedFrameworks/LLDBRPC.framew   501 robenkleene
+95425 Thu Apr  4 12:22:59 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+95623 Thu Apr  4 12:25:26 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+95624 Thu Apr  4 12:25:26 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+95625 Thu Apr  4 12:25:27 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+95630 Thu Apr  4 12:25:35 2019     /System/Library/PrivateFrameworks/AOSKit.framework/Versions/A/XP   501 robenkleene
+95659 Thu Apr  4 12:25:39 2019     /Applications/Repla.app/Contents/MacOS/Repla                       501 robenkleene
+95660 Thu Apr  4 12:25:39 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+95661 Thu Apr  4 12:25:39 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+95662 Thu Apr  4 12:25:39 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+95663 Thu Apr  4 12:25:39 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+95664 Thu Apr  4 12:25:39 2019     /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/r   501 robenkleene
+95676 Thu Apr  4 12:25:40 2019     /Users/robenkleene/Development/Projects/Web/robenkleene.github.i   501 robenkleene
+95683 Thu Apr  4 12:25:43 2019     /System/Library/Frameworks/Ruby.framework/Versions/2.3/usr/bin/r   501 robenkleene
+95688 Thu Apr  4 12:25:43 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+95689 Thu Apr  4 12:25:43 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+95711 Thu Apr  4 12:25:44 2019     /Users/robenkleene/Development/Projects/Web/robenkleene.github.i   501 robenkleene
+95752 Thu Apr  4 12:25:46 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+95788 Thu Apr  4 12:26:20 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+95789 Thu Apr  4 12:26:23 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+95896 Fri Mar 29 06:46:29 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+95899 Fri Mar 29 06:46:30 2019     /Applications/Dropbox.app/Contents/PlugIns/garcon.appex/Contents   501 robenkleene
+95928 Thu Apr  4 12:26:52 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+95929 Thu Apr  4 12:26:53 2019     /System/Library/Frameworks/CoreServices.framework/Frameworks/Met   501 robenkleene
+95960 Thu Apr  4 12:27:52 2019     /Applications/1Password 7.app/Contents/PlugIns/1PasswordSafariAp   501 robenkleene
+95997 Thu Apr  4 12:35:38 2019     /Applications/StopTheMadness.app/Contents/PlugIns/StopTheMadness   501 robenkleene
+97565 Mon Apr  1 10:50:28 2019     /System/Library/Frameworks/WebKit.framework/Versions/A/XPCServic   501 robenkleene
+98011 Mon Apr  1 10:58:19 2019     /Applications/LaunchBar.app/Contents/MacOS/LaunchBar               501 robenkleene
+98013 Mon Apr  1 10:58:20 2019     /System/Library/Frameworks/Metal.framework/Versions/A/XPCService   501 robenkleene
+98741 Tue Mar 26 14:55:39 2019     /System/Library/Frameworks/AppKit.framework/Versions/C/XPCServic   501 robenkleene
+98763 Mon Apr  1 11:06:35 2019     /Applications/Safari Technology Preview.app/Contents/Frameworks/   501 robenkleene
+98969 Fri Mar  8 16:49:03 2019     /System/Library/Frameworks/Quartz.framework/Versions/A/Framework   501 robenkleene
+99876 Mon Apr  1 11:44:34 2019     /System/Library/PrivateFrameworks/LocalAuthenticationUI.framewor   501 robenkleene
+99882 Mon Apr  1 11:47:38 2019     /System/Library/PrivateFrameworks/CharacterPicker.framework/Vers   501 robenkleene
+93114 Thu Apr  4 11:48:45 2019     /Applications/iTerm.app/Contents/MacOS/iTerm2 --server /usr/loca   501 robenkleene
+93115 Thu Apr  4 11:48:45 2019     /usr/local/bin/zsh                                                 501 robenkleene
+93172 Thu Apr  4 11:48:47 2019     tmux attach                                                        501 robenkleene
+89233 Thu Apr  4 11:36:10 2019     /Applications/iTerm.app/Contents/MacOS/iTerm2 --server /usr/loca   501 robenkleene
+89234 Thu Apr  4 11:36:11 2019     /usr/local/bin/zsh                                                 501 robenkleene
+93113 Thu Apr  4 11:48:38 2019     tmux attach                                                        501 robenkleene
+95706 Thu Apr  4 12:25:44 2019     /Applications/iTerm.app/Contents/MacOS/iTerm2 --server /usr/loca   501 robenkleene
+95709 Thu Apr  4 12:25:44 2019     /usr/local/bin/zsh                                                 501 robenkleene
+96093 Thu Apr  4 12:36:11 2019     ps x -o pid=,lstart=,args=,uid=,user=                                0 root       
+92036 Thu Apr  4 11:48:33 2019     /Applications/iTerm.app/Contents/MacOS/iTerm2 --server /usr/loca   501 robenkleene
+92037 Thu Apr  4 11:48:33 2019     /usr/local/bin/zsh                                                 501 robenkleene
+92093 Thu Apr  4 11:48:34 2019     /bin/bash /Users/robenkleene/.bin/tmux_session_auto_restore        501 robenkleene
+92094 Thu Apr  4 11:48:34 2019     tmux new-session tmux run-shell ~/.tmux/plugins/tmux-resurrect/s   501 robenkleene
+92306 Thu Apr  4 11:48:35 2019     -zsh                                                               501 robenkleene
+92329 Thu Apr  4 11:48:35 2019     -zsh                                                               501 robenkleene
+92360 Thu Apr  4 11:48:35 2019     -zsh                                                               501 robenkleene
+92417 Thu Apr  4 11:48:35 2019     -zsh                                                               501 robenkleene
+92474 Thu Apr  4 11:48:35 2019     -zsh                                                               501 robenkleene
+92519 Thu Apr  4 11:48:35 2019     -zsh                                                               501 robenkleene
+92568 Thu Apr  4 11:48:35 2019     -zsh                                                               501 robenkleene
+92625 Thu Apr  4 11:48:35 2019     -zsh                                                               501 robenkleene
+92688 Thu Apr  4 11:48:35 2019     -zsh                                                               501 robenkleene
