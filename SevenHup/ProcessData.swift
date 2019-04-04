@@ -31,7 +31,8 @@ public struct ProcessData: Equatable {
         }
 
         self.identifier = identifier
-        self.name = name
+        // Output of `ps` only gives us `65` characters, so limit to that
+        self.name = name.count < 65 ? name : String(name.prefix(65))
         self.userIdentifier = userIdentifier
         self.username = username
         self.startTime = startTime
