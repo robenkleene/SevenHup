@@ -17,23 +17,21 @@ typedef struct kinfo_proc kinfo_proc;
 
 #pragma mark - C
 
-static int GetBSDProcessForIdentifier(pid_t pid, kinfo_proc *proc)
+static int GetBSDProcessForIdentifier(pid_t pid, struct kinfo_proc *kinfo)
 {
     int err;
     int mib[4];
     size_t len;
-    struct kinfo_proc kp;
     
     len = 4;
     sysctlnametomib("kern.proc.pid", mib, &len);
     
     mib[3] = pid;
-    len = sizeof(kp);
-    err = sysctl(mib, 4, &kp, &len, NULL, 0);
+    len = sizeof(struct kinfo_proc);
+    err = sysctl(mib, 4, kinfo, &len, NULL, 0);
+
     if (err == -1) {
         err = errno;
-    } else if (len > 0) {
-        *proc = kp;
     }
 
     return err;
