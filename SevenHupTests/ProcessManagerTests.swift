@@ -94,7 +94,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
             XCTFail()
             return
         }
-        for i: Int32 in 1 ... 10 {
+        for i: pid_t in 1 ... 10 {
             let processData = ProcessData(identifier: i,
                                           name: "test",
                                           userIdentifier: userIdentifier,

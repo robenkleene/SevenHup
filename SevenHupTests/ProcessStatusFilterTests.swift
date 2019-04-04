@@ -12,7 +12,7 @@ import XCTest
 
 class ProcessStatusFilterNoProcessTests: XCTestCase {
     lazy var testProcessData: ProcessData = {
-        let identifier = Int32(74)
+        let identifier = pid_t(74)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss yyyy"
         let startTime = dateFormatter.date(from: "Wed Dec 16 02:09:32 2015")!
@@ -37,7 +37,7 @@ class ProcessStatusFilterNoProcessTests: XCTestCase {
 
     func testEmptyIdentifiers() {
         let expectation = self.expectation(description: "Process filter finished")
-        ProcessStatusFilter.runningProcesses(withIdentifiers: [Int32]()) { (identifierToProcessData, error) -> Void in
+        ProcessStatusFilter.runningProcesses(withIdentifiers: [pid_t]()) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
             guard let identifierToProcessData = identifierToProcessData else {
                 XCTFail()

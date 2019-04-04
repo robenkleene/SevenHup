@@ -10,7 +10,7 @@ import Foundation
 
 extension ProcessFilter {
     class func runningProcessMap(matching processDatas: [ProcessData],
-                                 completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+                                 completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                 _ error: NSError?) -> Void)) {
         let identifiers = processDatas.map { $0.identifier }
         runningProcesses(withIdentifiers: identifiers) { (identifierToProcessData, error) -> Void in
@@ -20,7 +20,7 @@ extension ProcessFilter {
             }
 
             guard var identifierToProcessData = identifierToProcessData else {
-                completionHandler([Int32: ProcessData](), nil)
+                completionHandler([pid_t: ProcessData](), nil)
                 return
             }
 
@@ -54,14 +54,14 @@ extension ProcessFilter {
 }
 
 class ProcessFilter {
-    class func runningProcesses(withIdentifiers identifiers: [Int32],
-                                completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+    class func runningProcesses(withIdentifiers identifiers: [pid_t],
+                                completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                _ error: NSError?) -> Void)) {
         Processes.runningProcesses(withIdentifiers: identifiers, completionHandler: completionHandler)
     }
 
-    class func alternativeRunningProcesses(withIdentifiers identifiers: [Int32],
-                                           completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+    class func alternativeRunningProcesses(withIdentifiers identifiers: [pid_t],
+                                           completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                           _ error: NSError?) -> Void)) {
         ProcessStatusFilter.runningProcesses(withIdentifiers: identifiers, completionHandler: completionHandler)
     }

@@ -10,11 +10,11 @@ import Foundation
 import SodaStream
 
 class ProcessStatusFilter {
-    class func runningProcesses(withIdentifiers identifiers: [Int32],
-                                completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+    class func runningProcesses(withIdentifiers identifiers: [pid_t],
+                                completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                _ error: NSError?) -> Void)) {
         if identifiers.isEmpty {
-            completionHandler([Int32: ProcessData](), nil)
+            completionHandler([pid_t: ProcessData](), nil)
             return
         }
 
@@ -39,7 +39,7 @@ class ProcessStatusFilter {
                         exitStatus.int32Value == 1 {
                         // If the process identifier is not found, `ps` exits with an exit status of 1
                         // So reinterpret that case as no processes found
-                        completionHandler([Int32: ProcessData](), nil)
+                        completionHandler([pid_t: ProcessData](), nil)
                         return
                     }
                 }
@@ -49,7 +49,7 @@ class ProcessStatusFilter {
             }
 
             guard let standardOutput = standardOutput else {
-                completionHandler([Int32: ProcessData](), nil)
+                completionHandler([pid_t: ProcessData](), nil)
                 return
             }
 
@@ -60,8 +60,8 @@ class ProcessStatusFilter {
 
     // MARK: Private
 
-    class func makeProcessDatas(output: String) -> [Int32: ProcessData] {
-        var identifierToProcessData = [Int32: ProcessData]()
+    class func makeProcessDatas(output: String) -> [pid_t: ProcessData] {
+        var identifierToProcessData = [pid_t: ProcessData]()
         let lines = output.components(separatedBy: "\n")
         for line in lines {
             if let processData = makeProcessData(line: line) {
@@ -93,7 +93,7 @@ class ProcessStatusFilter {
         let rawUserIdentifier = String(line[userIdentifierStartIndex ..< userIdentifierEndIndex])
         let trimmedUserIdentifier = rawUserIdentifier.trimmingCharacters(in: CharacterSet.whitespaces)
 
-        guard let userIdentifier = UInt32(trimmedUserIdentifier) else {
+        guard let userIdentifier = uid_t(trimmedUserIdentifier) else {
             return nil
         }
 
@@ -108,7 +108,7 @@ class ProcessStatusFilter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss yyyy"
 
-        guard let identifier = Int32(rawIdentifier), let startTime = dateFormatter.date(from: rawStartDate) else {
+        guard let identifier = pid_t(rawIdentifier), let startTime = dateFormatter.date(from: rawStartDate) else {
             return nil
         }
 

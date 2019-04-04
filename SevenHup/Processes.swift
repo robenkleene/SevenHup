@@ -9,11 +9,11 @@
 import Foundation
 
 class Processes {
-    class func runningProcesses(withIdentifiers identifiers: [Int32],
-                                completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+    class func runningProcesses(withIdentifiers identifiers: [pid_t],
+                                completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                _ error: NSError?) -> Void)) {
         if identifiers.isEmpty {
-            completionHandler([Int32: ProcessData](), nil)
+            completionHandler([pid_t: ProcessData](), nil)
             return
         }
         DispatchQueue.global(qos: .background).async {
@@ -31,13 +31,13 @@ class Processes {
         return Array(identifierToProcesses.values)
     }
 
-    private class func makeProcessDatas(dictionaries: [Any]) -> [Int32: ProcessData] {
+    private class func makeProcessDatas(dictionaries: [Any]) -> [pid_t: ProcessData] {
         guard let processDictionaries = dictionaries as? [NSDictionary] else {
             assert(false)
-            return [Int32: ProcessData]()
+            return [pid_t: ProcessData]()
         }
 
-        var identifierToProcessData = [Int32: ProcessData]()
+        var identifierToProcessData = [pid_t: ProcessData]()
         for dictionary in processDictionaries {
             if let processData = ProcessData.makeProcessData(dictionary: dictionary) {
                 identifierToProcessData[processData.identifier] = processData

@@ -35,8 +35,8 @@ class ProcessesTests: XCTestCase {
         let processFilterExpectation = expectation(description: "Filter processes")
 
         var finished = false
-        var runningIdentifierToProcessData: [Int32: ProcessData]!
-        var alternativeIdentifierToProcessData: [Int32: ProcessData]!
+        var runningIdentifierToProcessData: [pid_t: ProcessData]!
+        var alternativeIdentifierToProcessData: [pid_t: ProcessData]!
         ProcessFilter.runningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessData, error) -> Void in
             guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)

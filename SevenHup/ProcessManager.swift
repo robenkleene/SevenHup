@@ -76,13 +76,13 @@ public class ProcessManager {
         return processDatas
     }
 
-    public func runningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+    public func runningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                    _ error: NSError?) -> Void)) {
         runningProcessDatas(kill: false, completionHandler: completionHandler)
     }
 
     public func killAndRemoveRunningProcessDatas(completionHandler: @escaping ((
-        _ identifierToProcessData: [Int32: ProcessData]?,
+        _ identifierToProcessData: [pid_t: ProcessData]?,
         _ error: NSError?
     ) -> Void)) {
         runningProcessDatas(kill: true, completionHandler: completionHandler)
@@ -91,7 +91,7 @@ public class ProcessManager {
     // MARK: Private
 
     private func runningProcessDatas(kill: Bool,
-                                     completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+                                     completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                     _ error: NSError?) -> Void)) {
         ProcessFilter.runningProcessMap(matching: processDatas()) { optionalIdentifierToProcessData, error in
             guard
@@ -131,7 +131,7 @@ public class ProcessManager {
         processManagerStore.set(identifierKeyToProcessDataValue as AnyObject?, forKey: runningProcessesKey)
     }
 
-    private func processData(forIdentifier identifier: Int32, remove: Bool) -> ProcessData? {
+    private func processData(forIdentifier identifier: pid_t, remove: Bool) -> ProcessData? {
         guard let processDataDictionary = processDataDictionary(forIdentifier: identifier, remove: remove) else {
             return nil
         }
@@ -141,7 +141,7 @@ public class ProcessManager {
 
     // MARK: Helper
 
-    private func processDataDictionary(forIdentifier identifier: Int32, remove: Bool) -> NSDictionary? {
+    private func processDataDictionary(forIdentifier identifier: pid_t, remove: Bool) -> NSDictionary? {
         let key = ProcessData.key(from: identifier)
         if remove {
             objc_sync_enter(self)
