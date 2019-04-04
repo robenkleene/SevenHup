@@ -39,8 +39,12 @@ class ProcessStatusFilterNoProcessTests: XCTestCase {
     func testEmptyIdentifiers() {
         let expectation = self.expectation(description: "Process filter finished")
         ProcessStatusFilter.runningProcesses(withIdentifiers: [Int32]()) { (identifierToProcessData, error) -> Void in
-            XCTAssertNotNil(error)
-            XCTAssertNil(identifierToProcessData)
+            XCTAssertNil(error)
+            guard let identifierToProcessData = identifierToProcessData else {
+                XCTFail()
+                return
+            }
+            XCTAssertEqual(identifierToProcessData.count, 0)
             expectation.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)

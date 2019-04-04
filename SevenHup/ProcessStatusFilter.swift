@@ -88,7 +88,8 @@ class ProcessStatusFilter {
         
         let commandStartIndex = line.index(line.startIndex, offsetBy: 35)
         let commandEndIndex = line.index(line.startIndex, offsetBy: 100)
-        let command = String(line[commandStartIndex ..< commandEndIndex])
+        let rawCommand = String(line[commandStartIndex ..< commandEndIndex])
+        let trimmedCommand = rawCommand.trimmingCharacters(in: CharacterSet.whitespaces)
         
         let userIdentifierStartIndex = line.index(line.startIndex, offsetBy: 100)
         let userIdentifierEndIndex = line.index(line.startIndex, offsetBy: 106)
@@ -99,7 +100,7 @@ class ProcessStatusFilter {
             return nil
         }
 
-        let usernameIdentifierStartIndex = line.index(line.startIndex, offsetBy: 107)
+        let usernameIdentifierStartIndex = line.index(line.startIndex, offsetBy: 106)
         let rawUsername = String(line[usernameIdentifierStartIndex...])
         let username = rawUsername.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -115,7 +116,7 @@ class ProcessStatusFilter {
         }
 
         return ProcessData(identifier: identifier,
-                           name: command,
+                           name: trimmedCommand,
                            userIdentifier: userIdentifier,
                            username: username,
                            startTime: startTime)!
