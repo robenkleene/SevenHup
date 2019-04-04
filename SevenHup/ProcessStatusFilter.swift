@@ -9,9 +9,6 @@
 import Foundation
 import SodaStream
 
-import SystemConfiguration
-
-
 class ProcessStatusFilter {
     class func runningProcesses(withIdentifiers identifiers: [Int32],
                                 completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
