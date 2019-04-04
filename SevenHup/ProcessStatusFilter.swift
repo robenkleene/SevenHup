@@ -23,14 +23,13 @@ class ProcessStatusFilter {
 
         let commandPath = "/bin/ps"
         let identifiersParameter = identifiers.map({ String($0) }).joined(separator: ",")
-        let arguments = ["-o pid=,lstart=,args=", "-p \(identifiersParameter)"]
+        let arguments = ["-o pid=,lstart=,args=,uid=,user=", "-p \(identifiersParameter)"]
 
         // o: Change format
         // pid: Process ID
         // lstart: Start time
         // args: Command & Arguments
         // = Means don't display header for this column
-
         _ = SDATaskRunner.runTaskUntilFinished(withCommandPath: commandPath,
                                                withArguments: arguments as [NSString],
                                                inDirectoryPath: nil) { (standardOutput, _, error) -> Void in
@@ -87,21 +86,31 @@ class ProcessStatusFilter {
         let dateEndIndex = line.index(line.startIndex, offsetBy: 30)
         let rawStartDate = String(line[dateStartIndex ..< dateEndIndex])
         
-        let commandIndex = line.index(line.startIndex, offsetBy: 35)
-        let command = String(line[commandIndex...])
+        let commandStartIndex = line.index(line.startIndex, offsetBy: 35)
+        let commandEndIndex = line.index(line.startIndex, offsetBy: 100)
+        let command = String(line[commandStartIndex ..< commandEndIndex])
+        
+        let userIdentifierStartIndex = line.index(line.startIndex, offsetBy: 100)
+        let userIdentifierEndIndex = line.index(line.startIndex, offsetBy: 106)
+        let rawUserIdentifier = String(line[userIdentifierStartIndex ..< userIdentifierEndIndex])
+        let trimmedUserIdentifier = rawUserIdentifier.trimmingCharacters(in: CharacterSet.whitespaces)
+        
+        guard let userIdentifier = UInt32(trimmedUserIdentifier) else {
+            return nil
+        }
+
+        let usernameIdentifierStartIndex = line.index(line.startIndex, offsetBy: 107)
+        let rawUsername = String(line[usernameIdentifierStartIndex...])
+        let username = rawUsername.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if username.isEmpty {
+            return nil
+        }
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss yyyy"
         
         guard let identifier = Int32(rawIdentifier), let startTime = dateFormatter.date(from: rawStartDate) else {
-            return nil
-        }
-
-        // TODO: This needs to come from the `ps` output!
-        var userIdentifier: uid_t = 0
-        var groupIdentifier: gid_t = 0
-        guard let username = SCDynamicStoreCopyConsoleUser(nil, &userIdentifier, &groupIdentifier) as String? else {
-            assert(false)
             return nil
         }
 
