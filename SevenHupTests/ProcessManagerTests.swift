@@ -43,14 +43,63 @@ class ProcessManagerTestCase: XCTestCase {
         super.tearDown()
         processManager = nil
     }
+
+    // MARK: Helper
+
+    func makeRunningTasks() -> [Process] {
+        var tasks = [Process]()
+        let userInfo = ProcessManagerRouter.getUserInfo()
+        let userIdentifier = userInfo.userIdentifier
+        guard let username = userInfo.username else {
+            XCTFail()
+            return [Process]()
+        }
+        for _ in 0 ... 2 {
+            let commandPath = path(forResource: testDataShellScriptCatName,
+                                   ofType: testDataShellScriptExtension,
+                                   inDirectory: testDataSubdirectory)!
+
+            let runExpectation = expectation(description: "Task ran")
+            var task: Process?
+            task = SDATaskRunner.runTask(withCommandPath: commandPath,
+                                         withArguments: nil,
+                                         inDirectoryPath: nil,
+                                         delegate: nil) { (success) -> Void in
+                XCTAssertTrue(success)
+                XCTAssertNotNil(task)
+                guard let task = task else {
+                    XCTAssertTrue(false)
+                    return
+                }
+                tasks.append(task)
+                let processData = ProcessData(identifier: task.processIdentifier,
+                                              name: commandPath,
+                                              userIdentifier: userIdentifier,
+                                              username: username,
+                                              startTime: Date())!
+                self.processManager.add(processData)
+                runExpectation.fulfill()
+            }
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+        return tasks
+    }
 }
 
 class ProcessManagerTests: ProcessManagerTestCase {
     func testRemoveAll() {
-        for i: Int32 in 1 ... 10 {
+        let userInfo = ProcessManagerRouter.getUserInfo()
+        let userIdentifier = userInfo.userIdentifier
+        guard let username = userInfo.username else {
+            XCTFail()
+            return
+        }
+        for i: pid_t in 1 ... 10 {
             let processData = ProcessData(identifier: i,
-                                          startTime: Date(),
-                                          commandPath: "test")!
+                                          name: "test",
+                                          userIdentifier: userIdentifier,
+                                          username: username,
+                                          startTime: Date())!
             processManager.add(processData)
         }
         XCTAssertEqual(processManager.count, 10)
@@ -63,10 +112,18 @@ class ProcessManagerTests: ProcessManagerTestCase {
     }
 
     func testProcessManager() {
+        let userInfo = ProcessManagerRouter.getUserInfo()
+        let userIdentifier = userInfo.userIdentifier
+        guard let username = userInfo.username else {
+            XCTFail()
+            return
+        }
         XCTAssertEqual(processManager.count, 0)
         let processData = ProcessData(identifier: 1,
-                                      startTime: Date(),
-                                      commandPath: "test")!
+                                      name: "test",
+                                      userIdentifier: userIdentifier,
+                                      username: username,
+                                      startTime: Date())!
 
         let testProcessManagerHasProcessData: (_ processManager: ProcessManager) -> Bool = { processManager in
             let returnedProcessData = processManager.processData(forIdentifier: processData.identifier)!
@@ -114,7 +171,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
         XCTAssertTrue(processManagerHasNoProcessDataResultTwo)
     }
 
-    func testRunningProcessDats() {
+    func testRunningProcessDatas() {
         let tasks = makeRunningTasks()
         let processDatas = processManager.processDatas()
         XCTAssertTrue(processDatas.count > 0)
@@ -153,50 +210,16 @@ class ProcessManagerTests: ProcessManagerTestCase {
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
 
-        // This should be an error
         let killProcessesExpectationTwo = expectation(description: "Running processes two")
-        processManager.killAndRemoveRunningProcessDatas { _, error in
-            XCTAssertNotNil(error)
-            guard let error = error else {
-                XCTAssertTrue(false)
+        processManager.killAndRemoveRunningProcessDatas { identifierToProcessData, error in
+            guard let identifierToProcessData = identifierToProcessData else {
+                XCTFail()
                 return
             }
-            XCTAssertEqual(error.code, noIdentifiersErrorCode)
+            XCTAssertEqual(identifierToProcessData.count, 0)
+            XCTAssertNil(error)
             killProcessesExpectationTwo.fulfill()
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
-    }
-
-    // MARK: Helper
-
-    func makeRunningTasks() -> [Process] {
-        var tasks = [Process]()
-        for _ in 0 ... 2 {
-            let commandPath = path(forResource: testDataShellScriptCatName,
-                                   ofType: testDataShellScriptExtension,
-                                   inDirectory: testDataSubdirectory)!
-
-            let runExpectation = expectation(description: "Task ran")
-            var task: Process?
-            task = SDATaskRunner.runTask(withCommandPath: commandPath,
-                                         withArguments: nil,
-                                         inDirectoryPath: nil,
-                                         delegate: nil) { (success) -> Void in
-                XCTAssertTrue(success)
-                XCTAssertNotNil(task)
-                guard let task = task else {
-                    XCTAssertTrue(false)
-                    return
-                }
-                tasks.append(task)
-                let processData = ProcessData(identifier: task.processIdentifier,
-                                              startTime: Date(),
-                                              commandPath: commandPath)!
-                self.processManager.add(processData)
-                runExpectation.fulfill()
-            }
-        }
-        waitForExpectations(timeout: testTimeout, handler: nil)
-        return tasks
     }
 }

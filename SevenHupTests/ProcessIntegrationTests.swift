@@ -10,33 +10,6 @@
 import SodaStream
 import XCTest
 
-class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
-    let processManager: ProcessManager
-
-    init(processManager: ProcessManager) {
-        self.processManager = processManager
-    }
-
-    // MARK: WCLTaskRunnerDelegate
-
-    func taskDidFinish(_ task: Process) {
-        _ = processManager.removeProcess(forIdentifier: task.processIdentifier)
-    }
-
-    func task(_ task: Process,
-              didRunCommandPath commandPath: String,
-              arguments _: [String]?,
-              directoryPath _: String?) {
-        if
-            let commandPath = task.launchPath,
-            let processData = ProcessData(identifier: task.processIdentifier,
-                                          startTime: Date(),
-                                          commandPath: commandPath) {
-            processManager.add(processData)
-        }
-    }
-}
-
 class ProcessIntegrationTests: ProcessManagerTestCase {
     var processManagerRouter: ProcessManagerRouter!
 
@@ -188,9 +161,12 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         let filterExpectationTwo = expectation(description: "Process filter")
 
         let oneSecondInThePast = Date(timeIntervalSinceNow: -1.0)
+
         guard let inThePastProcessData = ProcessData(identifier: processData.identifier,
-                                                     startTime: oneSecondInThePast,
-                                                     commandPath: processData.commandPath) else {
+                                                     name: processData.name,
+                                                     userIdentifier: processData.userIdentifier,
+                                                     username: processData.username,
+                                                     startTime: oneSecondInThePast) else {
             XCTAssertTrue(false)
             return
         }
@@ -213,8 +189,10 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
 
         let oneSecondInTheFuture = Date(timeIntervalSinceNow: 1.0)
         guard let inTheFutureProcessData = ProcessData(identifier: processData.identifier,
-                                                       startTime: oneSecondInTheFuture,
-                                                       commandPath: processData.commandPath) else {
+                                                       name: processData.name,
+                                                       userIdentifier: processData.userIdentifier,
+                                                       username: processData.username,
+                                                       startTime: oneSecondInTheFuture) else {
             XCTAssertTrue(false)
             return
         }
@@ -250,15 +228,18 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         // of `killProcessData` exists. Really the completion handler of
         // `killProcessData` not fire until the process has been terminated.
         wait(forTerminationOf: [task])
+        // Seems the callback to remove the process data doesn't always fire in time either
+        let loopUntil = NSDate(timeIntervalSinceNow: testTimeoutInterval)
+        while processManager.processDatas().count != 0, loopUntil.timeIntervalSinceNow > 0 {
+            RunLoop.current.run(mode: RunLoop.Mode.default, before: loopUntil as Date)
+        }
 
         // Confirm the process has been removed from the `ProcessManager`
-
         let processDatasTwo = processManager.processDatas()
         XCTAssertEqual(processDatasTwo.count, 0)
         XCTAssertNil(processManager.processData(forIdentifier: task.processIdentifier))
 
         // Confirm that the `ProcessFilter` no longer has the process
-
         let filterExpectationFour = expectation(description: "Process filter")
         ProcessFilter.runningProcessMap(matching: [processData]) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)

@@ -20,32 +20,24 @@ enum ProcessManagerError: Error {
 }
 
 public class ProcessManager {
-    enum ProcessDataKey: String {
-        case identifier
-        case commandPath
-        case startTime
-        func key() -> NSString {
-            return rawValue as NSString
-        }
-    }
-
+    private typealias ProcessDictionary = [NSString: AnyObject]
     private let processManagerStore: ProcessManagerStore
-    private var identifierKeyToProcessDataValue = [NSString: AnyObject]()
+    private var identifierKeyToProcessDataValue = ProcessDictionary()
     public var count: Int {
         return identifierKeyToProcessDataValue.count
     }
 
     public init(processManagerStore: ProcessManagerStore) {
         if let processDataDictionary = processManagerStore.dictionary(forKey: runningProcessesKey) {
-            identifierKeyToProcessDataValue = processDataDictionary as [NSString: AnyObject]
+            identifierKeyToProcessDataValue = processDataDictionary as ProcessDictionary
         }
         self.processManagerStore = processManagerStore
     }
 
     public func add(_ processData: ProcessData) {
-        let keyValue = type(of: self).keyAndValue(from: processData)
+        let keyDictionary = type(of: self).keyAndDictionary(from: processData)
         objc_sync_enter(self)
-        identifierKeyToProcessDataValue[keyValue.key] = keyValue.value
+        identifierKeyToProcessDataValue[keyDictionary.key] = keyDictionary.dictionary
         objc_sync_exit(self)
         save()
     }
@@ -57,12 +49,12 @@ public class ProcessManager {
         save()
     }
 
-    public func removeProcess(forIdentifier identifier: Int32) -> ProcessData? {
+    public func removeProcess(forIdentifier identifier: pid_t) -> ProcessData? {
         let processData = self.processData(forIdentifier: identifier, remove: true)
         return processData
     }
 
-    public func processData(forIdentifier identifier: Int32) -> ProcessData? {
+    public func processData(forIdentifier identifier: pid_t) -> ProcessData? {
         return processData(forIdentifier: identifier, remove: false)
     }
 
@@ -75,8 +67,8 @@ public class ProcessManager {
 
         for value in values {
             if let
-                value = value as? NSDictionary,
-                let processData = type(of: self).processData(for: value) {
+                dictionary = value as? NSDictionary,
+                let processData = ProcessData.makeProcessData(dictionary: dictionary) {
                 processDatas.append(processData)
             }
         }
@@ -84,13 +76,13 @@ public class ProcessManager {
         return processDatas
     }
 
-    public func runningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+    public func runningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                    _ error: NSError?) -> Void)) {
         runningProcessDatas(kill: false, completionHandler: completionHandler)
     }
 
     public func killAndRemoveRunningProcessDatas(completionHandler: @escaping ((
-        _ identifierToProcessData: [Int32: ProcessData]?,
+        _ identifierToProcessData: [pid_t: ProcessData]?,
         _ error: NSError?
     ) -> Void)) {
         runningProcessDatas(kill: true, completionHandler: completionHandler)
@@ -99,7 +91,7 @@ public class ProcessManager {
     // MARK: Private
 
     private func runningProcessDatas(kill: Bool,
-                                     completionHandler: @escaping ((_ identifierToProcessData: [Int32: ProcessData]?,
+                                     completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                     _ error: NSError?) -> Void)) {
         ProcessFilter.runningProcessMap(matching: processDatas()) { optionalIdentifierToProcessData, error in
             guard
@@ -112,15 +104,17 @@ public class ProcessManager {
                 return
             }
             let processDatas = Array(identifierToProcessData.values)
-            ProcessKiller.kill(processDatas) { success in
-                guard success else {
-                    let error = ProcessManagerError.failedToKillError(processDatas: processDatas)
-                    completionHandler(optionalIdentifierToProcessData, error as NSError)
-                    return
+
+            DispatchQueue.main.async {
+                ProcessKiller.kill(processDatas) { success in
+                    guard success else {
+                        let error = ProcessManagerError.failedToKillError(processDatas: processDatas)
+                        completionHandler(optionalIdentifierToProcessData, error as NSError)
+                        return
+                    }
+                    self.remove(processDatas: processDatas)
+                    completionHandler(optionalIdentifierToProcessData, error)
                 }
-                // TODO: This is returning too early, we need to wait for all the tasks to actually finish terminating
-                self.remove(processDatas: processDatas)
-                completionHandler(optionalIdentifierToProcessData, error)
             }
         }
     }
@@ -135,18 +129,18 @@ public class ProcessManager {
         processManagerStore.set(identifierKeyToProcessDataValue as AnyObject?, forKey: runningProcessesKey)
     }
 
-    private func processData(forIdentifier identifier: Int32, remove: Bool) -> ProcessData? {
-        guard let processDataValue = processDataValue(forIdentifier: identifier, remove: remove) else {
+    private func processData(forIdentifier identifier: pid_t, remove: Bool) -> ProcessData? {
+        guard let processDataDictionary = processDataDictionary(forIdentifier: identifier, remove: remove) else {
             return nil
         }
 
-        return type(of: self).processData(for: processDataValue)
+        return ProcessData.makeProcessData(dictionary: processDataDictionary)
     }
 
     // MARK: Helper
 
-    private func processDataValue(forIdentifier identifier: Int32, remove: Bool) -> NSDictionary? {
-        let key = type(of: self).key(from: identifier)
+    private func processDataDictionary(forIdentifier identifier: pid_t, remove: Bool) -> NSDictionary? {
+        let key = ProcessData.key(from: identifier)
         if remove {
             objc_sync_enter(self)
             let processDataValue = identifierKeyToProcessDataValue.removeValue(forKey: key) as? NSDictionary
@@ -161,43 +155,9 @@ public class ProcessManager {
         }
     }
 
-    private class func keyAndValue(from processData: ProcessData) -> (key: NSString, value: NSDictionary) {
-        let key = self.key(from: processData.identifier)
-        let value = self.value(for: processData)
-        return (key: key, value: value)
-    }
-
-    private class func processData(for dictionary: NSDictionary) -> ProcessData? {
-        guard
-            let key = dictionary[ProcessDataKey.identifier.key()] as? NSString,
-            let commandPath = dictionary[ProcessDataKey.commandPath.key()] as? String,
-            let startTime = dictionary[ProcessDataKey.startTime.key()] as? Date
-        else {
-            return nil
-        }
-
-        let identifier = self.identifier(from: key)
-
-        return ProcessData(identifier: identifier,
-                           startTime: startTime,
-                           commandPath: commandPath)
-    }
-
-    private class func value(for processData: ProcessData) -> NSDictionary {
-        let dictionary = NSMutableDictionary()
-        let key = self.key(from: processData.identifier)
-        dictionary[ProcessDataKey.identifier.key()] = key
-        dictionary[ProcessDataKey.commandPath.key()] = processData.commandPath
-        dictionary[ProcessDataKey.startTime.key()] = processData.startTime
-        return dictionary
-    }
-
-    private class func identifier(from key: NSString) -> Int32 {
-        return Int32(key.intValue)
-    }
-
-    private class func key(from value: Int32) -> NSString {
-        let valueNumber = String(value)
-        return valueNumber as NSString
+    private class func keyAndDictionary(from processData: ProcessData) -> (key: NSString, dictionary: NSDictionary) {
+        let key = ProcessData.key(from: processData.identifier)
+        let dictionary = processData.dictionary()
+        return (key: key, dictionary: dictionary)
     }
 }

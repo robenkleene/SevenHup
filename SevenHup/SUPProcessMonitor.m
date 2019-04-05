@@ -11,14 +11,14 @@
 #include <sys/event.h>
 
 @interface SUPProcessMonitor ()
-@property (nonatomic, assign) int identifier;
+@property (nonatomic, assign) pid_t identifier;
 @property (nonatomic) BOOL isTerminated;
 @property (nonatomic, copy) void (^completionHandler)(BOOL);
 @end
 
 @implementation SUPProcessMonitor
 
-- (instancetype)initWithIdentifier:(int)identifier {
+- (instancetype)initWithIdentifier:(pid_t)identifier {
     self = [super init];
     if (self != nil) {
         _identifier = identifier;
