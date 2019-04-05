@@ -8,9 +8,9 @@
 #import "SUPProcesses.h"
 #import "Constants.h"
 
-#include <pwd.h>
 #include <assert.h>
 #include <errno.h>
+#include <pwd.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,12 +20,12 @@ typedef struct kinfo_proc kinfo_proc;
 
 #pragma mark - C
 
-static int GetBSDProcessForIdentifier(struct kinfo_proc* kinfo, pid_t pid) {
+static int GetBSDProcessForIdentifier(struct kinfo_proc *kinfo, pid_t pid) {
     u_int miblen = 4;
     size_t len;
     int mib[miblen];
     int res;
-    
+
     mib[0] = CTL_KERN;
     mib[1] = KERN_PROC;
     mib[2] = KERN_PROC_PID;
@@ -49,9 +49,9 @@ static int GetBSDProcessForIdentifier(struct kinfo_proc* kinfo, pid_t pid) {
         if (err != 0) {
             continue;
         }
-        
+
         NSMutableDictionary *processDictionary = [NSMutableDictionary dictionary];
-        
+
         NSNumber *processIdentifierNumber = [NSNumber numberWithInt:kinfo.kp_proc.p_pid];
         if (processIdentifierNumber != identifier) {
             // It appears that in some cases a process that doesn't match is
@@ -59,7 +59,7 @@ static int GetBSDProcessForIdentifier(struct kinfo_proc* kinfo, pid_t pid) {
             // exists?
             continue;
         }
-        
+
         assert(identifier == processIdentifierNumber);
         NSString *processIdentifier = processIdentifierNumber.stringValue;
         if (processIdentifier) {
@@ -69,13 +69,13 @@ static int GetBSDProcessForIdentifier(struct kinfo_proc* kinfo, pid_t pid) {
         if (processName) {
             processDictionary[kProcessNameKey] = processName;
         }
-        
+
         NSTimeInterval timeInterval = kinfo.kp_proc.p_starttime.tv_sec + kinfo.kp_proc.p_starttime.tv_usec / 1.e6;
         NSDate *startTime = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         if (startTime) {
             processDictionary[kProcessStartTimeKey] = startTime;
         }
-        
+
         struct passwd *user = getpwuid(kinfo.kp_eproc.e_ucred.cr_uid);
         if (user) {
             // TODO: Fix this inefficient convert from `NSNumber` to `NSString`.
@@ -89,7 +89,7 @@ static int GetBSDProcessForIdentifier(struct kinfo_proc* kinfo, pid_t pid) {
                 processDictionary[kProcessUsernameKey] = userName;
             }
         }
-        
+
         identifierToProcessInfo[processIdentifier] = processDictionary;
     }
     return identifierToProcessInfo;

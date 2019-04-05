@@ -9,9 +9,9 @@
 #import "SUPProcessDictionary.h"
 #import "Constants.h"
 
-#include <pwd.h>
 #include <assert.h>
 #include <errno.h>
+#include <pwd.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,13 +36,13 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     // Declaring name as const requires us to cast it when passing it to
     // sysctl because the prototype doesn't include the const modifier.
     size_t length;
-    
+
     assert(procList != NULL);
     assert(*procList == NULL);
     assert(procCount != NULL);
-    
+
     *procCount = 0;
-    
+
     // We start by calling sysctl with result == NULL and length == 0.
     // That will succeed, and set length to the appropriate length.
     // We then allocate a buffer of that size and call sysctl again
@@ -52,33 +52,33 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     // is necessary because the ENOMEM failure case sets length to
     // the amount of data returned, not the amount of data that
     // could have been returned.
-    
+
     result = NULL;
     done = false;
     do {
         assert(result == NULL);
-        
+
         // Call sysctl with a NULL buffer.
-        
+
         length = 0;
         err = sysctl((int *)name, (sizeof(name) / sizeof(*name)) - 1, NULL, &length, NULL, 0);
         if (err == -1) {
             err = errno;
         }
-        
+
         // Allocate an appropriately sized buffer based on the results
         // from the previous call.
-        
+
         if (err == 0) {
             result = malloc(length);
             if (result == NULL) {
                 err = ENOMEM;
             }
         }
-        
+
         // Call sysctl again with the new buffer.  If we get an ENOMEM
         // error, toss away our buffer and start again.
-        
+
         if (err == 0) {
             err = sysctl((int *)name, (sizeof(name) / sizeof(*name)) - 1, result, &length, NULL, 0);
             if (err == -1) {
@@ -94,9 +94,9 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
             }
         }
     } while (err == 0 && !done);
-    
+
     // Clean up and establish post conditions.
-    
+
     if (err != 0 && result != NULL) {
         free(result);
         result = NULL;
@@ -105,9 +105,9 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     if (err == 0) {
         *procCount = length / sizeof(kinfo_proc);
     }
-    
+
     assert((err == 0) == (*procList != NULL));
-    
+
     return err;
 }
 
@@ -115,13 +115,13 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     kinfo_proc *list = NULL;
     size_t count = 0;
     GetBSDProcessList(&list, &count);
-    
+
     NSMutableDictionary *identifierToProcessInfo = [NSMutableDictionary dictionaryWithCapacity:(int)count];
-    
+
     for (int i = 0; i < count; i++) {
         struct kinfo_proc *proc = &list[i];
         NSMutableDictionary *processDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
-        
+
         NSNumber *processIdentifierNumber = [NSNumber numberWithInt:proc->kp_proc.p_pid];
         // TODO: This manual iteration of every process is inefficient, ideally
         // this would be modified to instead have `GetBSDProcessList` take a
@@ -130,7 +130,7 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
         if (![identifiersSet containsObject:processIdentifierNumber]) {
             continue;
         }
-        
+
         NSString *processIdentifier = processIdentifierNumber.stringValue;
         if (processIdentifier) {
             processDictionary[kProcessIdentifierKey] = processIdentifier;
@@ -139,13 +139,13 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
         if (processName) {
             processDictionary[kProcessNameKey] = processName;
         }
-        
+
         NSTimeInterval timeInterval = proc->kp_proc.p_starttime.tv_sec + proc->kp_proc.p_starttime.tv_usec / 1.e6;
         NSDate *startTime = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         if (startTime) {
             processDictionary[kProcessStartTimeKey] = startTime;
         }
-        
+
         struct passwd *user = getpwuid(proc->kp_eproc.e_ucred.cr_uid);
         if (user) {
             // TODO: Fix this inefficient convert from `NSNumber` to `NSString`.
@@ -159,11 +159,11 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
                 processDictionary[kProcessUsernameKey] = userName;
             }
         }
-        
+
         identifierToProcessInfo[processIdentifier] = processDictionary;
     }
     free(list);
-    
+
     return identifierToProcessInfo;
 }
 
