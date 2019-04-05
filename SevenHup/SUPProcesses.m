@@ -18,8 +18,8 @@ typedef struct kinfo_proc kinfo_proc;
 #pragma mark - C
 
 static int GetBSDProcessForIdentifier(struct kinfo_proc* kinfo, pid_t pid) {
-//    size_t miblen = 4, len;
-    size_t miblen = 4, len;
+    u_int miblen = 4;
+    size_t len;
     int mib[miblen];
     int res;
     
