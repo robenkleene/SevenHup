@@ -162,7 +162,9 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
         
         NSNumber *processIdentifierNumber = [NSNumber numberWithInt:kinfo.kp_proc.p_pid];
         if (processIdentifierNumber != identifier) {
-            // It appears that in some cases a process that doesn't match is returned. This might only be in the case where a `pid` no longer exists?
+            // It appears that in some cases a process that doesn't match is
+            // returned. This might only be in the case where a `pid` no longer
+            // exists?
             continue;
         }
         
