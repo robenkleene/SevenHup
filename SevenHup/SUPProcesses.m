@@ -158,9 +158,15 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
             continue;
         }
         
-        NSMutableDictionary *processDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
+        NSMutableDictionary *processDictionary = [NSMutableDictionary dictionary];
         
         NSNumber *processIdentifierNumber = [NSNumber numberWithInt:kinfo.kp_proc.p_pid];
+        if (processIdentifierNumber != identifier) {
+            // It appears that in some cases a process that doesn't match is returned. This might only be in the case where a `pid` no longer exists?
+            continue;
+        }
+        
+        assert(identifier == processIdentifierNumber);
         NSString *processIdentifier = processIdentifierNumber.stringValue;
         if (processIdentifier) {
             processDictionary[kProcessIdentifierKey] = processIdentifier;
