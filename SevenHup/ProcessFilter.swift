@@ -61,8 +61,9 @@ class ProcessFilter {
     }
 
     class func alternativeRunningProcesses(withIdentifiers identifiers: [pid_t],
-                                           completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
-                                                                          _ error: NSError?) -> Void)) {
+                                           completionHandler:
+                                           @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
+                                                       _ error: NSError?) -> Void)) {
         ProcessStatusFilter.runningProcesses(withIdentifiers: identifiers, completionHandler: completionHandler)
     }
 }

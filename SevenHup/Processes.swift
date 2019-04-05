@@ -26,8 +26,9 @@ class Processes {
     // MARK: Private
 
     private class func processInfos(for identifiers: [pid_t]) -> [Any] {
-//        let identifiersSet = Set(identifiers)
-//        let identifierToProcesses = SUPProcesses.identifierToProcesses(forIdentifiers: identifiersSet as Set<NSNumber>)
+        // let identifiersSet = Set(identifiers)
+        // let identifierToProcesses = SUPProcesses.identifierToProcesses(forIdentifiers:
+        //                                                                identifiersSet as Set<NSNumber>)
         let identifierToProcesses = SUPProcesses.identifierToProcesses(forIdentifiers: identifiers as [NSNumber])
 
         return Array(identifierToProcesses.values)

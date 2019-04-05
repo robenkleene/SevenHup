@@ -51,7 +51,8 @@ class ProcessesTests: XCTestCase {
         }
 
         let alternativeProcessFilterExpectation = expectation(description: "Filter processes")
-        ProcessFilter.alternativeRunningProcesses(withIdentifiers: taskIdentifiers) { (identifierToProcessData, error) -> Void in
+        ProcessFilter.alternativeRunningProcesses(withIdentifiers:
+            taskIdentifiers) { (identifierToProcessData, error) -> Void in
             guard let identifierToProcessData = identifierToProcessData else {
                 XCTAssertTrue(false)
                 return
@@ -67,7 +68,9 @@ class ProcessesTests: XCTestCase {
         waitForExpectations(timeout: testTimeout, handler: nil)
 
         let runningProcessIdentifiers = runningIdentifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
-        let alternativeProcessIdentifiers = alternativeIdentifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
+        let alternativeProcessIdentifiers = alternativeIdentifierToProcessData.values.map({
+            $0.identifier
+        }).sorted { $0 < $1 }
         XCTAssertEqual(alternativeProcessIdentifiers, taskIdentifiers)
         XCTAssertEqual(runningProcessIdentifiers, taskIdentifiers)
 
