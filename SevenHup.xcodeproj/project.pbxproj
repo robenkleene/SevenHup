@@ -30,6 +30,8 @@
 		452A33E51FDE188A002F28A6 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		452A33E71FDE198F002F28A6 /* XCTestCase+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */; };
 		452A33E91FDE1B87002F28A6 /* SodaStream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		456C84912257CE3B00454B2A /* SUPProcessDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 456C848F2257CE3B00454B2A /* SUPProcessDictionary.h */; };
+		456C84922257CE3B00454B2A /* SUPProcessDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 456C84902257CE3B00454B2A /* SUPProcessDictionary.m */; };
 		45A1D1962225577E005A7157 /* SUPProcessMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A1D1942225577E005A7157 /* SUPProcessMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45A1D1972225577E005A7157 /* SUPProcessMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A1D1952225577E005A7157 /* SUPProcessMonitor.m */; };
 		45B68F1E1FDE0A72000C3EA5 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
@@ -86,6 +88,8 @@
 		452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+BundleResources.swift"; sourceTree = "<group>"; };
 		452A33E31FDE15D4002F28A6 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Tasks.swift"; sourceTree = "<group>"; };
+		456C848F2257CE3B00454B2A /* SUPProcessDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SUPProcessDictionary.h; sourceTree = "<group>"; };
+		456C84902257CE3B00454B2A /* SUPProcessDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUPProcessDictionary.m; sourceTree = "<group>"; };
 		45A1D1942225577E005A7157 /* SUPProcessMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPProcessMonitor.h; sourceTree = "<group>"; };
 		45A1D1952225577E005A7157 /* SUPProcessMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUPProcessMonitor.m; sourceTree = "<group>"; };
 		45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SodaStream.framework; path = Carthage/Build/Mac/SodaStream.framework; sourceTree = "<group>"; };
@@ -150,8 +154,10 @@
 				4514BC741FDDB04500A1EC32 /* Info.plist */,
 				45EA5C9E1FDDB79100303D1F /* Constants.swift */,
 				45F1502A2255611B004D9308 /* Processes.swift */,
-				4514E01522529B10001A778A /* SUPProcesses.m */,
 				4514E01722529DCA001A778A /* SUPProcesses.h */,
+				4514E01522529B10001A778A /* SUPProcesses.m */,
+				456C848F2257CE3B00454B2A /* SUPProcessDictionary.h */,
+				456C84902257CE3B00454B2A /* SUPProcessDictionary.m */,
 				4514E01E2252A650001A778A /* ProcessFilter.swift */,
 				4514E0202252AAE6001A778A /* Constants.h */,
 				45F15024225547B4004D9308 /* ProcessStatusFilter.swift */,
@@ -203,6 +209,7 @@
 				4514BC9B1FDDB14700A1EC32 /* SUPProcessKiller.h in Headers */,
 				4514BC811FDDB04500A1EC32 /* SevenHup.h in Headers */,
 				45A1D1962225577E005A7157 /* SUPProcessMonitor.h in Headers */,
+				456C84912257CE3B00454B2A /* SUPProcessDictionary.h in Headers */,
 				4514E0222252AC81001A778A /* Constants.h in Headers */,
 				4514E0232252C043001A778A /* SUPProcesses.h in Headers */,
 			);
@@ -316,6 +323,7 @@
 				45F15025225547B4004D9308 /* ProcessStatusFilter.swift in Sources */,
 				4514E01F2252A650001A778A /* ProcessFilter.swift in Sources */,
 				4514E01622529B10001A778A /* SUPProcesses.m in Sources */,
+				456C84922257CE3B00454B2A /* SUPProcessDictionary.m in Sources */,
 				4514BC961FDDB14700A1EC32 /* SUPProcessKiller.m in Sources */,
 				45F1502B2255611B004D9308 /* Processes.swift in Sources */,
 				4514BC981FDDB14700A1EC32 /* ProcessKiller.swift in Sources */,

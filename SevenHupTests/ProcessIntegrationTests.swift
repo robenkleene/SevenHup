@@ -235,13 +235,11 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         }
 
         // Confirm the process has been removed from the `ProcessManager`
-
         let processDatasTwo = processManager.processDatas()
         XCTAssertEqual(processDatasTwo.count, 0)
         XCTAssertNil(processManager.processData(forIdentifier: task.processIdentifier))
 
         // Confirm that the `ProcessFilter` no longer has the process
-
         let filterExpectationFour = expectation(description: "Process filter")
         ProcessFilter.runningProcessMap(matching: [processData]) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
