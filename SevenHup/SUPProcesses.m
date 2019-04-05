@@ -17,25 +17,39 @@ typedef struct kinfo_proc kinfo_proc;
 
 #pragma mark - C
 
-static int GetBSDProcessForIdentifier(pid_t pid, struct kinfo_proc *kinfo)
-{
-    int err;
-    int mib[4];
-    size_t len;
+static int GetBSDProcessForIdentifier(struct kinfo_proc* kinfo, pid_t pid) {
+//    size_t miblen = 4, len;
+    size_t miblen = 4, len;
+    int mib[miblen];
+    int res;
     
-    len = 4;
-    sysctlnametomib("kern.proc.pid", mib, &len);
-    
+    mib[0] = CTL_KERN;
+    mib[1] = KERN_PROC;
+    mib[2] = KERN_PROC_PID;
     mib[3] = pid;
     len = sizeof(struct kinfo_proc);
-    err = sysctl(mib, 4, kinfo, &len, NULL, 0);
-
-    if (err == -1) {
-        err = errno;
-    }
-
-    return err;
+    res = sysctl(mib, miblen, kinfo, &len, NULL, 0);
+    return res;
 }
+
+//static int GetBSDProcessForIdentifier(pid_t pid, struct kinfo_proc *kinfo)
+//{
+//    int err;
+//    int mib[4];
+//    size_t len;
+//
+//    len = 4;
+//    sysctlnametomib("kern.proc.pid", mib, &len);
+//
+//    mib[3] = pid;
+//    len = sizeof(struct kinfo_proc);
+//    err = sysctl(mib, 4, kinfo, &len, NULL, 0);
+//    if (err == -1) {
+//        err = errno;
+//    }
+//
+//    return err;
+//}
 
 static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
 // Returns a list of all BSD processes on the system.  This routine
@@ -137,30 +151,36 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     NSMutableDictionary *identifierToProcessInfo = [NSMutableDictionary dictionary];
     for (NSNumber *identifier in identifiers) {
         pid_t pid = identifier.intValue;
-        struct kinfo_proc *proc = NULL;
-        GetBSDProcessForIdentifier(pid, proc);
+        struct kinfo_proc kinfo;
+//        struct kinfo_proc proc;
+//        GetBSDProcessForIdentifier(pid, &proc);
+//        struct kinfo_proc *proc = NULL;
+//        GetBSDProcessForIdentifier(proc, pid);
+        GetBSDProcessForIdentifier(&kinfo, pid);
+//        kinfo_for_pid(&kinfo, pid)
+        
         NSMutableDictionary *processDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
         
-        NSNumber *processIdentifierNumber = [NSNumber numberWithInt:proc->kp_proc.p_pid];
+        NSNumber *processIdentifierNumber = [NSNumber numberWithInt:kinfo.kp_proc.p_pid];
         NSString *processIdentifier = processIdentifierNumber.stringValue;
         if (processIdentifier) {
             processDictionary[kProcessIdentifierKey] = processIdentifier;
         }
-        NSString *processName = [NSString stringWithFormat:@"%s", proc->kp_proc.p_comm];
+        NSString *processName = [NSString stringWithFormat:@"%s", kinfo.kp_proc.p_comm];
         if (processName) {
             processDictionary[kProcessNameKey] = processName;
         }
         
-        NSTimeInterval timeInterval = proc->kp_proc.p_starttime.tv_sec + proc->kp_proc.p_starttime.tv_usec / 1.e6;
+        NSTimeInterval timeInterval = kinfo.kp_proc.p_starttime.tv_sec + kinfo.kp_proc.p_starttime.tv_usec / 1.e6;
         NSDate *startTime = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         if (startTime) {
             processDictionary[kProcessStartTimeKey] = startTime;
         }
         
-        struct passwd *user = getpwuid(proc->kp_eproc.e_ucred.cr_uid);
+        struct passwd *user = getpwuid(kinfo.kp_eproc.e_ucred.cr_uid);
         if (user) {
             // TODO: Fix this inefficient convert from `NSNumber` to `NSString`.
-            NSNumber *userIdentifierNumber = [NSNumber numberWithUnsignedInt:proc->kp_eproc.e_ucred.cr_uid];
+            NSNumber *userIdentifierNumber = [NSNumber numberWithUnsignedInt:kinfo.kp_eproc.e_ucred.cr_uid];
             NSString *userIdentifier = userIdentifierNumber.stringValue;
             if (userIdentifier) {
                 processDictionary[kProcessUserIdentifierKey] = userIdentifier;
