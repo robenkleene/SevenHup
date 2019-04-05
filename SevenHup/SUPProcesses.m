@@ -152,12 +152,11 @@ static int GetBSDProcessList(kinfo_proc **procList, size_t *procCount)
     for (NSNumber *identifier in identifiers) {
         pid_t pid = identifier.intValue;
         struct kinfo_proc kinfo;
-//        struct kinfo_proc proc;
-//        GetBSDProcessForIdentifier(pid, &proc);
-//        struct kinfo_proc *proc = NULL;
-//        GetBSDProcessForIdentifier(proc, pid);
-        GetBSDProcessForIdentifier(&kinfo, pid);
-//        kinfo_for_pid(&kinfo, pid)
+        int err;
+        err = GetBSDProcessForIdentifier(&kinfo, pid);
+        if (err != 0) {
+            continue;
+        }
         
         NSMutableDictionary *processDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
         
