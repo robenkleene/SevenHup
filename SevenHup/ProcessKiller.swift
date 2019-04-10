@@ -12,7 +12,7 @@ import Foundation
 
 class ProcessKiller {
     class func kill(_ processDatas: [ProcessData],
-                    timeoutInterval: TimeInterval,
+                    timeoutInterval _: TimeInterval,
                     completion: ((Bool) -> Void)?) {
         // `SUPProcessMonitor` doesn't work if not called on the main thread
         assert(Thread.isMainThread)
@@ -53,7 +53,7 @@ class ProcessKiller {
             guard
                 processMonitorsSet.count > 0,
                 completionCopy != nil else {
-                    return
+                return
             }
             didTimeout = true
             result = false
@@ -62,7 +62,7 @@ class ProcessKiller {
             completionCopy = nil
         }
     }
-    
+
     class func kill(_ processDatas: [ProcessData],
                     completion: ((Bool) -> Void)?) {
         kill(processDatas, timeoutInterval: timeoutTimeInterval, completion: completion)
