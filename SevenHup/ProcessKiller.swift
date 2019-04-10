@@ -12,14 +12,17 @@ import Foundation
 
 class ProcessKiller {
     class func kill(_ processDatas: [ProcessData],
+                    timeoutInterval: TimeInterval,
                     completion: ((Bool) -> Void)?) {
         // `SUPProcessMonitor` doesn't work if not called on the main thread
         assert(Thread.isMainThread)
         var result = true
         var processMonitorsSet = Set<SUPProcessMonitor>()
         var didTimeout = false
+        var completionCopy = completion
         guard !processDatas.isEmpty else {
-            completion?(result)
+            completionCopy?(result)
+            completionCopy = nil
             return
         }
         for processData in processDatas {
@@ -34,7 +37,11 @@ class ProcessKiller {
                 }
                 processMonitorsSet.remove(processMonitor)
                 if processMonitorsSet.count == 0 {
-                    completion?(result)
+                    if !didTimeout {
+                        completionCopy?(result)
+                        completionCopy = nil
+                        return
+                    }
                 }
             }
             let didKill = killProcessData(processData)
@@ -43,11 +50,22 @@ class ProcessKiller {
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + timeoutTimeInterval) {
+            guard
+                processMonitorsSet.count > 0,
+                completionCopy != nil else {
+                    return
+            }
             didTimeout = true
             result = false
             processMonitorsSet.removeAll()
-            completion?(result)
+            completionCopy?(result)
+            completionCopy = nil
         }
+    }
+    
+    class func kill(_ processDatas: [ProcessData],
+                    completion: ((Bool) -> Void)?) {
+        kill(processDatas, timeoutInterval: timeoutTimeInterval, completion: completion)
     }
 
     // MARK: Private
