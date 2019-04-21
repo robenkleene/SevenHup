@@ -22,6 +22,7 @@ class ProcessFilterTests: XCTestCase {
             let task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                              withArguments: nil,
                                              inDirectoryPath: nil,
+                                             withEnvironment: nil,
                                              delegate: nil) { (success) -> Void in
                 XCTAssertTrue(success)
                 runExpectation.fulfill()
@@ -41,7 +42,7 @@ class ProcessFilterTests: XCTestCase {
 
             XCTAssertEqual(identifierToProcessData.count, 3)
 
-            let processIdentifiers = identifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
+            let processIdentifiers = identifierToProcessData.values.map { $0.identifier }.sorted { $0 < $1 }
             XCTAssertEqual(processIdentifiers, taskIdentifiers)
             processFilterExpectation.fulfill()
         }
@@ -69,6 +70,7 @@ class ProcessFilterTests: XCTestCase {
         let task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                          withArguments: nil,
                                          inDirectoryPath: nil,
+                                         withEnvironment: nil,
                                          delegate: nil) { (success) -> Void in
             XCTAssertTrue(success)
             runExpectation.fulfill()

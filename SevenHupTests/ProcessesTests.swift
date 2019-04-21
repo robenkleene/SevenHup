@@ -23,6 +23,7 @@ class ProcessesTests: XCTestCase {
             let task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                              withArguments: nil,
                                              inDirectoryPath: nil,
+                                             withEnvironment: nil,
                                              delegate: nil) { (success) -> Void in
                 XCTAssertTrue(success)
                 runExpectation.fulfill()
@@ -67,10 +68,10 @@ class ProcessesTests: XCTestCase {
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
 
-        let runningProcessIdentifiers = runningIdentifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
-        let alternativeProcessIdentifiers = alternativeIdentifierToProcessData.values.map({
+        let runningProcessIdentifiers = runningIdentifierToProcessData.values.map { $0.identifier }.sorted { $0 < $1 }
+        let alternativeProcessIdentifiers = alternativeIdentifierToProcessData.values.map {
             $0.identifier
-        }).sorted { $0 < $1 }
+        }.sorted { $0 < $1 }
         XCTAssertEqual(alternativeProcessIdentifiers, taskIdentifiers)
         XCTAssertEqual(runningProcessIdentifiers, taskIdentifiers)
 

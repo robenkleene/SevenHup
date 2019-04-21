@@ -19,7 +19,7 @@ class ProcessStatusFilter {
         }
 
         let commandPath = "/bin/ps"
-        let identifiersParameter = identifiers.map({ String($0) }).joined(separator: ",")
+        let identifiersParameter = identifiers.map { String($0) }.joined(separator: ",")
         let arguments = ["-o pid=,lstart=,args=,uid=,user=", "-p \(identifiersParameter)"]
 
         // o: Change format
@@ -28,8 +28,9 @@ class ProcessStatusFilter {
         // args: Command & Arguments
         // = Means don't display header for this column
         _ = SDATaskRunner.runTaskUntilFinished(withCommandPath: commandPath,
-                                               withArguments: arguments as [NSString],
-                                               inDirectoryPath: nil) { (standardOutput, _, error) -> Void in
+                                               withArguments: arguments,
+                                               inDirectoryPath: nil,
+                                               withEnvironment: nil) { (standardOutput, _, error) -> Void in
 
             if let error = error {
                 if error.code == NSError.TaskTerminatedErrorCode.nonzeroExitStatus.rawValue {

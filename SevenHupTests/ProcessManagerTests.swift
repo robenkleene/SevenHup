@@ -64,6 +64,7 @@ class ProcessManagerTestCase: XCTestCase {
             task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                          withArguments: nil,
                                          inDirectoryPath: nil,
+                                         withEnvironment: nil,
                                          delegate: nil) { (success) -> Void in
                 XCTAssertTrue(success)
                 XCTAssertNotNil(task)
@@ -175,8 +176,8 @@ class ProcessManagerTests: ProcessManagerTestCase {
         let tasks = makeRunningTasks()
         let processDatas = processManager.processDatas()
         XCTAssertTrue(processDatas.count > 0)
-        let processDataIdentifiers = processDatas.map({ $0.identifier })
-        let taskIdentifiers = tasks.map({ $0.processIdentifier })
+        let processDataIdentifiers = processDatas.map { $0.identifier }
+        let taskIdentifiers = tasks.map { $0.processIdentifier }
         XCTAssertEqual(Set(processDataIdentifiers), Set(taskIdentifiers))
 
         for task in tasks {
@@ -190,8 +191,8 @@ class ProcessManagerTests: ProcessManagerTestCase {
                 XCTAssertTrue(task.isRunning)
                 let processDatas = self.processManager.processDatas()
                 XCTAssertTrue(processDatas.count > 0)
-                let processDataIdentifiers = processDatas.map({ $0.identifier })
-                let taskIdentifiers = tasks.map({ $0.processIdentifier })
+                let processDataIdentifiers = processDatas.map { $0.identifier }
+                let taskIdentifiers = tasks.map { $0.processIdentifier }
                 XCTAssertEqual(Set(processDataIdentifiers), Set(taskIdentifiers))
             }
             runningProcessesExpectation.fulfill()
