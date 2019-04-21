@@ -41,6 +41,7 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
             let task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                              withArguments: nil,
                                              inDirectoryPath: nil,
+                                             withEnvironment: nil,
                                              delegate: processManagerRouter) { (success) -> Void in
                 XCTAssertTrue(success)
                 runExpectation.fulfill()
@@ -125,6 +126,7 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         let task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                          withArguments: nil,
                                          inDirectoryPath: nil,
+                                         withEnvironment: nil,
                                          delegate: processManagerRouter) { (success) -> Void in
             XCTAssertTrue(success)
             runExpectation.fulfill()

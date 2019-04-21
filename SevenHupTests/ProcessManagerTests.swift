@@ -64,6 +64,7 @@ class ProcessManagerTestCase: XCTestCase {
             task = SDATaskRunner.runTask(withCommandPath: commandPath,
                                          withArguments: nil,
                                          inDirectoryPath: nil,
+                                         withEnvironment: nil,
                                          delegate: nil) { (success) -> Void in
                 XCTAssertTrue(success)
                 XCTAssertNotNil(task)
