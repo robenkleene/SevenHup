@@ -52,7 +52,7 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
 
         // Confirm the `ProcessManager` has the processes
 
-        let taskIdentifiers = tasks.map({ $0.processIdentifier })
+        let taskIdentifiers = tasks.map { $0.processIdentifier }
         let processDatas = processManager.processDatas()
         XCTAssertEqual(processDatas.count, processesToMake)
 
@@ -76,7 +76,7 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
 
             XCTAssertEqual(identifierToProcessData.count, processesToMake)
 
-            let processIdentifiers = identifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
+            let processIdentifiers = identifierToProcessData.values.map { $0.identifier }.sorted { $0 < $1 }
             XCTAssertEqual(processIdentifiers, taskIdentifiers)
             processFilterExpectation.fulfill()
         }

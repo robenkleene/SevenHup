@@ -42,7 +42,7 @@ class ProcessFilterTests: XCTestCase {
 
             XCTAssertEqual(identifierToProcessData.count, 3)
 
-            let processIdentifiers = identifierToProcessData.values.map({ $0.identifier }).sorted { $0 < $1 }
+            let processIdentifiers = identifierToProcessData.values.map { $0.identifier }.sorted { $0 < $1 }
             XCTAssertEqual(processIdentifiers, taskIdentifiers)
             processFilterExpectation.fulfill()
         }

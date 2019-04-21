@@ -19,7 +19,7 @@ class ProcessStatusFilter {
         }
 
         let commandPath = "/bin/ps"
-        let identifiersParameter = identifiers.map({ String($0) }).joined(separator: ",")
+        let identifiersParameter = identifiers.map { String($0) }.joined(separator: ",")
         let arguments = ["-o pid=,lstart=,args=,uid=,user=", "-p \(identifiersParameter)"]
 
         // o: Change format
