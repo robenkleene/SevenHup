@@ -26,9 +26,10 @@ class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
     }
 
     func task(_ task: Process,
-              didRunCommandPath commandPath: String,
+              didRunCommandPath _: String,
               arguments _: [String]?,
-              directoryPath _: String?) {
+              directoryPath _: String?,
+              withEnvironment _: [String: String]?) {
         // Can alsu use `UserName()` to just get the username
         let userInfo = type(of: self).getUserInfo()
         let userIdentifier = userInfo.userIdentifier
