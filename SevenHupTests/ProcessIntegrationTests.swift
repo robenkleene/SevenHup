@@ -53,7 +53,7 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         // Confirm the `ProcessManager` has the processes
 
         let taskIdentifiers = tasks.map { $0.processIdentifier }
-        let processDatas = processManager.processDatas()
+        let processDatas = processManager.getProcessDatas()
         XCTAssertEqual(processDatas.count, processesToMake)
 
         for task in tasks {
@@ -98,7 +98,7 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
 
         // Confirm the processes have been removed from the `ProcessManager`
 
-        let processDatasTwo = processManager.processDatas()
+        let processDatasTwo = processManager.getProcessDatas()
         XCTAssertEqual(processDatasTwo.count, 0)
 
         // Confirm that the `ProcessFilter` no longer has the process
@@ -135,7 +135,7 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
 
         // Test that the `ProcessManager` has the process
 
-        let processDatas = processManager.processDatas()
+        let processDatas = processManager.getProcessDatas()
         XCTAssertEqual(processDatas.count, 1)
         let processData = processDatas[0]
         let processDataByIdentifier = processManager.processData(forIdentifier: task.processIdentifier)
@@ -232,12 +232,12 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         wait(forTerminationOf: [task])
         // Seems the callback to remove the process data doesn't always fire in time either
         let loopUntil = NSDate(timeIntervalSinceNow: testTimeoutInterval)
-        while processManager.processDatas().count != 0, loopUntil.timeIntervalSinceNow > 0 {
+        while processManager.getProcessDatas().count != 0, loopUntil.timeIntervalSinceNow > 0 {
             RunLoop.current.run(mode: RunLoop.Mode.default, before: loopUntil as Date)
         }
 
         // Confirm the process has been removed from the `ProcessManager`
-        let processDatasTwo = processManager.processDatas()
+        let processDatasTwo = processManager.getProcessDatas()
         XCTAssertEqual(processDatasTwo.count, 0)
         XCTAssertNil(processManager.processData(forIdentifier: task.processIdentifier))
 

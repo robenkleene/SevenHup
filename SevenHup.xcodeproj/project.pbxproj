@@ -30,6 +30,7 @@
 		452A33E51FDE188A002F28A6 /* SodaStream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; };
 		452A33E71FDE198F002F28A6 /* XCTestCase+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */; };
 		452A33E91FDE1B87002F28A6 /* SodaStream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 45B68F1D1FDE0A72000C3EA5 /* SodaStream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		455BC8D022FA48D800F67EC4 /* ProcessManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455BC8CF22FA48D800F67EC4 /* ProcessManagerTestCase.swift */; };
 		456C84912257CE3B00454B2A /* SUPProcessDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 456C848F2257CE3B00454B2A /* SUPProcessDictionary.h */; };
 		456C84922257CE3B00454B2A /* SUPProcessDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 456C84902257CE3B00454B2A /* SUPProcessDictionary.m */; };
 		45A1D1962225577E005A7157 /* SUPProcessMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A1D1942225577E005A7157 /* SUPProcessMonitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -88,6 +89,7 @@
 		452A33E11FDE1578002F28A6 /* XCTestCase+BundleResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+BundleResources.swift"; sourceTree = "<group>"; };
 		452A33E31FDE15D4002F28A6 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		452A33E61FDE198F002F28A6 /* XCTestCase+Tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Tasks.swift"; sourceTree = "<group>"; };
+		455BC8CF22FA48D800F67EC4 /* ProcessManagerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProcessManagerTestCase.swift; path = Data/ProcessManagerTestCase.swift; sourceTree = "<group>"; };
 		456C848F2257CE3B00454B2A /* SUPProcessDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SUPProcessDictionary.h; sourceTree = "<group>"; };
 		456C84902257CE3B00454B2A /* SUPProcessDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SUPProcessDictionary.m; sourceTree = "<group>"; };
 		45A1D1942225577E005A7157 /* SUPProcessMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUPProcessMonitor.h; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				4514E01B2252A170001A778A /* Helper */,
 				452A33E31FDE15D4002F28A6 /* Data */,
+				455BC8CF22FA48D800F67EC4 /* ProcessManagerTestCase.swift */,
 				4514BC8B1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift */,
 				45F15026225549C0004D9308 /* ProcessStatusFilterTests.swift */,
 				4514BC8C1FDDB13D00A1EC32 /* ProcessManagerTests.swift */,
@@ -342,6 +345,7 @@
 				4514E01D2252A186001A778A /* ProcessManagerRouter.swift in Sources */,
 				452A33E21FDE1579002F28A6 /* XCTestCase+BundleResources.swift in Sources */,
 				4514BC8E1FDDB13D00A1EC32 /* ProcessIntegrationTests.swift in Sources */,
+				455BC8D022FA48D800F67EC4 /* ProcessManagerTestCase.swift in Sources */,
 				4514BC8F1FDDB13D00A1EC32 /* ProcessManagerTests.swift in Sources */,
 				4514E01A2252A13F001A778A /* ProcessesTests.swift in Sources */,
 				45F15027225549C0004D9308 /* ProcessStatusFilterTests.swift in Sources */,

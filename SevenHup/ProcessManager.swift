@@ -58,7 +58,7 @@ public class ProcessManager {
         return processData(forIdentifier: identifier, remove: false)
     }
 
-    public func processDatas() -> [ProcessData] {
+    public func getProcessDatas() -> [ProcessData] {
         objc_sync_enter(self)
         let values = identifierKeyToProcessDataValue.values
         objc_sync_exit(self)
@@ -85,7 +85,12 @@ public class ProcessManager {
         _ identifierToProcessData: [pid_t: ProcessData]?,
         _ error: NSError?
     ) -> Void)) {
-        runningProcessDatas(kill: true, completionHandler: completionHandler)
+        runningProcessDatas(kill: true) { (identifierToProcessData, error) in
+//            if let identifierToProcessData = identifierToProcessData {
+//                // First thing we should do is remove and process datas that are no longer running
+//            }
+            completionHandler(identifierToProcessData, error)
+        }
     }
 
     // MARK: Private
@@ -93,7 +98,8 @@ public class ProcessManager {
     private func runningProcessDatas(kill: Bool,
                                      completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                     _ error: NSError?) -> Void)) {
-        ProcessFilter.runningProcessMap(matching: processDatas()) { optionalIdentifierToProcessData, error in
+        let processDatas = getProcessDatas()
+        ProcessFilter.runningProcessMap(matching: processDatas) { optionalIdentifierToProcessData, error in
             guard
                 kill,
                 error == nil,
@@ -103,16 +109,16 @@ public class ProcessManager {
                 completionHandler(optionalIdentifierToProcessData, error)
                 return
             }
-            let processDatas = Array(identifierToProcessData.values)
+            let runningProcessDatas = Array(identifierToProcessData.values)
 
             DispatchQueue.main.async {
-                ProcessKiller.kill(processDatas) { success in
+                ProcessKiller.kill(runningProcessDatas) { success in
                     guard success else {
-                        let error = ProcessManagerError.failedToKillError(processDatas: processDatas)
+                        let error = ProcessManagerError.failedToKillError(processDatas: runningProcessDatas)
                         completionHandler(optionalIdentifierToProcessData, error as NSError)
                         return
                     }
-                    self.remove(processDatas: processDatas)
+                    self.remove(processDatas: runningProcessDatas)
                     completionHandler(optionalIdentifierToProcessData, error)
                 }
             }
