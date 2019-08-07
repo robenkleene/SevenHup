@@ -110,7 +110,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
         XCTAssertTrue(processManagerHasProcessDataResultTwo)
 
         // Remove the processes and make sure nil is returned
-        _ = processManager.removeProcess(forIdentifier: processData.identifier)
+        processManager.removeProcess(forIdentifier: processData.identifier)
         XCTAssertEqual(processManager.count, 0)
 
         let testProcessManagerHasNoProcessData: (_ processManager: ProcessManager) -> Bool = { processManager in

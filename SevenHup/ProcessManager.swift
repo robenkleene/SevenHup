@@ -49,6 +49,7 @@ public class ProcessManager {
         save()
     }
 
+    @discardableResult
     public func removeProcess(forIdentifier identifier: pid_t) -> ProcessData? {
         let processData = self.processData(forIdentifier: identifier, remove: true)
         return processData
@@ -87,11 +88,23 @@ public class ProcessManager {
         _ error: NSError?
     ) -> Void)) {
         let processDatas = getProcessDatas()
-        runningProcessDatas(processDatas, kill: true) { (identifierToProcessData, error) in
-            //
-//            if let identifierToProcessData = identifierToProcessData {
-//                // First thing we should do is remove and process datas that are no longer running
-//            }
+
+        runningProcessDatas(processDatas, kill: true) { [weak self] (identifierToProcessData, error) in
+            guard let strongSelf = self else {
+                return
+            }
+            let identifiers = processDatas.map { $0.identifier }
+            if let identifierToProcessData = identifierToProcessData {
+                let identifiersSet = Set(identifiers)
+                let runningIdentifiers = identifierToProcessData.keys
+                let runningIdentifiersSet = Set(runningIdentifiers)
+                let notRunningIdentifiers = identifiersSet.subtracting(runningIdentifiersSet)
+                strongSelf.remove(processIdentifiers: Array(notRunningIdentifiers))
+            } else {
+                for identifier in identifiers {
+                    strongSelf.removeProcess(forIdentifier: identifier)
+                }
+            }
             completionHandler(identifierToProcessData, error)
         }
     }
@@ -130,10 +143,16 @@ public class ProcessManager {
 
     private func remove(processDatas: [ProcessData]) {
         for processData in processDatas {
-            _ = removeProcess(forIdentifier: processData.identifier)
+            removeProcess(forIdentifier: processData.identifier)
         }
     }
 
+    private func remove(processIdentifiers: [pid_t]) {
+        for processIdentifier in processIdentifiers {
+            removeProcess(forIdentifier: processIdentifier)
+        }
+    }
+    
     private func save() {
         processManagerStore.set(identifierKeyToProcessDataValue as AnyObject?, forKey: runningProcessesKey)
     }
