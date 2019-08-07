@@ -78,14 +78,17 @@ public class ProcessManager {
 
     public func runningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                    _ error: NSError?) -> Void)) {
-        runningProcessDatas(kill: false, completionHandler: completionHandler)
+        let processDatas = getProcessDatas()
+        runningProcessDatas(processDatas, kill: false, completionHandler: completionHandler)
     }
 
     public func killAndRemoveRunningProcessDatas(completionHandler: @escaping ((
         _ identifierToProcessData: [pid_t: ProcessData]?,
         _ error: NSError?
     ) -> Void)) {
-        runningProcessDatas(kill: true) { (identifierToProcessData, error) in
+        let processDatas = getProcessDatas()
+        runningProcessDatas(processDatas, kill: true) { (identifierToProcessData, error) in
+            //
 //            if let identifierToProcessData = identifierToProcessData {
 //                // First thing we should do is remove and process datas that are no longer running
 //            }
@@ -95,10 +98,10 @@ public class ProcessManager {
 
     // MARK: Private
 
-    private func runningProcessDatas(kill: Bool,
+    private func runningProcessDatas(_ processDatas: [ProcessData],
+                                     kill: Bool,
                                      completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                     _ error: NSError?) -> Void)) {
-        let processDatas = getProcessDatas()
         ProcessFilter.runningProcessMap(matching: processDatas) { optionalIdentifierToProcessData, error in
             guard
                 kill,
