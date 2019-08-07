@@ -12,20 +12,7 @@ import XCTest
 
 class ProcessManagerTests: ProcessManagerTestCase {
     func testRemoveAll() {
-        let userInfo = ProcessManagerRouter.getUserInfo()
-        let userIdentifier = userInfo.userIdentifier
-        guard let username = userInfo.username else {
-            XCTFail()
-            return
-        }
-        for i: pid_t in pid_t.max - 10 ..< pid_t.max {
-            let processData = ProcessData(identifier: i,
-                                          name: "test",
-                                          userIdentifier: userIdentifier,
-                                          username: username,
-                                          startTime: Date())!
-            processManager.add(processData)
-        }
+        makeNotRunning()
         XCTAssertEqual(processManager.count, 10)
         let processManagerTwo = ProcessManager(processManagerStore: processManagerStore)
         XCTAssertEqual(processManagerTwo.count, 10)
@@ -36,20 +23,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
     }
     
     func testRemoveNotRunning() {
-        let userInfo = ProcessManagerRouter.getUserInfo()
-        let userIdentifier = userInfo.userIdentifier
-        guard let username = userInfo.username else {
-            XCTFail()
-            return
-        }
-        for i: pid_t in pid_t.max - 10 ..< pid_t.max {
-            let processData = ProcessData(identifier: i,
-                                          name: "test not running",
-                                          userIdentifier: userIdentifier,
-                                          username: username,
-                                          startTime: Date())!
-            processManager.add(processData)
-        }
+        makeNotRunning()
         XCTAssertEqual(processManager.count, 10)
         let processManagerTwo = ProcessManager(processManagerStore: processManagerStore)
         XCTAssertEqual(processManagerTwo.count, 10)
@@ -187,4 +161,25 @@ class ProcessManagerTests: ProcessManagerTestCase {
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
     }
+
+    func testRunningProcessDatasAndNotRunning() {
+        let tasks = makeRunningTasks()
+        makeNotRunning()
+
+        let killProcessesExpectation = expectation(description: "Kill processes")
+        var completionCount = 0
+        processManager.killAndRemoveRunningProcessDatas { _, error in
+            XCTAssertEqual(completionCount, 0)
+            completionCount += 1
+            XCTAssertNil(error)
+            for task in tasks {
+                XCTAssertFalse(task.isRunning)
+                let processDatas = self.processManager.getProcessDatas()
+                XCTAssertTrue(processDatas.count == 0)
+            }
+            killProcessesExpectation.fulfill()
+        }
+        waitForExpectations(timeout: testTimeout, handler: nil)
+    }
+
 }

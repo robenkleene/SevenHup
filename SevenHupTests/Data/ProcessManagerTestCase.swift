@@ -49,6 +49,23 @@ class ProcessManagerTestCase: XCTestCase {
     }
     
     // MARK: Helper
+
+    func makeNotRunning() {
+        let userInfo = ProcessManagerRouter.getUserInfo()
+        let userIdentifier = userInfo.userIdentifier
+        guard let username = userInfo.username else {
+            XCTFail()
+            return
+        }
+        for i: pid_t in pid_t.max - 10 ..< pid_t.max {
+            let processData = ProcessData(identifier: i,
+                                          name: "test",
+                                          userIdentifier: userIdentifier,
+                                          username: username,
+                                          startTime: Date())!
+            processManager.add(processData)
+        }
+    }
     
     func makeRunningTasks() -> [Process] {
         var tasks = [Process]()
