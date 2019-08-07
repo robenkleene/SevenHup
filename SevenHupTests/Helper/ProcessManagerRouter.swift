@@ -22,7 +22,7 @@ class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
     // MARK: SDATaskRunnerDelegate
 
     func taskDidFinish(_ task: Process) {
-        _ = processManager.removeProcess(forIdentifier: task.processIdentifier)
+        processManager.removeProcess(forIdentifier: task.processIdentifier)
     }
 
     func task(_ task: Process,

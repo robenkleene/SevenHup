@@ -49,6 +49,7 @@ public class ProcessManager {
         save()
     }
 
+    @discardableResult
     public func removeProcess(forIdentifier identifier: pid_t) -> ProcessData? {
         let processData = self.processData(forIdentifier: identifier, remove: true)
         return processData
@@ -58,7 +59,7 @@ public class ProcessManager {
         return processData(forIdentifier: identifier, remove: false)
     }
 
-    public func processDatas() -> [ProcessData] {
+    public func getProcessDatas() -> [ProcessData] {
         objc_sync_enter(self)
         let values = identifierKeyToProcessDataValue.values
         objc_sync_exit(self)
@@ -78,22 +79,43 @@ public class ProcessManager {
 
     public func runningProcessDatas(completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                    _ error: NSError?) -> Void)) {
-        runningProcessDatas(kill: false, completionHandler: completionHandler)
+        let processDatas = getProcessDatas()
+        runningProcessDatas(processDatas, kill: false, completionHandler: completionHandler)
     }
 
     public func killAndRemoveRunningProcessDatas(completionHandler: @escaping ((
         _ identifierToProcessData: [pid_t: ProcessData]?,
         _ error: NSError?
     ) -> Void)) {
-        runningProcessDatas(kill: true, completionHandler: completionHandler)
+        let processDatas = getProcessDatas()
+
+        runningProcessDatas(processDatas, kill: true) { [weak self] identifierToProcessData, error in
+            guard let strongSelf = self else {
+                return
+            }
+            let identifiers = processDatas.map { $0.identifier }
+            if let identifierToProcessData = identifierToProcessData {
+                let identifiersSet = Set(identifiers)
+                let runningIdentifiers = identifierToProcessData.keys
+                let runningIdentifiersSet = Set(runningIdentifiers)
+                let notRunningIdentifiers = identifiersSet.subtracting(runningIdentifiersSet)
+                strongSelf.remove(processIdentifiers: Array(notRunningIdentifiers))
+            } else {
+                for identifier in identifiers {
+                    strongSelf.removeProcess(forIdentifier: identifier)
+                }
+            }
+            completionHandler(identifierToProcessData, error)
+        }
     }
 
     // MARK: Private
 
-    private func runningProcessDatas(kill: Bool,
+    private func runningProcessDatas(_ processDatas: [ProcessData],
+                                     kill: Bool,
                                      completionHandler: @escaping ((_ identifierToProcessData: [pid_t: ProcessData]?,
                                                                     _ error: NSError?) -> Void)) {
-        ProcessFilter.runningProcessMap(matching: processDatas()) { optionalIdentifierToProcessData, error in
+        ProcessFilter.runningProcessMap(matching: processDatas) { optionalIdentifierToProcessData, error in
             guard
                 kill,
                 error == nil,
@@ -103,16 +125,16 @@ public class ProcessManager {
                 completionHandler(optionalIdentifierToProcessData, error)
                 return
             }
-            let processDatas = Array(identifierToProcessData.values)
+            let runningProcessDatas = Array(identifierToProcessData.values)
 
             DispatchQueue.main.async {
-                ProcessKiller.kill(processDatas) { success in
+                ProcessKiller.kill(runningProcessDatas) { success in
                     guard success else {
-                        let error = ProcessManagerError.failedToKillError(processDatas: processDatas)
+                        let error = ProcessManagerError.failedToKillError(processDatas: runningProcessDatas)
                         completionHandler(optionalIdentifierToProcessData, error as NSError)
                         return
                     }
-                    self.remove(processDatas: processDatas)
+                    self.remove(processDatas: runningProcessDatas)
                     completionHandler(optionalIdentifierToProcessData, error)
                 }
             }
@@ -121,7 +143,13 @@ public class ProcessManager {
 
     private func remove(processDatas: [ProcessData]) {
         for processData in processDatas {
-            _ = removeProcess(forIdentifier: processData.identifier)
+            removeProcess(forIdentifier: processData.identifier)
+        }
+    }
+
+    private func remove(processIdentifiers: [pid_t]) {
+        for processIdentifier in processIdentifiers {
+            removeProcess(forIdentifier: processIdentifier)
         }
     }
 
