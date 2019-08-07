@@ -21,7 +21,7 @@ class ProcessManagerTests: ProcessManagerTestCase {
         let processManagerThree = ProcessManager(processManagerStore: processManagerStore)
         XCTAssertEqual(processManagerThree.count, 0)
     }
-    
+
     func testRemoveNotRunning() {
         makeNotRunning()
         XCTAssertEqual(processManager.count, 10)
@@ -181,5 +181,4 @@ class ProcessManagerTests: ProcessManagerTestCase {
         }
         waitForExpectations(timeout: testTimeout, handler: nil)
     }
-
 }

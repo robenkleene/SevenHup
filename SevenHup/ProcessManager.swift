@@ -89,7 +89,7 @@ public class ProcessManager {
     ) -> Void)) {
         let processDatas = getProcessDatas()
 
-        runningProcessDatas(processDatas, kill: true) { [weak self] (identifierToProcessData, error) in
+        runningProcessDatas(processDatas, kill: true) { [weak self] identifierToProcessData, error in
             guard let strongSelf = self else {
                 return
             }
@@ -152,7 +152,7 @@ public class ProcessManager {
             removeProcess(forIdentifier: processIdentifier)
         }
     }
-    
+
     private func save() {
         processManagerStore.set(identifierKeyToProcessDataValue as AnyObject?, forKey: runningProcessesKey)
     }
