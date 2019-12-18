@@ -83,10 +83,10 @@ class ProcessManagerTestCase: XCTestCase {
             let runExpectation = expectation(description: "Task ran")
             var task: Process?
             SDATaskRunner.runTask(withCommandPath: commandPath,
-                                         withArguments: nil,
-                                         inDirectoryPath: nil,
-                                         withEnvironment: nil,
-                                         delegate: nil) { success, runTask in
+                                  withArguments: nil,
+                                  inDirectoryPath: nil,
+                                  withEnvironment: nil,
+                                  delegate: nil) { success, runTask in
                 task = runTask
                 XCTAssertTrue(success)
                 XCTAssertNotNil(task)
