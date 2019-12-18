@@ -60,11 +60,11 @@ public class ProcessManager {
     }
 
     public func getProcessDatas() -> [ProcessData] {
+        var processDatas = [ProcessData]()
+
         objc_sync_enter(self)
         let values = identifierKeyToProcessDataValue.values
         objc_sync_exit(self)
-
-        var processDatas = [ProcessData]()
 
         for value in values {
             if let

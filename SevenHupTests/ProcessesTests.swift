@@ -24,7 +24,7 @@ class ProcessesTests: XCTestCase {
                                              withArguments: nil,
                                              inDirectoryPath: nil,
                                              withEnvironment: nil,
-                                             delegate: nil) { (success) -> Void in
+                                             delegate: nil) { success, _ -> Void in
                 XCTAssertTrue(success)
                 runExpectation.fulfill()
             }

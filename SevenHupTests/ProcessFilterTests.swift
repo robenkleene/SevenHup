@@ -23,7 +23,7 @@ class ProcessFilterTests: XCTestCase {
                                              withArguments: nil,
                                              inDirectoryPath: nil,
                                              withEnvironment: nil,
-                                             delegate: nil) { (success) -> Void in
+                                             delegate: nil) { success, _ in
                 XCTAssertTrue(success)
                 runExpectation.fulfill()
             }
@@ -71,7 +71,7 @@ class ProcessFilterTests: XCTestCase {
                                          withArguments: nil,
                                          inDirectoryPath: nil,
                                          withEnvironment: nil,
-                                         delegate: nil) { (success) -> Void in
+                                         delegate: nil) { success, _ in
             XCTAssertTrue(success)
             runExpectation.fulfill()
         }
