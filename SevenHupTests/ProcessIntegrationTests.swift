@@ -42,7 +42,7 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
                                              withArguments: nil,
                                              inDirectoryPath: nil,
                                              withEnvironment: nil,
-                                             delegate: processManagerRouter) { (success) -> Void in
+                                             delegate: processManagerRouter) { success, _ in
                 XCTAssertTrue(success)
                 runExpectation.fulfill()
             }
@@ -127,7 +127,7 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
                                          withArguments: nil,
                                          inDirectoryPath: nil,
                                          withEnvironment: nil,
-                                         delegate: processManagerRouter) { (success) -> Void in
+                                         delegate: processManagerRouter) { success, _ in
             XCTAssertTrue(success)
             runExpectation.fulfill()
         }
