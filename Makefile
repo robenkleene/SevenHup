@@ -1,6 +1,6 @@
 SCHEME = SevenHup
 
-.PHONY: build test lint autocorrect swiftformat swiftlint_autocorrect bootstrap clangformat
+.PHONY: build test lint autocorrect swiftformat swiftlint_autocorrect bootstrap clangformat loc
 
 ci: build
 ac: autocorrect
@@ -32,3 +32,5 @@ test:
 		-configuration Debug \
 		-scheme $(SCHEME)
 
+loc:
+	cloc --vcs=git
