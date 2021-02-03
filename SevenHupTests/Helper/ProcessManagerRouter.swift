@@ -41,7 +41,8 @@ class ProcessManagerRouter: NSObject, SDATaskRunnerDelegate {
                                           name: name,
                                           userIdentifier: userIdentifier,
                                           username: username,
-                                          startTime: Date()) else {
+                                          startTime: Date())
+        else {
             assert(false)
             return
         }

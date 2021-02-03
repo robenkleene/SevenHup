@@ -52,7 +52,8 @@ class ProcessKiller {
         DispatchQueue.main.asyncAfter(deadline: .now() + timeoutTimeInterval) {
             guard
                 processMonitorsSet.count > 0,
-                completionCopy != nil else {
+                completionCopy != nil
+            else {
                 return
             }
             didTimeout = true
