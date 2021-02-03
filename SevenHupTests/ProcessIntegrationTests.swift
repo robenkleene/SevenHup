@@ -152,7 +152,8 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
         ProcessFilter.runningProcessMap(matching: [processData]) { (identifierToProcessData, error) -> Void in
             XCTAssertNil(error)
             guard let identifierToProcessData = identifierToProcessData,
-                let runningProcessData = identifierToProcessData[processData.identifier] else {
+                  let runningProcessData = identifierToProcessData[processData.identifier]
+            else {
                 XCTAssertTrue(false)
                 return
             }
@@ -172,7 +173,8 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
                                                      name: processData.name,
                                                      userIdentifier: processData.userIdentifier,
                                                      username: processData.username,
-                                                     startTime: oneSecondInThePast) else {
+                                                     startTime: oneSecondInThePast)
+        else {
             XCTAssertTrue(false)
             return
         }
@@ -198,7 +200,8 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
                                                        name: processData.name,
                                                        userIdentifier: processData.userIdentifier,
                                                        username: processData.username,
-                                                       startTime: oneSecondInTheFuture) else {
+                                                       startTime: oneSecondInTheFuture)
+        else {
             XCTAssertTrue(false)
             return
         }
@@ -209,7 +212,8 @@ class ProcessIntegrationTests: ProcessManagerTestCase {
             XCTAssertNil(error)
             guard
                 let identifierToProcessData = identifierToProcessData,
-                let localRunningProcessData = identifierToProcessData[processData.identifier] else {
+                let localRunningProcessData = identifierToProcessData[processData.identifier]
+            else {
                 XCTAssertTrue(false)
                 return
             }

@@ -37,7 +37,8 @@ class ProcessStatusFilter {
                     let exitStatusKey = NSError.TaskTerminatedUserInfoKey.exitStatus.rawValue as String
                     if
                         let exitStatus = error.userInfo[exitStatusKey] as? NSNumber,
-                        exitStatus.int32Value == 1 {
+                        exitStatus.int32Value == 1
+                    {
                         // If the process identifier is not found, `ps` exits with an exit status of 1
                         // So reinterpret that case as no processes found
                         completionHandler([pid_t: ProcessData](), nil)
