@@ -1,6 +1,6 @@
 SCHEME = SevenHup
 
-.PHONY: build test lint autocorrect swiftformat swiftlint_autocorrect bootstrap clangformat loc
+.PHONY: build test lint autocorrect swiftformat swiftlint_autocorrect bootstrap clangformat loc archive
 
 ci: build
 ac: autocorrect
@@ -22,6 +22,10 @@ build:
 	xcodebuild build \
 		-alltargets \
 		-configuration Debug
+
+archive:
+	carthage build --no-skip-current
+	carthage archive SevenHup
 
 bootstrap:
 	carthage bootstrap
