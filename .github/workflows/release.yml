@@ -1,0 +1,32 @@
+name: Release
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: IRC notification
+        uses: Gottox/irc-message-action@v1
+        with:
+          channel: '#repla-development'
+          nickname: bot-${{ github.run_id }}
+          message: |-
+            ${{ github.event.repository.name }} ${{ github.job }} started ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }}
+      - run: make archive
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: SevenHup.framework.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: IRC notification
+        uses: Gottox/irc-message-action@v1
+        with:
+          channel: '#repla-development'
+          nickname: bot-${{ github.run_id }}
+          message: |-
+            ${{ github.event.repository.name }} ${{ github.job }} finished ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }}

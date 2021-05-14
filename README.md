@@ -1,4 +1,4 @@
-# `SevenHup` [![Build Status](https://travis-ci.org/robenkleene/SevenHup.svg?branch=master)](https://travis-ci.org/robenkleene/SevenHup)
+# `SevenHup` ![Status](https://github.com/robenkleene/sevenhup/actions/workflows/ci.yml/badge.svg) ![Status](https://github.com/robenkleene/sevenhup/actions/workflows/release.yml/badge.svg)
 
 `SevenHup` is a child process manager for tracking child processes and providing functionality for cleaning them up all at once.
 
