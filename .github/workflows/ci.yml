@@ -18,6 +18,8 @@ jobs:
           message: |-
             ${{ github.event.repository.name }} ${{ github.job }} started ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }}
       - run: make ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: IRC notification
         uses: Gottox/irc-message-action@v1
         with:
