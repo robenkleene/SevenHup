@@ -7,9 +7,10 @@ on:
 jobs:
   release:
     runs-on: macos-latest
+    timeout-minutes: 20
     steps:
       - name: IRC notification
-        uses: Gottox/irc-message-action@v1
+        uses: Gottox/irc-message-action@v2
         continue-on-error: true
         with:
           channel: '#repla-development'
@@ -27,7 +28,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: IRC notification
-        uses: Gottox/irc-message-action@v1
+        uses: Gottox/irc-message-action@v2
         continue-on-error: true
         with:
           channel: '#repla-development'
