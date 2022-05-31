@@ -16,7 +16,8 @@ class Processes {
             completionHandler([pid_t: ProcessData](), nil)
             return
         }
-        DispatchQueue.global(qos: .background).async {
+        // Switched from `.background` to `.utility` because `.background` wasn't running in tests
+        DispatchQueue.global(qos: .utility).async {
             let dictionaries = Processes.processInfos(for: identifiers)
             let processDatas = makeProcessDatas(dictionaries: dictionaries)
             completionHandler(processDatas, nil)
